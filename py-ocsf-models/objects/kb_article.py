@@ -1,10 +1,9 @@
 from datetime import datetime
 from typing import Optional
 
+from objects.operating_system import OperatingSystem
+from objects.product import Product
 from pydantic import BaseModel, HttpUrl
-
-from .operating_system import OperatingSystem
-from .product import Product
 
 
 class KBArticle(BaseModel):

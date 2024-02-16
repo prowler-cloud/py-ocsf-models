@@ -1,8 +1,7 @@
-from typing import List, Optional
+from typing import Optional
 
+from objects.kb_article import KBArticle
 from pydantic import BaseModel
-
-from .kb_article import KBArticle
 
 
 class Remediation(BaseModel):
@@ -12,10 +11,10 @@ class Remediation(BaseModel):
 
     Attributes:
     - desc (str): Detailed description of the remediation strategy.
-    - kb_article_list (Optional[List[KBArticle]]): A list of KB articles describing patches or updates related to the remediation.
-    - references (Optional[List[str]]): URLs or references supporting the described remediation strategy.
+    - kb_article_list (Optional[list[KBArticle]]): A list of KB articles describing patches or updates related to the remediation.
+    - references (Optional[list[str]]): URLs or references supporting the described remediation strategy.
     """
 
     desc: str
-    kb_article_list: Optional[List[KBArticle]]
-    references: Optional[List[str]]
+    kb_article_list: Optional[list[KBArticle]]
+    references: Optional[list[str]]

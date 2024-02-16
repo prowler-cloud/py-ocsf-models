@@ -1,11 +1,10 @@
 from typing import Optional
 
+from objects.group import Group
+from objects.request_elements import RequestElements
+from objects.response_elements import ResponseElements
+from objects.service import Service
 from pydantic import BaseModel
-
-from .group import Group
-from .request_elements import RequestElements
-from .response_elements import ResponseElements
-from .service import Service
 
 
 class API(BaseModel):
