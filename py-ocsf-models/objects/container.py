@@ -1,10 +1,9 @@
 from typing import Optional
 from uuid import UUID
 
+from objects.finger_print import FingerPrint
+from objects.image import Image
 from pydantic import BaseModel
-
-from .finger_print import FingerPrint
-from .image import Image
 
 
 class Container(BaseModel):

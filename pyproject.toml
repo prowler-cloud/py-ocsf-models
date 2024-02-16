@@ -19,9 +19,17 @@ readme = "README.md"
 version = "0.0.1"
 
 [tool.poetry.dependencies]
+email-validator = "2.1.0.post1"
 pydantic = "1.10.14"
 python = ">=3.9,<3.13"
 
+[tool.poetry.group.dev.dependencies]
+bandit = "1.7.5"
+black = "22.12.0"
+flake8 = "6.1.0"
+pylint = "3.0.2"
+safety = "2.3.5"
+vulture = "2.10"
 
 [tool.poetry.urls]
 "Changelog" = ""

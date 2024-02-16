@@ -1,8 +1,9 @@
 from typing import Optional
-from pydantic import Basemodel
+
+from pydantic import BaseModel
 
 
-class Organization(Basemodel):
+class Organization(BaseModel):
     """
     The Organization object describes characteristics of an organization or company and its division if any.
 

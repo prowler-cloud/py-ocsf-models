@@ -1,9 +1,10 @@
+from enum import Enum
 from typing import Optional
 
 from pydantic import BaseModel
 
 
-class AlgorithmID(int, Enum):
+class AlgorithmID(Enum):
     Unknown = 0
     MD5 = 1
     SHA_1 = 2

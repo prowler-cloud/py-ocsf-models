@@ -1,8 +1,7 @@
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 
+from objects.container import Container
 from pydantic import BaseModel
-
-from .container import Container
 
 
 class RequestElements(BaseModel):
@@ -18,7 +17,7 @@ class RequestElements(BaseModel):
     - uid: A unique identifier for the API request.
     """
 
-    containers: Optional[List[Container]]
+    containers: Optional[list[Container]]
     data: Optional[Dict]
-    flags: Optional[List[str]]
+    flags: Optional[list[str]]
     uid: str

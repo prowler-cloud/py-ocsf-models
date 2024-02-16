@@ -1,9 +1,10 @@
 from datetime import datetime
-from typing import List, Optional
+from typing import Optional
 
-from geolocation import GeoLocation
+from objects.geolocation import GeoLocation
 from pydantic import BaseModel, EmailStr
-from user import User
+
+# from objects.user import User
 
 
 class LDAPPerson(BaseModel):
@@ -14,7 +15,7 @@ class LDAPPerson(BaseModel):
     - Cost Center (cost_center) [Optional]: Associated cost center for budgeting and financial analysis.
     - Created Time (created_time) [Optional]: Timestamp of when the user account was created.
     - Deleted Time (deleted_time) [Optional]: Timestamp indicating when the user was deleted, useful in AD environments.
-    - Email Addresses (email_addrs) [Optional]: List of additional email addresses.
+    - Email Addresses (email_addrs) [Optional]: list of additional email addresses.
     - Employee ID (employee_uid) [Optional]: Unique identifier assigned by the organization.
     - Geo Location (location) [Optional]: Usual work location of the user.
     - Given Name (given_name) [Optional]: First name of the user.
@@ -34,7 +35,7 @@ class LDAPPerson(BaseModel):
     cost_center: Optional[str]
     created_time: Optional[datetime]
     deleted_time: Optional[datetime]
-    email_addrs: Optional[List[EmailStr]]
+    email_addrs: Optional[list[EmailStr]]
     employee_uid: Optional[str]
     location: Optional[GeoLocation]
     given_name: Optional[str]
@@ -42,10 +43,11 @@ class LDAPPerson(BaseModel):
     job_title: Optional[str]
     ldap_cn: Optional[str]
     ldap_dn: Optional[str]
-    labels: Optional[List[str]]
+    labels: Optional[list[str]]
     last_login_time: Optional[datetime]
     leave_time: Optional[datetime]
-    manager: Optional[User]
+    # TODO: circular import
+    # manager: Optional[User]
     modified_time: Optional[datetime]
     office_location: Optional[str]
     surname: Optional[str]

@@ -1,0 +1,87 @@
+from enum import Enum
+from typing import Optional
+
+from objects.enrichment import Enrichment
+from pydantic import BaseModel
+
+
+class SeverityID(Enum):
+    """
+    The normalized identifier of the event/finding severity.
+
+    The normalized severity is a measurement the effort and expense required to manage and resolve an event or incident. Smaller numerical values represent lower impact events, and larger numerical values represent higher impact events.
+
+    0 Unknown: The event/finding severity is unknown.
+    1 Informational: Informational message. No action required.
+    2 Low: The user decides if action is needed.
+    3 Medium: Action is required but the situation is not serious at this time.
+    4 High: Action is required immediately.
+    5 Critical: Action is required immediately and the scope is broad.
+    6 Fatal: An error occurred but it is too late to take remedial action.
+    99 Other: The event/finding severity is not mapped. See the severity attribute, which contains a data source specific value.
+    """
+
+    Unknown = 0
+    Informational = 1
+    Low = 2
+    Medium = 3
+    High = 4
+    Critical = 5
+    Fatal = 6
+    Other = 99
+
+
+class StatusID(Enum):
+    """
+    The normalized identifier of the event/finding severity.
+
+    The normalized severity is a measurement the effort and expense required to manage and resolve an event or incident. Smaller numerical values represent lower impact events, and larger numerical values represent higher impact events.
+
+    0 Unknown: The status is unknown.
+    1 New: The Finding is new and yet to be reviewed.
+    2 InProgress: The Finding is under review.
+    3 Suppressed: The Finding was reviewed, determined to be benign or a false positive and is now suppressed.
+    4 Resolved: The Finding was reviewed, remediated and is now considered resolved.
+    99 Other: The event status is not mapped. See the status attribute, which contains a data source specific value.
+    """
+
+    Unknown = 0
+    New = 1
+    InProgress = 2
+    Suppressed = 3
+    Resolved = 4
+    Other = 99
+
+
+class BaseEvent(BaseModel):
+    """
+    The base event is a generic and concrete event. It also defines a set of attributes available in most event classes. As a generic event that does not belong to any event category, it could be used to log events that are not otherwise defined by the schema.
+
+    Attributes:
+    - Enrichments (enrichments) [Optional]: Additional information from external sources associated with the finding.
+    - Message (message) [Optional]: Description of the event/finding as defined by the source.
+    - Metadata (metadata) [Required]: Data providing context for the event/finding.
+    - Observables (observables) [Optional]: Observable elements associated with the event/finding.
+    - Raw Data (raw_data) [Optional]: Original data as received from the source.
+    - Severity, (severity) [Optional]: The level of severity assigned to the event/finding.
+    - Severity ID (severity_id) [Required]: The level of severity assigned to the event/finding.
+    - Status (status) [Optional]: The normalized status of the Finding set by the consumer normalized to the caption of the status_id value. In the case of 'Other', it is defined by the source.
+    - Status Code (status_code) [Optional]: The event status code, as reported by the event source. For example, in a Windows Failed Authentication event, this would be the value of 'Failure Code', e.g. 0x18.
+    - Status Details (status_detail) [Optional]: The status details contains additional information about the event/finding outcome.
+    - Status ID (status_id) [Optional]: The normalized status identifier of the Finding, set by the consumer.
+    - Unmapped Data (unmapped_data) [Optional]: The attributes that are not mapped to the event schema. The names and values of those attributes are specific to the event source.
+    """
+
+    enrichments: Optional[list[Enrichment]]
+    message: Optional[str]
+    # TODO
+    # metadata: Metadata
+    # observables: Optional[list[Observable]]
+    raw_data: Optional[str]
+    severity: Optional[str]
+    severity_id: SeverityID
+    status: Optional[str]
+    status_code: Optional[str]
+    status_detail: Optional[str]
+    status_id: Optional[StatusID]
+    unmapped_data: object
