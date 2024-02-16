@@ -1,4 +1,4 @@
-from typing import Dict, Optional
+from typing import Optional
 
 from objects.container import Container
 from pydantic import BaseModel
@@ -9,17 +9,18 @@ class ResponseElements(BaseModel):
     Represents the elements of an API response, particularly useful in containerized applications for capturing the output of containers, the response data, any associated error codes or messages, communication flags, and a descriptive message about the response.
 
     Attributes:
-    - containers (Optional[list[Container]]): Set of containers related to the API response.
-    - data (Optional[Dict]): Additional JSON-formatted data associated with the API response.
-    - error (Optional[str]): Error code associated with the response.
-    - error_message (Optional[str]): Descriptive error message.
-    - flags (Optional[list[str]]): Communication flags providing context about the response.
-    - message (Optional[str]): General description or findings from the API response.
-    - code (Optional[int]): Numeric response code indicating the outcome of the API request.
+    - Containers (containers) [Optional]: When working with containerized applications, the set of containers which write to the standard the output of a particular logging driver. For example, this may be the set of containers involved in handling api requests and responses for a containerized application.
+    - Data(data) [Optional]: The additional data that is associated with the api response.
+    - Error Code (error) [Optional]: Error code associated with the response.
+    - Error Message	(error_message) [Optional]: Descriptive error message.
+    - Flags	(flags) [Optional]: The list of communication flags, normalized to the captions of the flag_ids values. In the case of 'Other', they are defined by the event source.
+    - Message (message) [Optional]: The description of the event/finding, as defined by the source.
+    - Response Code	(code) [Optional]: The numeric response sent to a request.
+
     """
 
     containers: Optional[list[Container]]
-    data: Optional[Dict]
+    data: Optional[dict]
     error: Optional[str]
     error_message: Optional[str]
     flags: Optional[list[str]]
