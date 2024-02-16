@@ -1,8 +1,10 @@
 from typing import Optional
+
 from objects.account import Account
 from objects.group import Group
-from pydantic import BaseModel
+from objects.ldap_person import LDAPPerson
 from objects.organization import Organization
+from pydantic import BaseModel
 
 
 class User(BaseModel):
@@ -30,8 +32,7 @@ class User(BaseModel):
     domain: Optional[str]
     email_addr: Optional[str]
     groups: Optional[list[Group]]
-    # Pending LDAPPerson type
-    ldap_person: None
+    ldap_person: Optional[LDAPPerson]
     name: str
     org: Optional[Organization]
     type: Optional[str]

@@ -1,30 +1,36 @@
-from typing import Optional
-from pydantic import BaseModel
 from enum import Enum
+from typing import Optional
 
+from pydantic import BaseModel
 
 
 class TypeID(str, Enum):
-#     0	Unknown
-# The account type is unknown.
-# 1	LDAP Account
-# 2	Windows Account
-# 3	AWS IAM User
-# 4	AWS IAM Role
-# 5	GCP Account
-# 6	Azure AD Account
-# 7	Mac OS Account
-# 8	Apple Account
-# 9	Linux Account
-# 10	AWS Account
-# 99	Other
-    
+    Unknown = "0"
+    LDAP_Account = "1"
+    Windows_Account = "2"
+    AWS_IAM_User = "3"
+    AWS_IAM_Role = "4"
+    GCP_Account = "5"
+    Azure_AD_Account = "6"
+    MacOS_Account = "7"
+    Apple_Account = "8"
+    Linux_Account = "9"
+    AWS_Account = "10"
+    Other = "99"
+
+
 class Account(BaseModel):
     """
     The Account object contains details about the account that initiated or performed a specific activity within a system or application.
 
-    
+    Attributes:
+    - Name (name) [Recommended]: The name of the account (e.g. GCP Account Name).
+    - Type (type) [Optional]: The account type, normalized to the caption of 'account_type_id'. In the case of 'Other', it is defined by the event source.
+    - Type ID (type_id) [Recommended]: The normalized account type identifier.
+    - Unique ID (uid) [Recommended]: The unique identifier of the account (e.g. AWS Account ID).
+
     """
+
     name: str
     type: Optional[str]
     type_id: TypeID
