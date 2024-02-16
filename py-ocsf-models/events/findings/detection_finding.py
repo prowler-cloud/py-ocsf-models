@@ -3,8 +3,6 @@ from enum import Enum
 from typing import Optional
 
 from events.findings.finding import Finding
-from objects.api import API
-from objects.cloud import Cloud
 from objects.remediation import Remediation
 from objects.resource_details import ResourceDetails
 from pydantic import BaseModel
@@ -53,13 +51,12 @@ class DetectionFinding(Finding, BaseModel):
 
     """
 
-    api_details: Optional[API]
+    # TODO: pending to add profiles
     resources: Optional[list[ResourceDetails]]
     category_name: str = "Findings"
     category_uid: CategoryUID = CategoryUID["Findings"]
     class_name: Optional[str] = "Detection Finding"
     class_uid: ClassUID = ClassUID["DetectionFinding"]
-    cloud: Cloud
     count: Optional[int]
     duration: Optional[int]
     event_time: datetime

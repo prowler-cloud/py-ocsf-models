@@ -54,7 +54,7 @@ class Finding(BaseEvent, BaseModel):
     - Confidence ID (confidence_id) [Optional]: Represents the accuracy of the detection rule. A low confidence indicates a broad finding scope that may include benign events.
     - Confidence Score (confidence_score) [Optional]: The confidence score as reported by the event source.
     - End Time (end_time) [Optional]: Timestamp of the most recent event included in the finding.
-    - Finding Information (finding_info) [Required]: Details supporting the identification of the finding.
+    - Finding Information (finding_info) [Required]: Describes the supporting information about a generated finding.
     - Start Time (start_time) [Optional]: Time of the earliest event included in the finding.
 
     """
