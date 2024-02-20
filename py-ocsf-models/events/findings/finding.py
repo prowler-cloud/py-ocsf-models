@@ -1,9 +1,115 @@
 from datetime import datetime
 from enum import Enum
-from typing import Optional
+from typing import List, Optional
 
 from events.base_event import BaseEvent
 from pydantic import BaseModel
+
+
+class PhaseID(Enum):
+    """
+    The Kill Chain Phase object represents a single phase of a cyber attack, including the initial reconnaissance and planning stages up to the final objective of the attacker. It provides a detailed description of each phase and its associated activities within the broader context of a cyber attack.
+
+    Attributes:
+    - Unknown (0): The kill chain phase is unknown.
+    - Reconnaissance (1): The attackers pick a target and perform a detailed analysis, start collecting information (email addresses, conferences information, etc.) and evaluate the victim’s vulnerabilities to determine how to exploit them.
+    - Weaponization (2): The attackers develop a malware weapon and aim to exploit the discovered vulnerabilities.
+    - Delivery (3): The intruders will use various tactics, such as phishing, infected USB drives, etc.
+    - Exploitation (4): The intruders start leveraging vulnerabilities to executed code on the victim’s system.
+    - Installation (5): The intruders install malware on the victim’s system.
+    - Command & Control (6): Malware opens a command channel to enable the intruders to remotely manipulate the victim's system.
+    - Actions on Objectives (7): With hands-on keyboard access, intruders accomplish the mission’s goal.
+    - Other (99): The kill chain phase is not mapped. See the phase attribute, which contains a data source specific value.
+    """
+
+    Unknown = 0
+    Reconnaissance = 1
+    Weaponization = 2
+    Delivery = 3
+    Exploitation = 4
+    Installation = 5
+    Command_Control = 6
+    Actions_on_Objectives = 7
+    Other = 99
+
+
+class KillChainPhase(BaseModel):
+    """
+    Base model representing a Cyber Kill Chain phase.
+
+    Attributes:
+    - Kill Chain Phase (phase) [Recommended]: The cyber kill chain phase.
+    - Kill Chain Phase ID (phase_id) [Required]: The cyber kill chain phase identifier.
+    """
+
+    phase: str
+    phase_id: PhaseID
+
+
+class Analytic(BaseModel):
+    """
+    The Analytic object contains details about the analytic technique used to analyze and derive insights from the data or information that led to the creation of a finding or conclusion.
+
+    Attributes:
+    - Category (category) [Optional]: The analytic category.
+    - Description (desc) [Optional]: The description of the analytic that generated the finding.
+    - Name (name) [Recommended]: The name of the analytic that generated the finding.
+    - Type (type) [Optional]: The analytic type.
+    - Type ID (type_id) [Required]: The analytic type ID.
+    - Unique ID (uid) [Recommended]: The unique identifier of the analytic that generated the finding.
+    - Version (version) [Optional]: The analytic version. For example: 1.1.
+    """
+
+    category: Optional[str]
+    desc: Optional[str]
+    name: str
+    type: Optional[str]
+    type_id: int
+    uid: str
+    version: Optional[str]
+
+
+class FindingInformation(BaseModel):
+    """
+    Base model representing information about a finding or conclusion.
+
+    Attributes:
+    - Analytic (analytic) [Recommended]: The analytic technique used to analyze and derive insights from the data or information that led to the finding or conclusion.
+    - Created Time (created_time) [Optional]: The time when the finding was created.
+    - Data Sources (data_sources) [Optional]: A list of data sources utilized in generation of the finding.
+    - Description (desc) [Optional]: The description of the reported finding.
+    - First Seen (first_seen_time) [Optional]: The time when the finding was first observed. It can differ from the created_time datetime, which reflects the time this finding was created.
+    - Kill Chain (kill_chain) [Optional]: The Cyber Kill Chain® provides a detailed description of each phase and its associated activities within the broader context of a cyber attack.
+    - Last Seen (last_seen_time) [Optional]: The time when the finding was most recently observed. It can differ from the modified_time datetime, which reflects the time this finding was last modified.
+    - MITRE ATT&CK® Details (attacks) [Optional]: The MITRE ATT&CK® technique and associated tactics related to the finding.
+    - Modified Time (modified_time) [Optional]: The time when the finding was last modified.
+    - Product Identifier (product_uid) [Optional]: The unique identifier of the product that reported the finding.
+    - Related Analytics (related_analytics) [Optional]: Other analytics related to this finding.
+    - Related Events (related_events) [Optional]: Describes events and/or other findings related to the finding as identified by the security product.
+    - Source URL (src_url) [Optional]: The URL pointing to the source of the finding.
+    - Title (title) [Required]: A title or a brief phrase summarizing the reported finding.
+    - Types (types) [Optional]: One or more types of the reported finding.
+    - Unique ID (uid) [Required]: The unique identifier of the reported finding.
+    """
+
+    analytic: Optional[Analytic]
+    created_time: Optional[datetime]
+    data_sources: Optional[List[str]]
+    desc: Optional[str]
+    first_seen_time: Optional[datetime]
+    kill_chain: Optional[List[KillChainPhase]]
+    last_seen_time: Optional[datetime]
+    # TODO
+    # attacks: Optional[List[MITREATTACK]]
+    modified_time: Optional[datetime]
+    product_uid: Optional[str]
+    related_analytics: Optional[List[Analytic]]
+    # TODO
+    # related_events: Optional[List[RelatedEvent]]
+    src_url: Optional[str]
+    title: str
+    types: Optional[List[str]]
+    uid: str
 
 
 class ActivityID(Enum):
@@ -53,7 +159,7 @@ class Finding(BaseEvent, BaseModel):
     - Confidence (confidence) [Optional]: The confidence, normalized to the caption of the confidence_id value. In the case of 'Other', it is defined by the event source.
     - Confidence ID (confidence_id) [Optional]: Represents the accuracy of the detection rule. A low confidence indicates a broad finding scope that may include benign events.
     - Confidence Score (confidence_score) [Optional]: The confidence score as reported by the event source.
-    - End Time (end_time) [Optional]: Timestamp of the most recent event included in the finding.
+    - End Time (end_time) [Optional]: datetime of the most recent event included in the finding.
     - Finding Information (finding_info) [Required]: Describes the supporting information about a generated finding.
     - Start Time (start_time) [Optional]: Time of the earliest event included in the finding.
 
@@ -65,9 +171,6 @@ class Finding(BaseEvent, BaseModel):
     confidence: Optional[str]
     confidence_id: Optional[ConfidenceID]
     confidence_score: Optional[int]
-    # TODO: comes from cloud
-    # device: Optional[Device]
     end_time: Optional[datetime]
-    # TODO
-    # finding_info: FindingInformation
+    finding_info: FindingInformation
     start_time: Optional[datetime]
