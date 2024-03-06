@@ -554,4 +554,3 @@ class TestDetectionFinding:
         assert evidence_artifact.api.version == "1.0"
         assert evidence_artifact.data == {"key": "value"}
 
-        # Add more asserts as necessary for other fields and nested objects
