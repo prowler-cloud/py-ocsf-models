@@ -16,7 +16,9 @@ maintainers = [
   "Pepe Fagoaga <pepe@prowler.com>"
 ]
 name = "py-ocsf-models"
-packages = []
+packages = [
+  {include = "py_ocsf_models"}
+]
 readme = "README.md"
 version = "0.0.1"
 
