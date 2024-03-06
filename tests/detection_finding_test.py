@@ -39,10 +39,53 @@ class TestDetectionFinding:
             cloud=CloudProfile(
                 api=API(
                     request=RequestElements(
-                        headers={"Content-Type": "application/json"}, body="{}"
+                        containers=[
+                            Container(
+                                hash=FingerPrint(algorithm="SHA256", value="123"),
+                                image=Image(
+                                    name="Image 1",
+                                    type="Image",
+                                    details="Details of the image",
+                                ),
+                                tag="Tag 1",
+                                name="Container 1",
+                                network_driver="Network Driver 1",
+                                orchestrator="Orchestrator 1",
+                                pod_uuid="123",
+                                runtime="Runtime 1",
+                                size=123,
+                                uid="123",
+                            )
+                        ],
+                        data={"key": "value"},
+                        flags=["Flag 1"],
+                        uid="123",
                     ),
                     response=ResponseElements(
-                        headers={"Content-Type": "application/json"}, body="{}"
+                        containers=[
+                            Container(
+                                hash=FingerPrint(algorithm="SHA256", value="123"),
+                                image=Image(
+                                    name="Image 1",
+                                    type="Image",
+                                    details="Details of the image",
+                                ),
+                                tag="Tag 1",
+                                name="Container 1",
+                                network_driver="Network Driver 1",
+                                orchestrator="Orchestrator 1",
+                                pod_uuid="123",
+                                runtime="Runtime 1",
+                                size=123,
+                                uid="123",
+                            )
+                        ],
+                        data={"key": "value"},
+                        error="Error",
+                        error_message="Error Message",
+                        flags=["Flag 1"],
+                        message="Message",
+                        code=123,
                     ),
                     group=Group(
                         id="123",
@@ -220,5 +263,5 @@ class TestDetectionFinding:
                 )
             ],
         )
-
+        print(detection_finding)
         # TODO: assert with the expected object
