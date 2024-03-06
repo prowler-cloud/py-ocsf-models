@@ -4,15 +4,17 @@ requires = ["poetry-core"]
 
 # https://peps.python.org/pep-0621/
 [tool.poetry]
-authors = []
+authors = ["Prowler Team <engineering@prowler.com>"]
 classifiers = [
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.9",
   "License :: OSI Approved :: Apache Software License"
 ]
-description = ""
+description = "This is a Python implementation of the OCSF models. The models are used to represent the data of the OCSF Schema defined in https://schema.ocsf.io/."
 license = "Apache-2.0"
-maintainers = []
+maintainers = [
+  "Sergio Garcia <sergio@prowler.com>",
+  "Pepe Fagoaga <pepe@prowler.com>"
+]
 name = "py-ocsf-models"
 packages = []
 readme = "README.md"
@@ -37,10 +39,10 @@ safety = "2.3.5"
 vulture = "2.10"
 
 [tool.poetry.urls]
-"Changelog" = ""
-"Documentation" = ""
-"Homepage" = ""
-"Issue tracker" = ""
+"Changelog" = "https://github.com/prowler-cloud/py-ocsf-models/releases"
+"Documentation" = "https://docs.prowler.cloud"
+"Homepage" = "https://github.com/prowler-cloud/py-ocsf-models"
+"Issue tracker" = "https://github.com/prowler-cloud/py-ocsf-models/issues"
 
 [tool.poetry-version-plugin]
 source = "init"
