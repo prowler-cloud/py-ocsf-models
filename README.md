@@ -2,6 +2,8 @@
 
 The `py-ocsf-models` package offers a Python implementation of the Open Cybersecurity Schema Framework (OCSF) models, facilitating the manipulation and understanding of cybersecurity data within Python applications. This package provides a rich set of models covering various aspects of cybersecurity events, findings, objects, and profiles as defined by the OCSF Schema, enabling developers to work with structured cybersecurity data efficiently.
 
+In [Prowler](https://github.com/prowler-cloud/prowler), we leverage the py-ocsf-models package to generate JSON formatted OCSF outputs, specifically focusing on Detection Findings. This integration facilitates the standardization and sharing of cybersecurity findings in a structured and widely-accepted format, enhancing the interoperability between different security tools and platforms.
+
 ## Features
 
 - **Comprehensive OCSF Schema Implementation**: Includes models for events, findings, objects, and profiles, covering the entire OCSF Schema.
