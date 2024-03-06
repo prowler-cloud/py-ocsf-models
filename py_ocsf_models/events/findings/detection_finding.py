@@ -9,8 +9,8 @@ from py_ocsf_models.objects.evidence_artifacts import EvidenceArtifacts
 from py_ocsf_models.objects.remediation import Remediation
 from py_ocsf_models.objects.resource_details import ResourceDetails
 from py_ocsf_models.objects.vulnerability_details import VulnerabilityDetails
-from py_ocsf_models.profiles.cloud import Cloud
-from py_ocsf_models.profiles.container import Container
+from py_ocsf_models.profiles.cloud import CloudProfile
+from py_ocsf_models.profiles.container import ContainerProfile
 
 
 class CategoryUID(Enum):
@@ -64,8 +64,8 @@ class DetectionFinding(Finding, BaseModel):
     category_uid: CategoryUID = CategoryUID["Findings"]
     class_name: Optional[str] = "Detection Finding"
     class_uid: ClassUID = ClassUID["DetectionFinding"]
-    cloud: Optional[Cloud]
-    container: Optional[Container]
+    cloud: Optional[CloudProfile]
+    container: Optional[ContainerProfile]
     count: Optional[int]
     duration: Optional[int]
     event_time: datetime

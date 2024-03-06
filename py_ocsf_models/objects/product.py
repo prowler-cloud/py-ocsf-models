@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic import BaseModel, HttpUrl
+from pydantic import BaseModel
 
 
 class Feature(BaseModel):
@@ -43,7 +43,7 @@ class Product(BaseModel):
     name: str
     path: Optional[str]
     cpe_name: Optional[str]
-    url_string: Optional[HttpUrl]
+    url_string: Optional[str]
     uid: str
     vendor_name: str
     version: Optional[str]
