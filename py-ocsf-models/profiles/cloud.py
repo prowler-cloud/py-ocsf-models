@@ -6,7 +6,7 @@ from py_ocsf_models.objects.api import API
 from py_ocsf_models.objects.cloud import Cloud
 
 
-class CloudProfile(BaseModel):
+class Cloud(BaseModel):
     """
     The attributes that describe information specific to Cloud services/applications.
 

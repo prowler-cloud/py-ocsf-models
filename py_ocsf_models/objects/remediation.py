@@ -1,7 +1,8 @@
 from typing import Optional
 
-from objects.kb_article import KBArticle
 from pydantic import BaseModel
+
+from py_ocsf_models.objects.kb_article import KBArticle
 
 
 class Remediation(BaseModel):

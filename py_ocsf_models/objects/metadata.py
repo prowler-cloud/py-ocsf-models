@@ -1,9 +1,10 @@
 from datetime import datetime
 from typing import List, Optional
 
-from objects.device import Device
-from objects.product import Product
 from pydantic import BaseModel
+
+from py_ocsf_models.objects.device import Device
+from py_ocsf_models.objects.product import Product
 
 
 class SchemaExtension(BaseModel):

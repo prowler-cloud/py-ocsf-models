@@ -1,8 +1,9 @@
 from typing import Optional
 
-from objects.account import Account
-from objects.organization import Organization
 from pydantic import BaseModel
+
+from py_ocsf_models.objects.account import Account
+from py_ocsf_models.objects.organization import Organization
 
 
 class Cloud(BaseModel):

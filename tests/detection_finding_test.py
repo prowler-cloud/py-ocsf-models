@@ -21,9 +21,9 @@ from py_ocsf_models.profiles.cloud import CloudProfile
 from py_ocsf_models.profiles.container import ContainerProfile
 
 
-class Test_DetectionFinding:
+class TestDetectionFinding:
     def test_detection_finding(self):
-        d = DetectionFinding(
+        detection_finding = DetectionFinding(
             resources=[
                 ResourceDetails(
                     id="123",
@@ -221,5 +221,4 @@ class Test_DetectionFinding:
             ],
         )
 
-        print(d)
-        assert d is not None
+        # TODO: assert with the expected object

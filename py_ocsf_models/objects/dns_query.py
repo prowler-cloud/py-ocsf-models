@@ -1,4 +1,3 @@
-from dataclasses import Field
 from enum import Enum
 from typing import Optional
 
@@ -46,7 +45,8 @@ class DNSQuery(BaseModel):
     opcode_id: Optional[DNSOpcodeID]
     hostname: str
     packet_uid: Optional[int]
-    class_: Optional[str] = Field(
-        alias="class"
-    )  # Renaming class to avoid conflict with Python keyword
+    # TODO: Update to Pydantic v2 to use Field
+    # class_: Optional[str] = Field(
+    #     alias="class"
+    # )  # Renaming class to avoid conflict with Python keyword
     type: Optional[str]

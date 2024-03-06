@@ -1,8 +1,9 @@
 from typing import List, Optional
 
-from objects.mitre_attack import MITREAttack
-from objects.observable import Observable
 from pydantic import BaseModel
+
+from py_ocsf_models.objects.mitre_attack import MITREAttack
+from py_ocsf_models.objects.observable import Observable
 
 
 class RelatedEvent(BaseModel):

@@ -2,10 +2,11 @@ from datetime import datetime
 from enum import Enum
 from typing import List, Optional
 
-from events.base_event import BaseEvent
-from objects.mitre_attack import MITREAttack
-from objects.related_event import RelatedEvent
 from pydantic import BaseModel
+
+from py_ocsf_models.events.base_event import BaseEvent
+from py_ocsf_models.objects.mitre_attack import MITREAttack
+from py_ocsf_models.objects.related_event import RelatedEvent
 
 
 class PhaseID(Enum):

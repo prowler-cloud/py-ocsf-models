@@ -2,14 +2,15 @@ from datetime import datetime
 from enum import Enum
 from typing import List, Optional
 
-from objects.device_hardware_info import DeviceHardwareInfo
-from objects.geolocation import GeoLocation
-from objects.group import Group
-from objects.image import Image
-from objects.network_interface import NetworkInterface
-from objects.operating_system import OperatingSystem
-from objects.organization import Organization
 from pydantic import BaseModel
+
+from py_ocsf_models.objects.device_hardware_info import DeviceHardwareInfo
+from py_ocsf_models.objects.geolocation import GeoLocation
+from py_ocsf_models.objects.group import Group
+from py_ocsf_models.objects.image import Image
+from py_ocsf_models.objects.network_interface import NetworkInterface
+from py_ocsf_models.objects.operating_system import OperatingSystem
+from py_ocsf_models.objects.organization import Organization
 
 
 class DeviceType(Enum):

@@ -1,9 +1,10 @@
 from datetime import datetime
 from typing import Optional
 
-from objects.operating_system import OperatingSystem
-from objects.product import Product
 from pydantic import BaseModel
+
+from py_ocsf_models.objects.operating_system import OperatingSystem
+from py_ocsf_models.objects.product import Product
 
 
 class KBArticle(BaseModel):

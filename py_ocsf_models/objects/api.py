@@ -1,10 +1,11 @@
 from typing import Optional
 
-from objects.group import Group
-from objects.request_elements import RequestElements
-from objects.response_elements import ResponseElements
-from objects.service import Service
 from pydantic import BaseModel
+
+from py_ocsf_models.objects.group import Group
+from py_ocsf_models.objects.request_elements import RequestElements
+from py_ocsf_models.objects.response_elements import ResponseElements
+from py_ocsf_models.objects.service import Service
 
 
 class API(BaseModel):

@@ -1,10 +1,11 @@
 from enum import Enum
 from typing import Optional
 
-from objects.enrichment import Enrichment
-from objects.metadata import Metadata
-from objects.observable import Observable
 from pydantic import BaseModel
+
+from py_ocsf_models.objects.enrichment import Enrichment
+from py_ocsf_models.objects.metadata import Metadata
+from py_ocsf_models.objects.observable import Observable
 
 
 class SeverityID(Enum):

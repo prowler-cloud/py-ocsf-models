@@ -1,7 +1,8 @@
 from typing import Optional
 
-from objects.container import Container
 from pydantic import BaseModel
+
+from py_ocsf_models.objects.container import Container
 
 
 class ResponseElements(BaseModel):

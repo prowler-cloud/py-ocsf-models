@@ -1,8 +1,9 @@
 from typing import Dict, Optional
 
-from objects.api import API
-from objects.dns_query import DNSQuery
 from pydantic import BaseModel
+
+from py_ocsf_models.objects.api import API
+from py_ocsf_models.objects.dns_query import DNSQuery
 
 
 class EvidenceArtifacts(BaseModel):
