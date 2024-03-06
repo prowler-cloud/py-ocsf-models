@@ -1,9 +1,10 @@
 from typing import Optional
 from uuid import UUID
 
-from objects.finger_print import FingerPrint
-from objects.image import Image
 from pydantic import BaseModel
+
+from py_ocsf_models.objects.fingerprint import FingerPrint
+from py_ocsf_models.objects.image import Image
 
 
 class Container(BaseModel):

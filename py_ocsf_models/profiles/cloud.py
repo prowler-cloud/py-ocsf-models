@@ -1,11 +1,12 @@
 from typing import Optional
 
-from objects.api import API
-from objects.cloud import Cloud
 from pydantic import BaseModel
 
+from py_ocsf_models.objects.api import API
+from py_ocsf_models.objects.cloud import Cloud
 
-class Cloud(BaseModel):
+
+class CloudProfile(BaseModel):
     """
     The attributes that describe information specific to Cloud services/applications.
 

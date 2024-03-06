@@ -1,7 +1,9 @@
-from objects.group import Group
 from typing import Optional
+
 from pydantic import BaseModel
-from objects.user import User
+
+from py_ocsf_models.objects.group import Group
+from py_ocsf_models.objects.user import User
 
 
 class ResourceDetails(BaseModel):

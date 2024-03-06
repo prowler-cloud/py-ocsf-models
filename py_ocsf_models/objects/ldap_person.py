@@ -1,10 +1,11 @@
 from datetime import datetime
 from typing import Optional
 
-from objects.geolocation import GeoLocation
+# FIXME(circular-dependency)
+# from py_ocsf_models.objects.user import User
 from pydantic import BaseModel, EmailStr
 
-# from objects.user import User
+from py_ocsf_models.objects.geolocation import GeoLocation
 
 
 class LDAPPerson(BaseModel):
@@ -46,7 +47,7 @@ class LDAPPerson(BaseModel):
     labels: Optional[list[str]]
     last_login_time: Optional[datetime]
     leave_time: Optional[datetime]
-    # TODO: circular import
+    # FIXME(circular-dependency)
     # manager: Optional[User]
     modified_time: Optional[datetime]
     office_location: Optional[str]

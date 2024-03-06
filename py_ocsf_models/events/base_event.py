@@ -1,8 +1,11 @@
 from enum import Enum
 from typing import Optional
 
-from objects.enrichment import Enrichment
 from pydantic import BaseModel
+
+from py_ocsf_models.objects.enrichment import Enrichment
+from py_ocsf_models.objects.metadata import Metadata
+from py_ocsf_models.objects.observable import Observable
 
 
 class SeverityID(Enum):
@@ -74,9 +77,8 @@ class BaseEvent(BaseModel):
 
     enrichments: Optional[list[Enrichment]]
     message: Optional[str]
-    # TODO
-    # metadata: Metadata
-    # observables: Optional[list[Observable]]
+    metadata: Metadata
+    observables: Optional[list[Observable]]
     raw_data: Optional[str]
     severity: Optional[str]
     severity_id: SeverityID

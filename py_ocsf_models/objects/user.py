@@ -1,10 +1,11 @@
 from typing import Optional
 
-from objects.account import Account
-from objects.group import Group
-from objects.ldap_person import LDAPPerson
-from objects.organization import Organization
 from pydantic import BaseModel
+
+from py_ocsf_models.objects.account import Account
+from py_ocsf_models.objects.group import Group
+from py_ocsf_models.objects.ldap_person import LDAPPerson
+from py_ocsf_models.objects.organization import Organization
 
 
 class User(BaseModel):
