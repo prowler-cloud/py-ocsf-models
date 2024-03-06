@@ -455,7 +455,7 @@ print(detection_finding_json)
 ```
 
 
-## Contributing
+## Contributing
 Contributions are welcome! Whether you're fixing a bug, adding new features, or improving the documentation, please feel free to make a pull request or open an issue.
 
 ## License
