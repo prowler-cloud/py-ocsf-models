@@ -3,6 +3,8 @@ from enum import Enum
 from typing import List, Optional
 
 from events.base_event import BaseEvent
+from objects.mitre_attack import MITREAttack
+from objects.related_event import RelatedEvent
 from pydantic import BaseModel
 
 
@@ -99,13 +101,11 @@ class FindingInformation(BaseModel):
     first_seen_time: Optional[datetime]
     kill_chain: Optional[List[KillChainPhase]]
     last_seen_time: Optional[datetime]
-    # TODO
-    # attacks: Optional[List[MITREATTACK]]
+    attacks: Optional[List[MITREAttack]]
     modified_time: Optional[datetime]
     product_uid: Optional[str]
     related_analytics: Optional[List[Analytic]]
-    # TODO
-    # related_events: Optional[List[RelatedEvent]]
+    related_events: Optional[List[RelatedEvent]]
     src_url: Optional[str]
     title: str
     types: Optional[List[str]]

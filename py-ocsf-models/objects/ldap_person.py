@@ -2,9 +2,8 @@ from datetime import datetime
 from typing import Optional
 
 from objects.geolocation import GeoLocation
+from objects.user import User
 from pydantic import BaseModel, EmailStr
-
-# from objects.user import User
 
 
 class LDAPPerson(BaseModel):
@@ -46,8 +45,7 @@ class LDAPPerson(BaseModel):
     labels: Optional[list[str]]
     last_login_time: Optional[datetime]
     leave_time: Optional[datetime]
-    # TODO: circular import
-    # manager: Optional[User]
+    manager: Optional[User]
     modified_time: Optional[datetime]
     office_location: Optional[str]
     surname: Optional[str]

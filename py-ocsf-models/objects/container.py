@@ -1,7 +1,7 @@
 from typing import Optional
 from uuid import UUID
 
-from objects.finger_print import FingerPrint
+from objects.fingerprint import FingerPrint
 from objects.image import Image
 from pydantic import BaseModel
 

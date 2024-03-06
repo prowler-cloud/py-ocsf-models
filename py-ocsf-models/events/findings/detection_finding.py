@@ -3,8 +3,12 @@ from enum import Enum
 from typing import Optional
 
 from events.findings.finding import Finding
+from objects.evidence_artifacts import EvidenceArtifacts
 from objects.remediation import Remediation
 from objects.resource_details import ResourceDetails
+from objects.vulnerability_details import VulnerabilityDetails
+from profiles.cloud import Cloud
+from profiles.container import Container
 from pydantic import BaseModel
 
 
@@ -38,6 +42,8 @@ class DetectionFinding(Finding, BaseModel):
     - Category (category_name): The event category name, as defined by category_uid value: Findings.
     - Class (class_name) [Optional]: The event class name, as defined by class_uid value: Detection Finding.
     - Class ID (class_uid): The unique identifier of a class. A Class describes the attributes available in an event.
+    - Cloud (cloud) [Optional]: Describes details about the Cloud environment where the event was originally created or logged.
+    - Container (container) [Optional]: Describes the container details.
     - Count (count) [Optional]: Number of times similar events occurred within a specified timeframe.
     - Duration (duration) [Optional]: Time span of the event, from start to end, in milliseconds.
     - Event Time (time) [Required]: The standardized time when the event occurred or the finding was created.
@@ -57,11 +63,12 @@ class DetectionFinding(Finding, BaseModel):
     category_uid: CategoryUID = CategoryUID["Findings"]
     class_name: Optional[str] = "Detection Finding"
     class_uid: ClassUID = ClassUID["DetectionFinding"]
+    cloud: Optional[Cloud]
+    container: Optional[Container]
     count: Optional[int]
     duration: Optional[int]
     event_time: datetime
-    # TODO
-    # evidences: Optional[list[EvidenceArtifacts]]
+    evidences: Optional[list[EvidenceArtifacts]]
     impact: Optional[str]
     impact_score: Optional[int]
     impact_id: Optional[int]
@@ -72,5 +79,4 @@ class DetectionFinding(Finding, BaseModel):
     timezone_offset: Optional[int]
     type_id: int
     type_name: Optional[str]
-    # TODO
-    # vulnerabilities: Optional[list[VulnerabilityDetails]]
+    vulnerabilities: Optional[list[VulnerabilityDetails]]
