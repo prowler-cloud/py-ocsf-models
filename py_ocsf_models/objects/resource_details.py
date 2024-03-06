@@ -1,7 +1,8 @@
-from objects.group import Group
 from typing import Optional
-from pydantic import BaseModel
+
+from objects.group import Group
 from objects.user import User
+from pydantic import BaseModel
 
 
 class ResourceDetails(BaseModel):

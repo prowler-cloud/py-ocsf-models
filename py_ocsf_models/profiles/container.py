@@ -4,7 +4,7 @@ from objects.container import Container
 from pydantic import BaseModel
 
 
-class Container(BaseModel):
+class ContainerProfile(BaseModel):
     """
     The container context for a process.
 

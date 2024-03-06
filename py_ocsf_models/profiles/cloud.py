@@ -5,7 +5,7 @@ from objects.cloud import Cloud
 from pydantic import BaseModel
 
 
-class Cloud(BaseModel):
+class CloudProfile(BaseModel):
     """
     The attributes that describe information specific to Cloud services/applications.
 

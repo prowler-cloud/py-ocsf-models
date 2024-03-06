@@ -3,7 +3,7 @@ from typing import Optional
 
 from objects.operating_system import OperatingSystem
 from objects.product import Product
-from pydantic import BaseModel, HttpUrl
+from pydantic import BaseModel
 
 
 class KBArticle(BaseModel):
@@ -33,7 +33,7 @@ class KBArticle(BaseModel):
     product: Optional[Product]
     severity: str
     size: Optional[int]
-    src_url: Optional[HttpUrl]
+    src_url: Optional[str]
     is_superseded: Optional[bool]
     title: str
     uid: str
