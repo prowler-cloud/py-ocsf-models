@@ -40,10 +40,10 @@ class Product(BaseModel):
 
     feature: Optional[Feature]
     lang: Optional[str]
-    name: str
+    name: Optional[str]
     path: Optional[str]
     cpe_name: Optional[str]
     url_string: Optional[str]
-    uid: str
+    uid: Optional[str]
     vendor_name: str
     version: Optional[str]

@@ -21,8 +21,14 @@ class ResourceDetails(BaseModel):
     - Type (type) [Optional]: The resource type as defined by the event source.
     - Unique ID (uid) [Optional]: The unique identifier of the resource.
     - Version (version) [Optional]: The version of the resource. For example 1.2.3.
+
+    If Cloud profile:
+    - Cloud Partition (cloud_partition) [Optional]: The canonical cloud partition name to which the region is assigned (e.g. AWS Partitions: aws, aws-cn, aws-us-gov).
+    - Region (region) [Optional]: The cloud region of the resource.
     """
 
+    cloud_partition: Optional[str]
+    region: Optional[str]
     criticality: Optional[str]
     data: Optional[dict]
     group: Optional[Group]

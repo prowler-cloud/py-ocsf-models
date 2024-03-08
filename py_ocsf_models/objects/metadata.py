@@ -3,6 +3,7 @@ from typing import List, Optional
 
 from pydantic import BaseModel
 
+from py_ocsf_models.events.base_event import OCSF_VERSION
 from py_ocsf_models.objects.device import Device
 from py_ocsf_models.objects.product import Product
 
@@ -97,4 +98,4 @@ class Metadata(BaseModel):
     extensions: Optional[List[SchemaExtension]]
     sequence: Optional[int]
     tenant_uid: Optional[str]
-    version: str
+    version: str = OCSF_VERSION

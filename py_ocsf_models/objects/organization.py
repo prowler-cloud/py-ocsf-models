@@ -14,7 +14,7 @@ class Organization(BaseModel):
     - Unique ID	(uid): The unique identifier of the organization. For example, its Active Directory or AWS Org ID.
     """
 
-    name: str
+    name: Optional[str]
     ou_id: Optional[str]
-    ou_name: str
-    uid: str
+    ou_name: Optional[str]
+    uid: Optional[str]

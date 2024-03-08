@@ -553,4 +553,3 @@ class TestDetectionFinding:
         assert evidence_artifact.api.operation == "GET"
         assert evidence_artifact.api.version == "1.0"
         assert evidence_artifact.data == {"key": "value"}
-

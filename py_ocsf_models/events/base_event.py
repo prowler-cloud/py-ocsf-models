@@ -7,8 +7,10 @@ from py_ocsf_models.objects.enrichment import Enrichment
 from py_ocsf_models.objects.metadata import Metadata
 from py_ocsf_models.objects.observable import Observable
 
+OCSF_VERSION = "1.1.0"
 
-class SeverityID(Enum):
+
+class SeverityID(str, Enum):
     """
     The normalized identifier of the event/finding severity.
 
@@ -66,7 +68,7 @@ class BaseEvent(BaseModel):
     - Metadata (metadata) [Required]: Data providing context for the event/finding.
     - Observables (observables) [Optional]: Observable elements associated with the event/finding.
     - Raw Data (raw_data) [Optional]: Original data as received from the source.
-    - Severity, (severity) [Optional]: The level of severity assigned to the event/finding.
+    - Severity (severity) [Optional]: The event/finding severity, normalized to the caption of the severity_id value. In the case of 'Other', it is defined by the source.
     - Severity ID (severity_id) [Required]: The level of severity assigned to the event/finding.
     - Status (status) [Optional]: The normalized status of the Finding set by the consumer normalized to the caption of the status_id value. In the case of 'Other', it is defined by the source.
     - Status Code (status_code) [Optional]: The event status code, as reported by the event source. For example, in a Windows Failed Authentication event, this would be the value of 'Failure Code', e.g. 0x18.

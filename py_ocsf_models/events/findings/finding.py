@@ -156,6 +156,7 @@ class Finding(BaseEvent, BaseModel):
 
     Attributes:
     - Activity (activity_name) [Optional]: The finding activity name, as defined by the activity_id.
+    - Activity ID (activity_id): The normalized identifier of the finding activity.
     - Comment (comment) [Optional]: A user provided comment about the finding.
     - Confidence (confidence) [Optional]: The confidence, normalized to the caption of the confidence_id value. In the case of 'Other', it is defined by the event source.
     - Confidence ID (confidence_id) [Optional]: Represents the accuracy of the detection rule. A low confidence indicates a broad finding scope that may include benign events.
