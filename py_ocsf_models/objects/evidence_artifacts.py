@@ -1,4 +1,4 @@
-from typing import Dict, Optional
+from typing import Optional
 
 from pydantic import BaseModel
 
@@ -28,7 +28,7 @@ class EvidenceArtifacts(BaseModel):
     # actor: Optional[Actor]
     # connection_info: Optional[NetworkConnectionInformation]
     query: Optional[DNSQuery]
-    data: Optional[Dict]
+    data: Optional[dict[str, object]]
     # TODO
     # dst_endpoint: Optional[NetworkEndpoint]
     # file: Optional[File]

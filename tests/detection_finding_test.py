@@ -1,8 +1,12 @@
 import uuid
 from datetime import datetime
 
+from py_ocsf_models import OCSF_VERSION
 from py_ocsf_models.events.base_event import SeverityID
-from py_ocsf_models.events.findings.detection_finding import DetectionFinding
+from py_ocsf_models.events.findings.detection_finding import (
+    CategoryUID,
+    DetectionFinding,
+)
 from py_ocsf_models.events.findings.finding import (
     ActivityID,
     ConfidenceID,
@@ -26,8 +30,9 @@ from py_ocsf_models.objects.product import Feature, Product
 from py_ocsf_models.objects.remediation import KBArticle, Remediation
 from py_ocsf_models.objects.resource_details import ResourceDetails
 from py_ocsf_models.objects.vulnerability_details import VulnerabilityDetails
-from py_ocsf_models.profiles.cloud import CloudProfile
-from py_ocsf_models.profiles.container import ContainerProfile
+
+PROWLER_VERSION = "4.0.0"
+PROWLER_PRODUCT = "Prowler"
 
 
 class TestDetectionFinding:
@@ -35,24 +40,27 @@ class TestDetectionFinding:
         pod_uuid = str(uuid.uuid4())
         detection_finding = DetectionFinding(
             metadata=Metadata(
-                version="1.0",
+                version=OCSF_VERSION,
                 product=Product(
-                    feature=Feature(name="Name", uid="123", version="Version"),
+                    feature=Feature(
+                        name=PROWLER_PRODUCT, uid="123", version=PROWLER_VERSION
+                    ),
                     lang="en",
-                    name="Name",
+                    name=PROWLER_PRODUCT,
                     path="Path",
                     cpe_name="CPE Name",
                     url_string="https://www.example.com",
                     uid="123",
-                    vendor_name="Vendor Name",
-                    version="Version",
+                    vendor_name=PROWLER_PRODUCT,
+                    version=PROWLER_VERSION,
                 ),
             ),
             finding_info=FindingInformation(
                 title="Title",
                 uid="123",
             ),
-            severity_id=1,
+            severity_id=SeverityID.Informational,
+            severity=SeverityID(1).name,
             activity_name="Activity Name",
             activity_id=1,
             comment="Comment",
@@ -69,128 +77,124 @@ class TestDetectionFinding:
                     details="Details of the resource",
                 )
             ],
-            category_name="Findings",
-            category_uid=2,
+            category_name=CategoryUID.Findings.name,
+            category_uid=CategoryUID.Findings.value,
             class_name="Detection Finding",
             class_uid=2004,
-            cloud=CloudProfile(
-                api=API(
-                    request=RequestElements(
-                        containers=[
-                            Container(
-                                hash=FingerPrint(
-                                    algorithm="SHA256",
-                                    algorithm_id=3,
-                                    value="123",
-                                ),
-                                image=Image(
-                                    tag="Tag 1",
-                                    name="Image 1",
-                                    labels=["Label 1"],
-                                    path="Path 1",
-                                    uid="123",
-                                ),
+            api=API(
+                request=RequestElements(
+                    containers=[
+                        Container(
+                            hash=FingerPrint(
+                                algorithm="SHA256",
+                                algorithm_id=3,
+                                value="123",
+                            ),
+                            image=Image(
                                 tag="Tag 1",
-                                name="Container 1",
-                                network_driver="Network Driver 1",
-                                orchestrator="Orchestrator 1",
-                                pod_uuid=pod_uuid,
-                                runtime="Runtime 1",
-                                size=123,
+                                name="Image 1",
+                                labels=["Label 1"],
+                                path="Path 1",
                                 uid="123",
-                            )
-                        ],
-                        data={"key": "value"},
-                        flags=["Flag 1"],
-                        uid="123",
-                    ),
-                    response=ResponseElements(
-                        containers=[
-                            Container(
-                                hash=FingerPrint(
-                                    algorithm="SHA256",
-                                    algorithm_id=3,
-                                    value="123",
-                                ),
-                                image=Image(
-                                    tag="Tag 1",
-                                    name="Image 1",
-                                    labels=["Label 1"],
-                                    path="Path 1",
-                                    uid="123",
-                                ),
-                                tag="Tag 1",
-                                name="Container 1",
-                                network_driver="Network Driver 1",
-                                orchestrator="Orchestrator 1",
-                                pod_uuid=pod_uuid,
-                                runtime="Runtime 1",
-                                size=123,
-                                uid="123",
-                            )
-                        ],
-                        data={"key": "value"},
-                        error="Error",
-                        error_message="Error Message",
-                        flags=["Flag 1"],
-                        message="Message",
-                        code=123,
-                    ),
-                    group=Group(
-                        type="Group",
-                        desc="Details of the group",
-                        domain="Domain 1",
-                        name="Group 1",
-                        privileges=["Privilege 1"],
-                        uid="123",
-                    ),
-                    operation="GET",
-                    service=Service(
-                        labels=["Label 1"],
-                        name="Service 1",
-                        uid="123",
-                        version="1.0",
-                    ),
-                    version="1.0",
-                ),
-                cloud=Cloud(
-                    account=Account(
-                        name="Account 1", type="Account", type_id="3", uid="123"
-                    ),
-                    zone="Zone 1",
-                    org=Organization(
-                        name="Organization 1", ou_id="123", ou_name="OU 1", uid="123"
-                    ),
-                    project_uid="123",
-                    provider="Provider 1",
-                    region="Region 1",
-                ),
-            ),
-            container=ContainerProfile(
-                container=Container(
-                    hash=FingerPrint(
-                        algorithm="SHA256",
-                        algorithm_id=3,
-                        value="123",
-                    ),
-                    image=Image(
-                        tag="Tag 1",
-                        name="Image 1",
-                        labels=["Label 1"],
-                        path="Path 1",
-                        uid="123",
-                    ),
-                    tag="Tag 1",
-                    name="Container 1",
-                    network_driver="Network Driver 1",
-                    orchestrator="Orchestrator 1",
-                    pod_uuid=pod_uuid,
-                    runtime="Runtime 1",
-                    size=123,
+                            ),
+                            tag="Tag 1",
+                            name="Container 1",
+                            network_driver="Network Driver 1",
+                            orchestrator="Orchestrator 1",
+                            pod_uuid=pod_uuid,
+                            runtime="Runtime 1",
+                            size=123,
+                            uid="123",
+                        )
+                    ],
+                    data={"key": "value"},
+                    flags=["Flag 1"],
                     uid="123",
                 ),
-                namespace_pid=123,
+                response=ResponseElements(
+                    containers=[
+                        Container(
+                            hash=FingerPrint(
+                                algorithm="SHA256",
+                                algorithm_id=3,
+                                value="123",
+                            ),
+                            image=Image(
+                                tag="Tag 1",
+                                name="Image 1",
+                                labels=["Label 1"],
+                                path="Path 1",
+                                uid="123",
+                            ),
+                            tag="Tag 1",
+                            name="Container 1",
+                            network_driver="Network Driver 1",
+                            orchestrator="Orchestrator 1",
+                            pod_uuid=pod_uuid,
+                            runtime="Runtime 1",
+                            size=123,
+                            uid="123",
+                        )
+                    ],
+                    data={"key": "value"},
+                    error="Error",
+                    error_message="Error Message",
+                    flags=["Flag 1"],
+                    message="Message",
+                    code=123,
+                ),
+                group=Group(
+                    type="Group",
+                    desc="Details of the group",
+                    domain="Domain 1",
+                    name="Group 1",
+                    privileges=["Privilege 1"],
+                    uid="123",
+                ),
+                operation="GET",
+                service=Service(
+                    labels=["Label 1"],
+                    name="Service 1",
+                    uid="123",
+                    version="1.0",
+                ),
+                version="1.0",
             ),
+            cloud=Cloud(
+                account=Account(
+                    name="Account 1", type="Account", type_id="3", uid="123"
+                ),
+                zone="Zone 1",
+                org=Organization(
+                    name="Organization 1", ou_id="123", ou_name="OU 1", uid="123"
+                ),
+                project_uid="123",
+                provider="Provider 1",
+                region="Region 1",
+            ),
+            container=Container(
+                hash=FingerPrint(
+                    algorithm="SHA256",
+                    algorithm_id=3,
+                    value="123",
+                ),
+                image=Image(
+                    tag="Tag 1",
+                    name="Image 1",
+                    labels=["Label 1"],
+                    path="Path 1",
+                    uid="123",
+                ),
+                tag="Tag 1",
+                name="Container 1",
+                network_driver="Network Driver 1",
+                orchestrator="Orchestrator 1",
+                pod_uuid=pod_uuid,
+                runtime="Runtime 1",
+                size=123,
+                uid="123",
+            ),
+            namespace_pid=123,
             count=123,
             duration=123,
             event_time=datetime.now(),
@@ -288,7 +292,7 @@ class TestDetectionFinding:
             ],
             impact="Impact",
             impact_score=123,
-            impact_id=123,
+            impact_id=1,
             remediation=Remediation(
                 desc="Description",
                 kb_article_list=[
@@ -332,10 +336,10 @@ class TestDetectionFinding:
                 references=["https://www.example.com"],
             ),
             risk_level="Risk Level",
-            risk_level_id=123,
+            risk_level_id=1,
             risk_score=123,
             timezone_offset=123,
-            type_id=123,
+            type_id=200401,
             type_name="Type Name",
             vulnerabilities=[
                 VulnerabilityDetails(
@@ -435,20 +439,25 @@ class TestDetectionFinding:
                 )
             ],
         )
+
+        # Assert Severity
+        assert detection_finding.severity == "Informational"
+        assert detection_finding.severity_id == SeverityID.Informational
+
         # Assert Metadata and Product
-        assert detection_finding.metadata.version == "1.0"
+        assert detection_finding.metadata.version == OCSF_VERSION
         product = detection_finding.metadata.product
-        assert product.feature.name == "Name"
+        assert product.feature.name == PROWLER_PRODUCT
         assert product.feature.uid == "123"
-        assert product.feature.version == "Version"
+        assert product.feature.version == PROWLER_VERSION
         assert product.lang == "en"
-        assert product.name == "Name"
+        assert product.name == PROWLER_PRODUCT
         assert product.path == "Path"
         assert product.cpe_name == "CPE Name"
         assert product.url_string == "https://www.example.com"
         assert product.uid == "123"
-        assert product.vendor_name == "Vendor Name"
-        assert product.version == "Version"
+        assert product.vendor_name == PROWLER_PRODUCT
+        assert product.version == PROWLER_VERSION
 
         # Assert FindingInformation
         assert detection_finding.finding_info.title == "Title"
@@ -468,20 +477,19 @@ class TestDetectionFinding:
         assert resource.name == "Resource 1"
         assert resource.type == "Resource"
 
-        # Assert CloudProfile and nested objects
-        cloud_profile = detection_finding.cloud
-        assert cloud_profile.api.operation == "GET"
-        assert cloud_profile.api.version == "1.0"
-        assert cloud_profile.api.service.name == "Service 1"
-        assert cloud_profile.cloud.account.name == "Account 1"
-        assert cloud_profile.cloud.zone == "Zone 1"
-        assert cloud_profile.cloud.org.name == "Organization 1"
-        assert cloud_profile.cloud.provider == "Provider 1"
-        assert cloud_profile.cloud.region == "Region 1"
+        # Assert Cloud profile and nested objects
+        assert detection_finding.api.operation == "GET"
+        assert detection_finding.api.version == "1.0"
+        assert detection_finding.api.service.name == "Service 1"
+
+        assert detection_finding.cloud.account.name == "Account 1"
+        assert detection_finding.cloud.zone == "Zone 1"
+        assert detection_finding.cloud.org.name == "Organization 1"
+        assert detection_finding.cloud.provider == "Provider 1"
+        assert detection_finding.cloud.region == "Region 1"
 
         # Assert ContainerProfile and nested objects
-        container_profile = detection_finding.container
-        container = container_profile.container
+        container = detection_finding.container
         assert str(container.pod_uuid) == pod_uuid
         assert container.network_driver == "Network Driver 1"
         assert container.orchestrator == "Orchestrator 1"
@@ -553,4 +561,3 @@ class TestDetectionFinding:
         assert evidence_artifact.api.operation == "GET"
         assert evidence_artifact.api.version == "1.0"
         assert evidence_artifact.data == {"key": "value"}
-

@@ -1,4 +1,4 @@
-from enum import Enum
+from enum import IntEnum
 from typing import Optional
 
 from pydantic import BaseModel
@@ -7,8 +7,10 @@ from py_ocsf_models.objects.enrichment import Enrichment
 from py_ocsf_models.objects.metadata import Metadata
 from py_ocsf_models.objects.observable import Observable
 
+OCSF_VERSION = "1.1.0"
 
-class SeverityID(Enum):
+
+class SeverityID(IntEnum):
     """
     The normalized identifier of the event/finding severity.
 
@@ -24,17 +26,17 @@ class SeverityID(Enum):
     99 Other: The event/finding severity is not mapped. See the severity attribute, which contains a data source specific value.
     """
 
-    Unknown = 0
-    Informational = 1
-    Low = 2
-    Medium = 3
-    High = 4
-    Critical = 5
-    Fatal = 6
-    Other = 99
+    Unknown: int = 0
+    Informational: int = 1
+    Low: int = 2
+    Medium: int = 3
+    High: int = 4
+    Critical: int = 5
+    Fatal: int = 6
+    Other: int = 99
 
 
-class StatusID(Enum):
+class StatusID(IntEnum):
     """
     The normalized identifier of the event/finding severity.
 
@@ -48,12 +50,12 @@ class StatusID(Enum):
     99 Other: The event status is not mapped. See the status attribute, which contains a data source specific value.
     """
 
-    Unknown = 0
-    New = 1
-    InProgress = 2
-    Suppressed = 3
-    Resolved = 4
-    Other = 99
+    Unknown: int = 0
+    New: int = 1
+    InProgress: int = 2
+    Suppressed: int = 3
+    Resolved: int = 4
+    Other: int = 99
 
 
 class BaseEvent(BaseModel):
@@ -66,7 +68,7 @@ class BaseEvent(BaseModel):
     - Metadata (metadata) [Required]: Data providing context for the event/finding.
     - Observables (observables) [Optional]: Observable elements associated with the event/finding.
     - Raw Data (raw_data) [Optional]: Original data as received from the source.
-    - Severity, (severity) [Optional]: The level of severity assigned to the event/finding.
+    - Severity (severity) [Optional]: The event/finding severity, normalized to the caption of the severity_id value. In the case of 'Other', it is defined by the source.
     - Severity ID (severity_id) [Required]: The level of severity assigned to the event/finding.
     - Status (status) [Optional]: The normalized status of the Finding set by the consumer normalized to the caption of the status_id value. In the case of 'Other', it is defined by the source.
     - Status Code (status_code) [Optional]: The event status code, as reported by the event source. For example, in a Windows Failed Authentication event, this would be the value of 'Failure Code', e.g. 0x18.
@@ -80,8 +82,8 @@ class BaseEvent(BaseModel):
     metadata: Metadata
     observables: Optional[list[Observable]]
     raw_data: Optional[str]
-    severity: Optional[str]
     severity_id: SeverityID
+    severity: Optional[str]
     status: Optional[str]
     status_code: Optional[str]
     status_detail: Optional[str]

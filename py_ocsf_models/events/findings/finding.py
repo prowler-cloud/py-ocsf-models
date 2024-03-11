@@ -1,5 +1,5 @@
 from datetime import datetime
-from enum import Enum
+from enum import IntEnum
 from typing import List, Optional
 
 from pydantic import BaseModel
@@ -9,7 +9,7 @@ from py_ocsf_models.objects.mitre_attack import MITREAttack
 from py_ocsf_models.objects.related_event import RelatedEvent
 
 
-class PhaseID(Enum):
+class PhaseID(IntEnum):
     """
     The Kill Chain Phase object represents a single phase of a cyber attack, including the initial reconnaissance and planning stages up to the final objective of the attacker. It provides a detailed description of each phase and its associated activities within the broader context of a cyber attack.
 
@@ -25,15 +25,15 @@ class PhaseID(Enum):
     - Other (99): The kill chain phase is not mapped. See the phase attribute, which contains a data source specific value.
     """
 
-    Unknown = 0
-    Reconnaissance = 1
-    Weaponization = 2
-    Delivery = 3
-    Exploitation = 4
-    Installation = 5
-    Command_Control = 6
-    Actions_on_Objectives = 7
-    Other = 99
+    Unknown: int = 0
+    Reconnaissance: int = 1
+    Weaponization: int = 2
+    Delivery: int = 3
+    Exploitation: int = 4
+    Installation: int = 5
+    Command_Control: int = 6
+    Actions_on_Objectives: int = 7
+    Other: int = 99
 
 
 class KillChainPhase(BaseModel):
@@ -113,7 +113,7 @@ class FindingInformation(BaseModel):
     uid: str
 
 
-class ActivityID(Enum):
+class ActivityID(IntEnum):
     """
     The normalized identifier of the finding activity.
 
@@ -124,14 +124,14 @@ class ActivityID(Enum):
     99 Other: The event activity is not mapped. See the activity_name attribute, which contains a data source specific value.
     """
 
-    Unknown = 0
-    Create = 1
-    Update = 2
-    Close = 3
-    Other = 99
+    Unknown: int = 0
+    Create: int = 1
+    Update: int = 2
+    Close: int = 3
+    Other: int = 99
 
 
-class ConfidenceID(Enum):
+class ConfidenceID(IntEnum):
     """
     The normalized confidence refers to the accuracy of the rule that created the finding. A rule with a low confidence means that the finding scope is wide and may create finding reports that may not be malicious in nature.
 
@@ -143,11 +143,11 @@ class ConfidenceID(Enum):
 
     """
 
-    Unknown = 0
-    Low = 1
-    Medium = 2
-    High = 3
-    Other = 99
+    Unknown: int = 0
+    Low: int = 1
+    Medium: int = 2
+    High: int = 3
+    Other: int = 99
 
 
 class Finding(BaseEvent, BaseModel):
@@ -156,6 +156,7 @@ class Finding(BaseEvent, BaseModel):
 
     Attributes:
     - Activity (activity_name) [Optional]: The finding activity name, as defined by the activity_id.
+    - Activity ID (activity_id): The normalized identifier of the finding activity.
     - Comment (comment) [Optional]: A user provided comment about the finding.
     - Confidence (confidence) [Optional]: The confidence, normalized to the caption of the confidence_id value. In the case of 'Other', it is defined by the event source.
     - Confidence ID (confidence_id) [Optional]: Represents the accuracy of the detection rule. A low confidence indicates a broad finding scope that may include benign events.

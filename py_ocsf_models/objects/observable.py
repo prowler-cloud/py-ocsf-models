@@ -1,10 +1,10 @@
-from enum import Enum
+from enum import IntEnum
 from typing import Optional
 
 from pydantic import BaseModel
 
 
-class ReputationScoreID(Enum):
+class ReputationScoreID(IntEnum):
     """
     Enum representing different reputation score identifiers.
 
@@ -23,18 +23,18 @@ class ReputationScoreID(Enum):
     - Other (99): The reputation score is not mapped. See the rep_score attribute, which contains a data source specific value.
     """
 
-    Unknown = 0
-    Very_Safe = 1
-    Safe = 2
-    Probably_Safe = 3
-    Leans_Safe = 4
-    May_not_be_Safe = 5
-    Exercise_Caution = 6
-    Suspicious_or_Risky = 7
-    Possibly_Malicious = 8
-    Probably_Malicious = 9
-    Malicious = 10
-    Other = 99
+    Unknown: int = 0
+    Very_Safe: int = 1
+    Safe: int = 2
+    Probably_Safe: int = 3
+    Leans_Safe: int = 4
+    May_not_be_Safe: int = 5
+    Exercise_Caution: int = 6
+    Suspicious_or_Risky: int = 7
+    Possibly_Malicious: int = 8
+    Probably_Malicious: int = 9
+    Malicious: int = 10
+    Other: int = 99
 
 
 class Reputation(BaseModel):
@@ -54,7 +54,7 @@ class Reputation(BaseModel):
     score_id: ReputationScoreID
 
 
-class TypeID(Enum):
+class TypeID(IntEnum):
     """
     Enum representing different types of observable value identifiers.
 
@@ -84,29 +84,29 @@ class TypeID(Enum):
     - Other (99): The observable data type is not mapped. See the type attribute, which may contain data source specific value.
     """
 
-    Unknown = 0
-    Hostname = 1
-    IP_Address = 2
-    MAC_Address = 3
-    User_Name = 4
-    Email_Address = 5
-    URL_String = 6
-    File_Name = 7
-    Hash = 8
-    Process_Name = 9
-    Resource_UID = 10
-    Endpoint = 20
-    User = 21
-    Email = 22
-    Uniform_Resource_Locator = 23
-    File = 24
-    Process = 25
-    Geo_Location = 26
-    Container = 27
-    Registry_Key = 28
-    Registry_Value = 29
-    Fingerprint = 30
-    Other = 99
+    Unknown: int = 0
+    Hostname: int = 1
+    IP_Address: int = 2
+    MAC_Address: int = 3
+    User_Name: int = 4
+    Email_Address: int = 5
+    URL_String: int = 6
+    File_Name: int = 7
+    Hash: int = 8
+    Process_Name: int = 9
+    Resource_UID: int = 10
+    Endpoint: int = 20
+    User: int = 21
+    Email: int = 22
+    Uniform_Resource_Locator: int = 23
+    File: int = 24
+    Process: int = 25
+    Geo_Location: int = 26
+    Container: int = 27
+    Registry_Key: int = 28
+    Registry_Value: int = 29
+    Fingerprint: int = 30
+    Other: int = 99
 
 
 class Observable(BaseModel):

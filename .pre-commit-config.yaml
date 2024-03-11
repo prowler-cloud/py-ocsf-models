@@ -49,7 +49,14 @@ repos:
     hooks:
       - id: flake8
         exclude: contrib
-        args: ["--ignore=E266,W503,E203,E501,W605"]
+        args: ["--ignore=E501"]
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.3.2
+    hooks:
+      # Run the linter.
+      - id: ruff
+        args: [--fix]
 
   - repo: https://github.com/python-poetry/poetry
     rev: 1.7.0
@@ -63,6 +70,12 @@ repos:
       - id: pylint
         name: pylint
         entry: bash -c 'pylint --disable=W,C,R,E -j 0 -rn -sn py_ocsf_models/'
+        language: system
+        files: '.*\.py'
+
+      - id: mypy
+        name: mypy
+        entry: bash -c 'mypy --strict ./py_ocsf_models'
         language: system
         files: '.*\.py'
 

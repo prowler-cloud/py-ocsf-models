@@ -21,7 +21,7 @@ class ResponseElements(BaseModel):
     """
 
     containers: Optional[list[Container]]
-    data: Optional[dict]
+    data: Optional[dict[str, object]]
     error: Optional[str]
     error_message: Optional[str]
     flags: Optional[list[str]]
