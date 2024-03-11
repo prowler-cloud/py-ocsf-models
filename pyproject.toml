@@ -20,7 +20,7 @@ packages = [
   {include = "py_ocsf_models"}
 ]
 readme = "README.md"
-version = "0.0.1"
+version = "0.0.2"
 
 [tool.poetry.dependencies]
 email-validator = "2.1.0.post1"
