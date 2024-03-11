@@ -7,6 +7,8 @@ from py_ocsf_models.objects.enrichment import Enrichment
 from py_ocsf_models.objects.metadata import Metadata
 from py_ocsf_models.objects.observable import Observable
 
+OCSF_VERSION = "1.1.0"
+
 
 class SeverityID(IntEnum):
     """
