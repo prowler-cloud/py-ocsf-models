@@ -1,4 +1,4 @@
-from typing import Dict, Optional
+from typing import Optional
 
 from pydantic import BaseModel
 
@@ -19,6 +19,6 @@ class RequestElements(BaseModel):
     """
 
     containers: Optional[list[Container]]
-    data: Optional[Dict]
+    data: Optional[dict[str, object]]
     flags: Optional[list[str]]
     uid: str

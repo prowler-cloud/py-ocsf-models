@@ -1,10 +1,10 @@
-from enum import Enum
+from enum import IntEnum
 from typing import Optional
 
 from pydantic import BaseModel
 
 
-class NetworkType(Enum):
+class NetworkType(IntEnum):
     """
     Enum representing different types of network interfaces.
 
@@ -17,12 +17,12 @@ class NetworkType(Enum):
     - Other (99): The type is not mapped. See the type attribute, which contains a data source specific value.
     """
 
-    Unknown = 0
-    Wired = 1
-    Wireless = 2
-    Mobile = 3
-    Tunnel = 4
-    Other = 99
+    Unknown: int = 0
+    Wired: int = 1
+    Wireless: int = 2
+    Mobile: int = 3
+    Tunnel: int = 4
+    Other: int = 99
 
 
 class NetworkInterface(BaseModel):

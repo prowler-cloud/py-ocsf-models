@@ -1,0 +1,73 @@
+name: PR - Lint and Test
+
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+    branches:
+      - "main"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install poetry
+        run: |
+          python -m pip install --upgrade pip
+          pipx install poetry
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "poetry"
+
+      - name: Install dependencies
+        run: |
+          poetry install
+          poetry run pip list
+
+      - name: Poetry check
+        run: |
+          poetry lock --check
+
+      - name: Lint with flake8
+        run: |
+          poetry run flake8 . --ignore=E501
+
+      - name: Lint with ruff
+        uses: chartboost/ruff-action@v1
+
+      - name: Checking format with black
+        run: |
+          poetry run black --check .
+
+      - name: Lint with pylint
+        run: |
+          poetry run pylint --disable=W,C,R,E -j 0 -rn -sn py_ocsf_models/
+
+      - name: Bandit
+        run: |
+          poetry run bandit -q -lll -x './tests' -r .
+      - name: Safety
+        run: |
+          poetry run safety check
+      - name: Vulture
+        run: |
+          poetry run vulture --min-confidence 100 .
+
+      - name: Test with pytest
+        run: |
+          poetry run pytest -n auto --cov=./py_ocsf_models --cov-report=xml tests
+
+      # - name: Upload coverage reports to Codecov
+      #   uses: codecov/codecov-action@v4
+      #   env:
+      #     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

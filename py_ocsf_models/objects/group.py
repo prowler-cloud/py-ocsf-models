@@ -19,6 +19,6 @@ class Group(BaseModel):
     type: Optional[str]
     desc: Optional[str]
     domain: Optional[str]
-    name: str
+    name: Optional[str]
     privileges: Optional[list[str]]
-    uid: str
+    uid: Optional[str]
