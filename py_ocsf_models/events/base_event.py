@@ -38,13 +38,11 @@ class SeverityID(IntEnum):
 
 class StatusID(IntEnum):
     """
-    The normalized status identifier of the Finding, set by the consumer.
+    The normalized identifier of the event status.
 
     0 Unknown: The status is unknown.
-    1 New: The Finding is new and yet to be reviewed.
-    2 InProgress: The Finding is under review.
-    3 Suppressed: The Finding was reviewed, determined to be benign or a false positive and is now suppressed.
-    4 Resolved: The Finding was reviewed, remediated and is now considered resolved.
+    1 Success
+    2 Failure
     99 Other: The event status is not mapped. See the status attribute, which contains a data source specific value.
     """
 
