@@ -38,9 +38,7 @@ class SeverityID(IntEnum):
 
 class StatusID(IntEnum):
     """
-    The normalized identifier of the event/finding severity.
-
-    The normalized severity is a measurement the effort and expense required to manage and resolve an event or incident. Smaller numerical values represent lower impact events, and larger numerical values represent higher impact events.
+    The normalized status identifier of the Finding, set by the consumer.
 
     0 Unknown: The status is unknown.
     1 New: The Finding is new and yet to be reviewed.
