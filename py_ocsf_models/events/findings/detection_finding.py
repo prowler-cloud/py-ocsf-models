@@ -168,7 +168,7 @@ class DetectionFinding(Finding, BaseModel):
     risk_level: Optional[str]
     risk_level_id: Optional[RiskLevelID]
     risk_score: Optional[int]
-    status_id: Optional[StatusID]
+    status_id: Optional[StatusID]  # type: ignore
     timezone_offset: Optional[int]
     type_id: TypeID
     type_name: Optional[str]
