@@ -147,6 +147,6 @@ class DetectionFinding(Finding, BaseModel):
     risk_level_id: Optional[RiskLevelID]
     risk_score: Optional[int]
     timezone_offset: Optional[int]
-    type_id: TypeID
+    type_uid: TypeID
     type_name: Optional[str]
     vulnerabilities: Optional[list[VulnerabilityDetails]]

@@ -7,6 +7,9 @@ from py_ocsf_models.events.findings.detection_finding import (
     CategoryUID,
     DetectionFinding,
 )
+from py_ocsf_models.events.findings.detection_finding import (
+    TypeID as DetectionFindingTypeID,
+)
 from py_ocsf_models.events.findings.finding import (
     ActivityID,
     ConfidenceID,
@@ -339,8 +342,8 @@ class TestDetectionFinding:
             risk_level_id=1,
             risk_score=123,
             timezone_offset=123,
-            type_id=200401,
-            type_name="Type Name",
+            type_uid=DetectionFindingTypeID.Create,
+            type_name=DetectionFindingTypeID.Create.name,
             vulnerabilities=[
                 VulnerabilityDetails(
                     desc="Description",
@@ -561,3 +564,7 @@ class TestDetectionFinding:
         assert evidence_artifact.api.operation == "GET"
         assert evidence_artifact.api.version == "1.0"
         assert evidence_artifact.data == {"key": "value"}
+
+        # Assert Type
+        assert detection_finding.type_uid == DetectionFindingTypeID.Create
+        assert detection_finding.type_name == "Create"
