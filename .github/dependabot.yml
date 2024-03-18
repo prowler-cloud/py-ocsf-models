@@ -9,7 +9,7 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
-    target-branch: master
+    target-branch: main
     labels:
       - "dependencies"
       - "pip"
@@ -17,4 +17,4 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-    target-branch: master
+    target-branch: main
