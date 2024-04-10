@@ -70,7 +70,7 @@ class BaseEvent(BaseModel):
     - Status Code (status_code) [Optional]: The event status code, as reported by the event source. For example, in a Windows Failed Authentication event, this would be the value of 'Failure Code', e.g. 0x18.
     - Status Details (status_detail) [Optional]: The status details contains additional information about the event/finding outcome.
     - Status ID (status_id) [Optional]: The normalized status identifier of the Finding, set by the consumer.
-    - Unmapped Data (unmapped_data) [Optional]: The attributes that are not mapped to the event schema. The names and values of those attributes are specific to the event source.
+    - Unmapped Data (unmapped) [Optional]: The attributes that are not mapped to the event schema. The names and values of those attributes are specific to the event source.
     """
 
     enrichments: Optional[list[Enrichment]]
@@ -84,4 +84,4 @@ class BaseEvent(BaseModel):
     status_code: Optional[str]
     status_detail: Optional[str]
     status_id: Optional[StatusID]
-    unmapped_data: object
+    unmapped: Optional[object]
