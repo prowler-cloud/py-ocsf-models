@@ -84,4 +84,4 @@ class BaseEvent(BaseModel):
     status_code: Optional[str]
     status_detail: Optional[str]
     status_id: Optional[StatusID]
-    unmapped_data: object
+    unmapped_data: Optional[object]
