@@ -523,7 +523,7 @@ class TestDetectionFinding:
         remediation = detection_finding.remediation
         assert remediation.desc == "Description"
         assert len(remediation.references) == 1
-        assert "https://www.example.com" in remediation.references
+        assert remediation.references[0] == "https://www.example.com"
 
         kb_article = remediation.kb_article_list[0]
         assert kb_article.classification == "Classification"
@@ -539,7 +539,8 @@ class TestDetectionFinding:
         vulnerability = detection_finding.vulnerabilities[0]
         assert vulnerability.desc == "Description"
         assert vulnerability.is_exploit_available is True
-        assert "https://www.example.com" in vulnerability.references
+        assert len(vulnerability.references) == 1
+        assert vulnerability.references[0] == "https://www.example.com"
         assert vulnerability.severity == "Severity"
         assert vulnerability.title == "Title"
         assert vulnerability.vendor_name == "Vendor Name"
