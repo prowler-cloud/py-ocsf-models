@@ -28,6 +28,7 @@ class Account(BaseModel):
     - Type (type) [Optional]: The account type, normalized to the caption of 'account_type_id'. In the case of 'Other', it is defined by the event source.
     - Type ID (type_id) [Recommended]: The normalized account type identifier.
     - Unique ID (uid) [Recommended]: The unique identifier of the account (e.g. AWS Account ID).
+    - Labels (labels) [Optional]: The labels associated with the account.
 
     """
 
@@ -35,3 +36,4 @@ class Account(BaseModel):
     type: Optional[str]
     type_id: TypeID
     uid: str
+    labels: Optional[list[str]]

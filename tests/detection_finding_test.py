@@ -34,7 +34,7 @@ from py_ocsf_models.objects.remediation import KBArticle, Remediation
 from py_ocsf_models.objects.resource_details import ResourceDetails
 from py_ocsf_models.objects.vulnerability_details import VulnerabilityDetails
 
-PROWLER_VERSION = "4.0.0"
+PROWLER_VERSION = "4.1.0"
 PROWLER_PRODUCT = "Prowler"
 
 
@@ -165,7 +165,11 @@ class TestDetectionFinding:
             ),
             cloud=Cloud(
                 account=Account(
-                    name="Account 1", type="Account", type_id="3", uid="123"
+                    name="Account 1",
+                    type="Account",
+                    type_id="3",
+                    uid="123",
+                    labels=["label 1"],
                 ),
                 zone="Zone 1",
                 org=Organization(
@@ -341,6 +345,7 @@ class TestDetectionFinding:
             risk_level="Risk Level",
             risk_level_id=1,
             risk_score=123,
+            risk_details="Risk Details",
             timezone_offset=123,
             type_uid=DetectionFindingTypeID.Create,
             type_name=DetectionFindingTypeID.Create.name,
@@ -490,6 +495,7 @@ class TestDetectionFinding:
         assert detection_finding.cloud.org.name == "Organization 1"
         assert detection_finding.cloud.provider == "Provider 1"
         assert detection_finding.cloud.region == "Region 1"
+        assert detection_finding.cloud.account.labels == ["label 1"]
 
         # Assert ContainerProfile and nested objects
         container = detection_finding.container

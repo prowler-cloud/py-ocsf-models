@@ -146,7 +146,9 @@ detection_finding = DetectionFinding(
         version="1.0",
     ),
     cloud=Cloud(
-        account=Account(name="Account 1", type="Account", type_id="3", uid="123"),
+        account=Account(
+            name="Account 1", type="Account", type_id="3", uid="123", labels=["Label 1"]
+        ),
         zone="Zone 1",
         org=Organization(name="Organization 1", ou_id="123", ou_name="OU 1", uid="123"),
         project_uid="123",
@@ -319,6 +321,7 @@ detection_finding = DetectionFinding(
     risk_level="Risk Level",
     risk_level_id=123,
     risk_score=123,
+    risk_details="Risk Details",
     timezone_offset=123,
     type_id=123,
     type_name="Type Name",
