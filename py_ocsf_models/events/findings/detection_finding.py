@@ -134,6 +134,7 @@ class DetectionFinding(Finding, BaseModel):
     - Risk Level (risk_level) [Optional]: The risk level, normalized to the caption of the risk_level_id value. In the case of 'Other', it is defined by the event source.
     - Risk Level ID (risk_level_id) [Optional]: The normalized risk level id.
     - Risk Score (risk_score) [Optional]: The risk score as reported by the event source.
+    - Risk Details (risk_details) [Optional]: Additional details about the risk.
     - Timezone Offset (timezone_offset) [Optional]: Difference in minutes from UTC.
     - Type ID (type_uid): The event/finding type ID. It identifies the event's semantics and structure. The value is calculated by the logging system as: class_uid * 100 + activity_id.
     - Type Name (type_name) [Optional]: The event/finding type name, as defined by the type_uid.
@@ -168,6 +169,7 @@ class DetectionFinding(Finding, BaseModel):
     risk_level: Optional[str]
     risk_level_id: Optional[RiskLevelID]
     risk_score: Optional[int]
+    risk_details: Optional[str]
     status_id: Optional[StatusID]  # type: ignore
     timezone_offset: Optional[int]
     type_uid: TypeID
