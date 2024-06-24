@@ -33,7 +33,7 @@ pydantic = "1.10.15"
 python = ">=3.9,<3.13"
 
 [tool.poetry.group.dev.dependencies]
-bandit = "1.7.8"
+bandit = "1.7.9"
 black = "24.4.2"
 flake8 = "7.0.0"
 mypy = "1.10.0"
