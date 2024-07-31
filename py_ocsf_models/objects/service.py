@@ -16,7 +16,7 @@ class Service(BaseModel):
     - Version (version) [Optional]: The version of the service, helping to track changes or updates over time.
     """
 
-    labels: Optional[list[str]]
+    labels: Optional[dict]
     name: str
     uid: str
     version: str

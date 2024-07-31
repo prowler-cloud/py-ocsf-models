@@ -44,7 +44,7 @@ class LDAPPerson(BaseModel):
     job_title: Optional[str]
     ldap_cn: Optional[str]
     ldap_dn: Optional[str]
-    labels: Optional[list[str]]
+    labels: Optional[dict]
     last_login_time: Optional[datetime]
     leave_time: Optional[datetime]
     # FIXME(circular-dependency)

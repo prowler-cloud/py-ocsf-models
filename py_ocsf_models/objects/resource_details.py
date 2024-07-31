@@ -32,7 +32,7 @@ class ResourceDetails(BaseModel):
     criticality: Optional[str]
     data: Optional[dict[str, object]]
     group: Optional[Group]
-    labels: Optional[list[str]]
+    labels: Optional[dict]
     name: Optional[str]
     namespace: Optional[str]
     owner: Optional[User]

@@ -83,7 +83,7 @@ class Metadata(BaseModel):
     correlation_uid: Optional[str]
     event_code: Optional[str]
     uid: Optional[str]
-    labels: Optional[List[str]]
+    labels: Optional[dict]
     log_level: Optional[str]
     log_name: Optional[str]
     log_provider: Optional[str]

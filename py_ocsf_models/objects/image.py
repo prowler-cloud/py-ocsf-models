@@ -17,7 +17,7 @@ class Image(BaseModel):
     """
 
     tag: Optional[str]
-    labels: Optional[list[str]]
+    labels: Optional[dict]
     name: str
     path: Optional[str]
     uid: str

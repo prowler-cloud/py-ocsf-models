@@ -36,4 +36,4 @@ class Account(BaseModel):
     type: Optional[str]
     type_id: TypeID
     uid: str
-    labels: Optional[list[str]]
+    labels: Optional[dict]
