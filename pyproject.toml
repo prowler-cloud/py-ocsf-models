@@ -36,7 +36,7 @@ python = ">=3.9,<3.13"
 [tool.poetry.group.dev.dependencies]
 bandit = "1.7.9"
 black = "24.8.0"
-flake8 = "7.1.0"
+flake8 = "7.1.1"
 mypy = "1.11.0"
 pylint = "3.2.6"
 pytest = "8.3.2"
