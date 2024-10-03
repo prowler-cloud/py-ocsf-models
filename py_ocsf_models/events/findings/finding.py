@@ -166,9 +166,11 @@ class Finding(BaseEvent, BaseModel):
     - Confidence (confidence) [Optional]: The confidence, normalized to the caption of the confidence_id value. In the case of 'Other', it is defined by the event source.
     - Confidence ID (confidence_id) [Optional]: Represents the accuracy of the detection rule. A low confidence indicates a broad finding scope that may include benign events.
     - Confidence Score (confidence_score) [Optional]: The confidence score as reported by the event source.
-    - End Time (end_time) [Optional]: datetime of the most recent event included in the finding.
+    - End Time (end_time) [Optional]: Time of the latest event included in the finding.
+    - End Time DT (end_time_dt) [Optional]: Time of the latest event included in the finding in datetime format.
     - Finding Information (finding_info) [Required]: Describes the supporting information about a generated finding.
     - Start Time (start_time) [Optional]: Time of the earliest event included in the finding.
+    - Start Time DT (start_time_dt) [Optional]: Time of the earliest event included in the finding in datetime
 
     """
 
@@ -178,6 +180,8 @@ class Finding(BaseEvent, BaseModel):
     confidence: Optional[str]
     confidence_id: Optional[ConfidenceID]
     confidence_score: Optional[int]
-    end_time: Optional[datetime]
+    end_time: Optional[int]
+    end_time_dt: Optional[datetime]
     finding_info: FindingInformation
-    start_time: Optional[datetime]
+    start_time: Optional[int]
+    start_time_dt: Optional[datetime]

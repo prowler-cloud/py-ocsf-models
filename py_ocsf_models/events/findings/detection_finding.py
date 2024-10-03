@@ -152,7 +152,6 @@ class DetectionFinding(Finding, BaseModel):
     class_uid: int = ClassUID.DetectionFinding.value
     cloud: Optional[Cloud]
     api: Optional[API]
-    namespace_pid: Optional[int]
     count: Optional[int]
     duration: Optional[int]
     evidences: Optional[list[EvidenceArtifacts]]

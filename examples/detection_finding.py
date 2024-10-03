@@ -150,7 +150,9 @@ detection_finding = DetectionFinding(
             name="Account 1", type="Account", type_id="3", uid="123", labels=["Label 1"]
         ),
         zone="Zone 1",
-        org=Organization(name="Organization 1", ou_id="123", ou_name="OU 1", uid="123"),
+        org=Organization(
+            name="Organization 1", ou_uid="123", ou_name="OU 1", uid="123"
+        ),
         project_uid="123",
         provider="Provider 1",
         region="Region 1",
@@ -177,7 +179,6 @@ detection_finding = DetectionFinding(
         size=123,
         uid="123",
     ),
-    namespace_pid=123,
     count=123,
     duration=123,
     time=datetime.now(),

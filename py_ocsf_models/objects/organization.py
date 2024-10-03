@@ -15,6 +15,6 @@ class Organization(BaseModel):
     """
 
     name: Optional[str]
-    ou_id: Optional[str]
+    ou_uid: Optional[str]
     ou_name: Optional[str]
     uid: Optional[str]

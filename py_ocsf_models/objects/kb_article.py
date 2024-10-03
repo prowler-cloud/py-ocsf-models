@@ -15,7 +15,8 @@ class KBArticle(BaseModel):
 
     Attributes:
     - classification: Vendor's classification of the KB article.
-    - created_time: Release date of the KB article.
+    - created_time: Time the KB article was created.
+    - created_time_dt: Time the KB article was created in datetime
     - os: Operating system the KB article applies to.
     - bulletin: Bulletin identifier of the KB article.
     - product: Product details the KB article applies to.
@@ -28,7 +29,8 @@ class KBArticle(BaseModel):
     """
 
     classification: Optional[str]
-    created_time: Optional[datetime]
+    created_time: Optional[int]
+    created_time_dt: Optional[datetime]
     os: OperatingSystem
     bulletin: Optional[str]
     product: Optional[Product]
