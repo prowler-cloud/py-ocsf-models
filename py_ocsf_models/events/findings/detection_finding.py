@@ -7,7 +7,6 @@ from pydantic import BaseModel
 from py_ocsf_models.events.findings.finding import Finding
 from py_ocsf_models.objects.api import API
 from py_ocsf_models.objects.cloud import Cloud
-from py_ocsf_models.objects.container import Container
 from py_ocsf_models.objects.evidence_artifacts import EvidenceArtifacts
 from py_ocsf_models.objects.remediation import Remediation
 from py_ocsf_models.objects.resource_details import ResourceDetails
@@ -122,10 +121,10 @@ class DetectionFinding(Finding, BaseModel):
     - Class (class_name) [Optional]: The event class name, as defined by class_uid value: Detection Finding.
     - Class ID (class_uid): The unique identifier of a class. A Class describes the attributes available in an event.
     - Cloud (cloud) [Optional]: Describes details about the Cloud environment where the event was originally created or logged.
-    - Container (container) [Optional]: Describes the container details.
     - Count (count) [Optional]: Number of times similar events occurred within a specified timeframe.
     - Duration (duration) [Optional]: Time span of the event, from start to end, in milliseconds.
     - Event Time (time) [Required]: The standardized time when the event occurred or the finding was created.
+    - Event Time (time_dt) [Optional]: The standardized time when the event occurred or the finding was created, in datetime format.
     - Evidence Artifacts (evidences) [Optional]: Artifacts related to the security detection activities.
     - Impact (impact) [Optional]: The impact, normalized to the caption of the impact_id value. In the case of 'Other', it is defined by the event source.
     - Impact Score (impact_score) [Optional]: The impact of the finding, valid range 0-100.
@@ -135,6 +134,7 @@ class DetectionFinding(Finding, BaseModel):
     - Risk Level ID (risk_level_id) [Optional]: The normalized risk level id.
     - Risk Score (risk_score) [Optional]: The risk score as reported by the event source.
     - Risk Details (risk_details) [Optional]: Additional details about the risk.
+    - Status ID (status_id) [Optional]: The normalized identifier of the event/finding severity.
     - Timezone Offset (timezone_offset) [Optional]: Difference in minutes from UTC.
     - Type ID (type_uid): The event/finding type ID. It identifies the event's semantics and structure. The value is calculated by the logging system as: class_uid * 100 + activity_id.
     - Type Name (type_name) [Optional]: The event/finding type name, as defined by the type_uid.
@@ -142,25 +142,19 @@ class DetectionFinding(Finding, BaseModel):
 
     If the Cloud profile is needed:
         - API Details (api) [Optional]: Describes details about a typical API (Application Programming Interface) call.
-        - Cloud (cloud): Describes details about the Cloud environment where the event was originally created or logged.
-
-    If the Container profile is needed:
-        - Container (container) [Recommended]: The information describing an instance of a container. A container is a prepackaged, portable system image that runs isolated on an existing system using a container runtime like containerd.
-        - Namespace PID (namespace_pid) [Recommended]: If running under a process namespace (such as in a container), the process identifier within that process namespace.
+        - Cloud (cloud): Describes details about the Cloud environment where the event was originally created or logged
     """
 
     resources: Optional[list[ResourceDetails]]
     category_name: str = CategoryUID.Findings.name
     category_uid: int = CategoryUID.Findings.value
-    class_name: Optional[str] = ClassUID.DetectionFinding.name
+    class_name: Optional[str] = "Detection Finding"
     class_uid: int = ClassUID.DetectionFinding.value
     cloud: Optional[Cloud]
     api: Optional[API]
-    container: Optional[Container]
     namespace_pid: Optional[int]
     count: Optional[int]
     duration: Optional[int]
-    event_time: datetime
     evidences: Optional[list[EvidenceArtifacts]]
     impact: Optional[str]
     impact_score: Optional[int]
@@ -171,6 +165,8 @@ class DetectionFinding(Finding, BaseModel):
     risk_score: Optional[int]
     risk_details: Optional[str]
     status_id: Optional[StatusID]  # type: ignore
+    time: int
+    time_dt: Optional[datetime]
     timezone_offset: Optional[int]
     type_uid: TypeID
     type_name: Optional[str]

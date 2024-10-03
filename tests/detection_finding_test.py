@@ -26,7 +26,6 @@ from py_ocsf_models.objects.cloud import Account, Cloud, Organization
 from py_ocsf_models.objects.container import Container, FingerPrint, Image
 from py_ocsf_models.objects.dns_query import DNSOpcodeID, DNSQuery
 from py_ocsf_models.objects.evidence_artifacts import EvidenceArtifacts
-from py_ocsf_models.objects.fingerprint import AlgorithmID
 from py_ocsf_models.objects.metadata import Metadata
 from py_ocsf_models.objects.operating_system import OperatingSystem, TypeID
 from py_ocsf_models.objects.product import Feature, Product
@@ -204,7 +203,8 @@ class TestDetectionFinding:
             namespace_pid=123,
             count=123,
             duration=123,
-            event_time=datetime.now(),
+            time=int(datetime.now().timestamp()),
+            time_dt=datetime.now(),
             evidences=[
                 EvidenceArtifacts(
                     api=API(
@@ -305,7 +305,7 @@ class TestDetectionFinding:
                 kb_article_list=[
                     KBArticle(
                         classification="Classification",
-                        created_time=datetime.now(),
+                        created_time=int(datetime.now().timestamp()),
                         os=OperatingSystem(
                             cpu_bits=64,
                             country="US",
@@ -357,7 +357,7 @@ class TestDetectionFinding:
                     kb_article_list=[
                         KBArticle(
                             classification="Classification",
-                            created_time=datetime.now(),
+                            created_time=int(datetime.now().timestamp()),
                             os=OperatingSystem(
                                 cpu_bits=64,
                                 country="US",
@@ -402,7 +402,7 @@ class TestDetectionFinding:
                         kb_article_list=[
                             KBArticle(
                                 classification="Classification",
-                                created_time=datetime.now(),
+                                created_time=int(datetime.now().timestamp()),
                                 os=OperatingSystem(
                                     cpu_bits=64,
                                     country="US",
@@ -496,26 +496,6 @@ class TestDetectionFinding:
         assert detection_finding.cloud.provider == "Provider 1"
         assert detection_finding.cloud.region == "Region 1"
         assert detection_finding.cloud.account.labels == ["label 1"]
-
-        # Assert ContainerProfile and nested objects
-        container = detection_finding.container
-        assert str(container.pod_uuid) == pod_uuid
-        assert container.network_driver == "Network Driver 1"
-        assert container.orchestrator == "Orchestrator 1"
-        assert container.size == 123
-
-        # Assert Image and FingerPrint
-        image = container.image
-        assert image.tag == "Tag 1"
-        assert image.name == "Image 1"
-        assert "Label 1" in image.labels
-        assert image.path == "Path 1"
-        assert image.uid == "123"
-
-        fingerprint = container.hash
-        assert fingerprint.algorithm == "SHA256"
-        assert fingerprint.algorithm_id == AlgorithmID.SHA_256
-        assert fingerprint.value == "123"
 
         # Assert DNSQuery
         dns_query = detection_finding.evidences[0].query

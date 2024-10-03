@@ -180,7 +180,7 @@ detection_finding = DetectionFinding(
     namespace_pid=123,
     count=123,
     duration=123,
-    event_time=datetime.now(),
+    time=datetime.now(),
     evidences=[
         EvidenceArtifacts(
             api=API(

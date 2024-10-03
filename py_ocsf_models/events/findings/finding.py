@@ -79,6 +79,7 @@ class FindingInformation(BaseModel):
     Attributes:
     - Analytic (analytic) [Recommended]: The analytic technique used to analyze and derive insights from the data or information that led to the finding or conclusion.
     - Created Time (created_time) [Optional]: The time when the finding was created.
+    - Created Time DT (created_time_dt) [Optional]: The time when the finding was created in datetime format.
     - Data Sources (data_sources) [Optional]: A list of data sources utilized in generation of the finding.
     - Description (desc) [Optional]: The description of the reported finding.
     - First Seen (first_seen_time) [Optional]: The time when the finding was first observed. It can differ from the created_time datetime, which reflects the time this finding was created.
@@ -96,14 +97,18 @@ class FindingInformation(BaseModel):
     """
 
     analytic: Optional[Analytic]
-    created_time: Optional[datetime]
+    created_time: Optional[int]
+    created_time_dt: Optional[datetime]
     data_sources: Optional[List[str]]
     desc: Optional[str]
-    first_seen_time: Optional[datetime]
+    first_seen_time: Optional[int]
+    first_seen_time_dt: Optional[datetime]
     kill_chain: Optional[List[KillChainPhase]]
-    last_seen_time: Optional[datetime]
+    last_seen_time: Optional[int]
+    last_seen_time_dt: Optional[datetime]
     attacks: Optional[List[MITREAttack]]
-    modified_time: Optional[datetime]
+    modified_time: Optional[int]
+    modified_time_dt: Optional[datetime]
     product_uid: Optional[str]
     related_analytics: Optional[List[Analytic]]
     related_events: Optional[List[RelatedEvent]]
