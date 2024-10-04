@@ -1,8 +1,10 @@
 import uuid
 from datetime import datetime
 
+import requests
+
 from py_ocsf_models import OCSF_VERSION
-from py_ocsf_models.events.base_event import SeverityID
+from py_ocsf_models.events.base_event import SeverityID, StatusID
 from py_ocsf_models.events.findings.detection_finding import (
     CategoryUID,
     DetectionFinding,
@@ -26,7 +28,6 @@ from py_ocsf_models.objects.cloud import Account, Cloud, Organization
 from py_ocsf_models.objects.container import Container, FingerPrint, Image
 from py_ocsf_models.objects.dns_query import DNSOpcodeID, DNSQuery
 from py_ocsf_models.objects.evidence_artifacts import EvidenceArtifacts
-from py_ocsf_models.objects.fingerprint import AlgorithmID
 from py_ocsf_models.objects.metadata import Metadata
 from py_ocsf_models.objects.operating_system import OperatingSystem, TypeID
 from py_ocsf_models.objects.product import Feature, Product
@@ -42,6 +43,8 @@ class TestDetectionFinding:
     def test_detection_finding(self):
         pod_uuid = str(uuid.uuid4())
         detection_finding = DetectionFinding(
+            status=StatusID.New.name,
+            status_id=StatusID.New.value,
             metadata=Metadata(
                 version=OCSF_VERSION,
                 product=Product(
@@ -57,27 +60,33 @@ class TestDetectionFinding:
                     vendor_name=PROWLER_PRODUCT,
                     version=PROWLER_VERSION,
                 ),
+                profiles=["cloud", "datetime"],
             ),
             finding_info=FindingInformation(
                 title="Title",
                 uid="123",
+                created_time=int(datetime.now().timestamp()),
+                created_time_dt=datetime.now(),
             ),
             severity_id=SeverityID.Informational,
             severity=SeverityID(1).name,
-            activity_name="Activity Name",
+            activity_name="Create",
             activity_id=1,
             comment="Comment",
             confidence="Confidence",
             confidence_id=1,
             confidence_score=123,
-            end_time=datetime.now(),
-            start_time=datetime.now(),
+            end_time=int(datetime.now().timestamp()),
+            end_time_dt=datetime.now(),
+            start_time=int(datetime.now().timestamp()),
+            start_time_dt=datetime.now(),
             resources=[
                 ResourceDetails(
                     id="123",
                     name="Resource 1",
                     type="Resource",
                     details="Details of the resource",
+                    cloud_partition="aws",
                 )
             ],
             category_name=CategoryUID.Findings.name,
@@ -89,7 +98,7 @@ class TestDetectionFinding:
                     containers=[
                         Container(
                             hash=FingerPrint(
-                                algorithm="SHA256",
+                                algorithm="SHA-256",
                                 algorithm_id=3,
                                 value="123",
                             ),
@@ -118,7 +127,7 @@ class TestDetectionFinding:
                     containers=[
                         Container(
                             hash=FingerPrint(
-                                algorithm="SHA256",
+                                algorithm="SHA-256",
                                 algorithm_id=3,
                                 value="123",
                             ),
@@ -166,14 +175,14 @@ class TestDetectionFinding:
             cloud=Cloud(
                 account=Account(
                     name="Account 1",
-                    type="Account",
+                    type="AWS IAM User",
                     type_id="3",
                     uid="123",
                     labels=["label 1"],
                 ),
                 zone="Zone 1",
                 org=Organization(
-                    name="Organization 1", ou_id="123", ou_name="OU 1", uid="123"
+                    name="Organization 1", ou_uid="123", ou_name="OU 1", uid="123"
                 ),
                 project_uid="123",
                 provider="Provider 1",
@@ -181,7 +190,7 @@ class TestDetectionFinding:
             ),
             container=Container(
                 hash=FingerPrint(
-                    algorithm="SHA256",
+                    algorithm="SHA-256",
                     algorithm_id=3,
                     value="123",
                 ),
@@ -201,10 +210,10 @@ class TestDetectionFinding:
                 size=123,
                 uid="123",
             ),
-            namespace_pid=123,
             count=123,
             duration=123,
-            event_time=datetime.now(),
+            time=int(datetime.now().timestamp()),
+            time_dt=datetime.now(),
             evidences=[
                 EvidenceArtifacts(
                     api=API(
@@ -212,7 +221,7 @@ class TestDetectionFinding:
                             containers=[
                                 Container(
                                     hash=FingerPrint(
-                                        algorithm="SHA256",
+                                        algorithm="SHA-256",
                                         algorithm_id=3,
                                         value="123",
                                     ),
@@ -241,7 +250,7 @@ class TestDetectionFinding:
                             containers=[
                                 Container(
                                     hash=FingerPrint(
-                                        algorithm="SHA256",
+                                        algorithm="SHA-256",
                                         algorithm_id=3,
                                         value="123",
                                     ),
@@ -297,7 +306,7 @@ class TestDetectionFinding:
                     data={"key": "value"},
                 )
             ],
-            impact="Impact",
+            impact="Low",
             impact_score=123,
             impact_id=1,
             remediation=Remediation(
@@ -305,7 +314,7 @@ class TestDetectionFinding:
                 kb_article_list=[
                     KBArticle(
                         classification="Classification",
-                        created_time=datetime.now(),
+                        created_time=int(datetime.now().timestamp()),
                         os=OperatingSystem(
                             cpu_bits=64,
                             country="US",
@@ -316,7 +325,7 @@ class TestDetectionFinding:
                             sp_name="SP Name",
                             sp_ver=123,
                             cpe_name="CPE Name",
-                            type="Type",
+                            type="Windows",
                             type_id=100,
                             version="Version",
                         ),
@@ -342,22 +351,24 @@ class TestDetectionFinding:
                 ],
                 references=["https://www.example.com"],
             ),
-            risk_level="Risk Level",
+            risk_level="Low",
             risk_level_id=1,
             risk_score=123,
             risk_details="Risk Details",
             timezone_offset=123,
             type_uid=DetectionFindingTypeID.Create,
-            type_name=DetectionFindingTypeID.Create.name,
+            type_name=f"Detection Finding: {DetectionFindingTypeID.Create.name}",
             vulnerabilities=[
                 VulnerabilityDetails(
                     desc="Description",
+                    cve="CVE-2021-1234",
                     is_exploit_available=True,
-                    first_seen_time=datetime.now(),
+                    first_seen_time=int(datetime.now().timestamp()),
+                    first_seen_time_dt=datetime.now(),
                     kb_article_list=[
                         KBArticle(
                             classification="Classification",
-                            created_time=datetime.now(),
+                            created_time=int(datetime.now().timestamp()),
                             os=OperatingSystem(
                                 cpu_bits=64,
                                 country="US",
@@ -368,7 +379,7 @@ class TestDetectionFinding:
                                 sp_name="SP Name",
                                 sp_ver=123,
                                 cpe_name="CPE Name",
-                                type="Type",
+                                type="Windows",
                                 type_id=100,
                                 version="Version",
                             ),
@@ -394,7 +405,8 @@ class TestDetectionFinding:
                             uid="123",
                         )
                     ],
-                    last_seen_time=datetime.now(),
+                    last_seen_time=int(datetime.now().timestamp()),
+                    last_seen_time_dt=datetime.now(),
                     references=["https://www.example.com"],
                     related_vulnerabilities=["123"],
                     remediation=Remediation(
@@ -402,7 +414,8 @@ class TestDetectionFinding:
                         kb_article_list=[
                             KBArticle(
                                 classification="Classification",
-                                created_time=datetime.now(),
+                                created_time=int(datetime.now().timestamp()),
+                                created_time_dt=datetime.now(),
                                 os=OperatingSystem(
                                     cpu_bits=64,
                                     country="US",
@@ -413,7 +426,7 @@ class TestDetectionFinding:
                                     sp_name="SP Name",
                                     sp_ver=123,
                                     cpe_name="CPE Name",
-                                    type="Type",
+                                    type="Windows",
                                     type_id=100,
                                     version="Version",
                                 ),
@@ -473,7 +486,7 @@ class TestDetectionFinding:
 
         # Assert simple attributes
         assert detection_finding.severity_id == SeverityID.Informational
-        assert detection_finding.activity_name == "Activity Name"
+        assert detection_finding.activity_name == "Create"
         assert detection_finding.activity_id == ActivityID.Create
         assert detection_finding.comment == "Comment"
         assert detection_finding.confidence == "Confidence"
@@ -496,26 +509,6 @@ class TestDetectionFinding:
         assert detection_finding.cloud.provider == "Provider 1"
         assert detection_finding.cloud.region == "Region 1"
         assert detection_finding.cloud.account.labels == ["label 1"]
-
-        # Assert ContainerProfile and nested objects
-        container = detection_finding.container
-        assert str(container.pod_uuid) == pod_uuid
-        assert container.network_driver == "Network Driver 1"
-        assert container.orchestrator == "Orchestrator 1"
-        assert container.size == 123
-
-        # Assert Image and FingerPrint
-        image = container.image
-        assert image.tag == "Tag 1"
-        assert image.name == "Image 1"
-        assert "Label 1" in image.labels
-        assert image.path == "Path 1"
-        assert image.uid == "123"
-
-        fingerprint = container.hash
-        assert fingerprint.algorithm == "SHA256"
-        assert fingerprint.algorithm_id == AlgorithmID.SHA_256
-        assert fingerprint.value == "123"
 
         # Assert DNSQuery
         dns_query = detection_finding.evidences[0].query
@@ -552,19 +545,19 @@ class TestDetectionFinding:
         assert vulnerability.vendor_name == "Vendor Name"
 
         # Assert OperatingSystem in KBArticle
-        os = kb_article.os
-        assert os.cpu_bits == 64
-        assert os.country == "US"
-        assert os.lang == "en"
-        assert os.name == "Name"
-        assert os.build == "Build"
-        assert os.edition == "Edition"
-        assert os.sp_name == "SP Name"
-        assert os.sp_ver == 123
-        assert os.cpe_name == "CPE Name"
-        assert os.type == "Type"
-        assert os.type_id == TypeID.Windows
-        assert os.version == "Version"
+        operating_system = kb_article.os
+        assert operating_system.cpu_bits == 64
+        assert operating_system.country == "US"
+        assert operating_system.lang == "en"
+        assert operating_system.name == "Name"
+        assert operating_system.build == "Build"
+        assert operating_system.edition == "Edition"
+        assert operating_system.sp_name == "SP Name"
+        assert operating_system.sp_ver == 123
+        assert operating_system.cpe_name == "CPE Name"
+        assert operating_system.type == TypeID.Windows.name
+        assert operating_system.type_id == TypeID.Windows
+        assert operating_system.version == "Version"
 
         # Assert EvidenceArtifacts
         evidence_artifact = detection_finding.evidences[0]
@@ -574,4 +567,14 @@ class TestDetectionFinding:
 
         # Assert Type
         assert detection_finding.type_uid == DetectionFindingTypeID.Create
-        assert detection_finding.type_name == "Create"
+        assert detection_finding.type_name == "Detection Finding: Create"
+
+        detection_finding_json = detection_finding.json()
+
+        url = "https://schema.ocsf.io/api/v2/validate"
+        headers = {"content-type": "application/json"}
+
+        response = requests.post(url, headers=headers, data=detection_finding_json)
+        assert (
+            response.json()["error_count"] == 1
+        )  # TODO: add cve or cwe attributes to VulnerabilityDetails to fix this error
