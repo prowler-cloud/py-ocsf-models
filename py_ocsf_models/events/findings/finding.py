@@ -2,7 +2,7 @@ from datetime import datetime
 from enum import IntEnum
 from typing import List, Optional
 
-from pydantic import BaseModel
+from pydantic.v1 import BaseModel
 
 from py_ocsf_models.events.base_event import BaseEvent
 from py_ocsf_models.objects.mitre_attack import MITREAttack
