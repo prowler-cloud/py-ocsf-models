@@ -1,7 +1,7 @@
 from enum import IntEnum
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic.v1 import BaseModel
 
 from py_ocsf_models.objects.enrichment import Enrichment
 from py_ocsf_models.objects.metadata import Metadata

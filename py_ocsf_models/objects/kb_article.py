@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic.v1 import BaseModel
 
 from py_ocsf_models.objects.operating_system import OperatingSystem
 from py_ocsf_models.objects.product import Product

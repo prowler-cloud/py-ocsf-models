@@ -3,7 +3,7 @@ from typing import Optional
 
 # FIXME(circular-dependency)
 # from py_ocsf_models.objects.user import User
-from pydantic import BaseModel, EmailStr
+from pydantic.v1 import BaseModel, EmailStr
 
 from py_ocsf_models.objects.geolocation import GeoLocation
 

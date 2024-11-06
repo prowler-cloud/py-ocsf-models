@@ -2,7 +2,7 @@ from datetime import datetime
 from enum import IntEnum
 from typing import List, Optional
 
-from pydantic import BaseModel
+from pydantic.v1 import BaseModel
 
 from py_ocsf_models.objects.device_hardware_info import DeviceHardwareInfo
 from py_ocsf_models.objects.geolocation import GeoLocation

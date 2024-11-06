@@ -1,7 +1,7 @@
 from typing import Optional
 from uuid import UUID
 
-from pydantic import BaseModel
+from pydantic.v1 import BaseModel
 
 from py_ocsf_models.objects.fingerprint import FingerPrint
 from py_ocsf_models.objects.image import Image
