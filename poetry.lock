@@ -1488,13 +1488,13 @@ zstd = ["zstandard (>=0.18.0)"]
 
 [[package]]
 name = "vulture"
-version = "2.12"
+version = "2.14"
 description = "Find dead code"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "vulture-2.12-py2.py3-none-any.whl", hash = "sha256:68ee4c4ce0128bb504dc7c2df4244c97ef5a2e29af42f27a976a6e30906e993a"},
-    {file = "vulture-2.12.tar.gz", hash = "sha256:c35e98e992eb84b01cdadbfeb0aca2d44363e7dfe6c19416f65001ae69360ccc"},
+    {file = "vulture-2.14-py2.py3-none-any.whl", hash = "sha256:d9a90dba89607489548a49d557f8bac8112bd25d3cbc8aeef23e860811bd5ed9"},
+    {file = "vulture-2.14.tar.gz", hash = "sha256:cb8277902a1138deeab796ec5bef7076a6e0248ca3607a3f3dee0b6d9e9b8415"},
 ]
 
 [package.dependencies]
@@ -1518,4 +1518,4 @@ test = ["big-O", "jaraco.functools", "jaraco.itertools", "jaraco.test", "more-it
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.13"
-content-hash = "15085ce464806dfa5621f90ada908d2fee7438a0ac42ae8924504916c2300a89"
+content-hash = "ea74dfa3fed90efe9c20b4fbbb45842b9ac5ec3f46fd6092fd820b15aedc62ce"
