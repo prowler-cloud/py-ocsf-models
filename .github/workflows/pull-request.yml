@@ -36,7 +36,7 @@ jobs:
 
       - name: Poetry check
         run: |
-          poetry lock --check
+          poetry check --lock
 
       - name: Lint with flake8
         run: |
