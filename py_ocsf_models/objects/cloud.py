@@ -22,6 +22,5 @@ class Cloud(BaseModel):
     account: Optional[Account]
     zone: Optional[str]
     org: Optional[Organization]
-    project_uid: Optional[str]
     provider: str
     region: Optional[str]
