@@ -73,7 +73,7 @@ class TestDetectionFinding:
             activity_name="Create",
             activity_id=1,
             comment="Comment",
-            confidence="Confidence",
+            confidence="Low",
             confidence_id=1,
             confidence_score=123,
             end_time=int(datetime.now().timestamp()),
@@ -103,13 +103,11 @@ class TestDetectionFinding:
                                 value="123",
                             ),
                             image=Image(
-                                tag="Tag 1",
                                 name="Image 1",
                                 labels=["Label 1"],
                                 path="Path 1",
                                 uid="123",
                             ),
-                            tag="Tag 1",
                             name="Container 1",
                             network_driver="Network Driver 1",
                             orchestrator="Orchestrator 1",
@@ -132,13 +130,11 @@ class TestDetectionFinding:
                                 value="123",
                             ),
                             image=Image(
-                                tag="Tag 1",
                                 name="Image 1",
                                 labels=["Label 1"],
                                 path="Path 1",
                                 uid="123",
                             ),
-                            tag="Tag 1",
                             name="Container 1",
                             network_driver="Network Driver 1",
                             orchestrator="Orchestrator 1",
@@ -184,7 +180,6 @@ class TestDetectionFinding:
                 org=Organization(
                     name="Organization 1", ou_uid="123", ou_name="OU 1", uid="123"
                 ),
-                project_uid="123",
                 provider="Provider 1",
                 region="Region 1",
             ),
@@ -195,13 +190,11 @@ class TestDetectionFinding:
                     value="123",
                 ),
                 image=Image(
-                    tag="Tag 1",
                     name="Image 1",
                     labels=["Label 1"],
                     path="Path 1",
                     uid="123",
                 ),
-                tag="Tag 1",
                 name="Container 1",
                 network_driver="Network Driver 1",
                 orchestrator="Orchestrator 1",
@@ -226,13 +219,11 @@ class TestDetectionFinding:
                                         value="123",
                                     ),
                                     image=Image(
-                                        tag="Tag 1",
                                         name="Image 1",
                                         labels=["Label 1"],
                                         path="Path 1",
                                         uid="123",
                                     ),
-                                    tag="Tag 1",
                                     name="Container 1",
                                     network_driver="Network Driver 1",
                                     orchestrator="Orchestrator 1",
@@ -255,13 +246,11 @@ class TestDetectionFinding:
                                         value="123",
                                     ),
                                     image=Image(
-                                        tag="Tag 1",
                                         name="Image 1",
                                         labels=["Label 1"],
                                         path="Path 1",
                                         uid="123",
                                     ),
-                                    tag="Tag 1",
                                     name="Container 1",
                                     network_driver="Network Driver 1",
                                     orchestrator="Orchestrator 1",
@@ -365,46 +354,6 @@ class TestDetectionFinding:
                     is_exploit_available=True,
                     first_seen_time=int(datetime.now().timestamp()),
                     first_seen_time_dt=datetime.now(),
-                    kb_article_list=[
-                        KBArticle(
-                            classification="Classification",
-                            created_time=int(datetime.now().timestamp()),
-                            os=OperatingSystem(
-                                cpu_bits=64,
-                                country="US",
-                                lang="en",
-                                name="Name",
-                                build="Build",
-                                edition="Edition",
-                                sp_name="SP Name",
-                                sp_ver=123,
-                                cpe_name="CPE Name",
-                                type="Windows",
-                                type_id=100,
-                                version="Version",
-                            ),
-                            bulletin="Bulletin",
-                            product=Product(
-                                feature=Feature(
-                                    name="Name", uid="123", version="Version"
-                                ),
-                                lang="en",
-                                name="Name",
-                                path="Path",
-                                cpe_name="CPE Name",
-                                url_string="https://www.example.com",
-                                uid="123",
-                                vendor_name="Vendor Name",
-                                version="Version",
-                            ),
-                            severity="Severity",
-                            size=123,
-                            src_url="https://www.example.com",
-                            is_superseded=True,
-                            title="Title",
-                            uid="123",
-                        )
-                    ],
                     last_seen_time=int(datetime.now().timestamp()),
                     last_seen_time_dt=datetime.now(),
                     references=["https://www.example.com"],
@@ -489,7 +438,7 @@ class TestDetectionFinding:
         assert detection_finding.activity_name == "Create"
         assert detection_finding.activity_id == ActivityID.Create
         assert detection_finding.comment == "Comment"
-        assert detection_finding.confidence == "Confidence"
+        assert detection_finding.confidence == "Low"
         assert detection_finding.confidence_id == ConfidenceID.Low
         assert detection_finding.confidence_score == 123
 

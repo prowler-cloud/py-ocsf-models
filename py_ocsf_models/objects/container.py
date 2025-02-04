@@ -27,7 +27,6 @@ class Container(BaseModel):
 
     hash: Optional[FingerPrint]
     image: Optional[Image]
-    tag: Optional[str]
     name: str
     network_driver: Optional[str]
     orchestrator: Optional[str]
