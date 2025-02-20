@@ -25,7 +25,7 @@ packages = [
   {include = "py_ocsf_models"}
 ]
 readme = "README.md"
-version = "0.3.0"
+version = "0.3.1"
 
 [tool.poetry.dependencies]
 cryptography = "44.0.1"
