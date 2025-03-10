@@ -90,7 +90,6 @@ class FindingInformation(BaseModel):
     - MITRE ATT&CK® Details (attacks) [Optional]: The MITRE ATT&CK® technique and associated tactics related to the finding.
     - Modified Time (modified_time) [Optional]: The time when the finding was last modified.
     - Modified Time DT (modified_time_dt) [Optional]: The time when the finding was last modified in datetime format.
-    - Product Identifier (product_uid) [Optional]: The unique identifier of the product that reported the finding.
     - Related Analytics (related_analytics) [Optional]: Other analytics related to this finding.
     - Related Events (related_events) [Optional]: Describes events and/or other findings related to the finding as identified by the security product.
     - Source URL (src_url) [Optional]: The URL pointing to the source of the finding.
@@ -112,7 +111,6 @@ class FindingInformation(BaseModel):
     attacks: Optional[List[MITREAttack]]
     modified_time: Optional[int]
     modified_time_dt: Optional[datetime]
-    product_uid: Optional[str]
     related_analytics: Optional[List[Analytic]]
     related_events: Optional[List[RelatedEvent]]
     src_url: Optional[str]
