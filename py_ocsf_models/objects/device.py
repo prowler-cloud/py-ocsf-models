@@ -33,19 +33,19 @@ class DeviceType(IntEnum):
     - Other (99): The type is not mapped. See the type attribute, which contains a data source specific value.
     """
 
-    Unknown: int = 0
-    Server: int = 1
-    Desktop: int = 2
-    Laptop: int = 3
-    Tablet: int = 4
-    Mobile: int = 5
-    Virtual: int = 6
-    IOT: int = 7
-    Browser: int = 8
-    Firewall: int = 9
-    Switch: int = 10
-    Hub: int = 11
-    Other: int = 99
+    Unknown = 0
+    Server = 1
+    Desktop = 2
+    Laptop = 3
+    Tablet = 4
+    Mobile = 5
+    Virtual = 6
+    IOT = 7
+    Browser = 8
+    Firewall = 9
+    Switch = 10
+    Hub = 11
+    Other = 99
 
 
 class RiskLevelID(IntEnum):
@@ -60,11 +60,11 @@ class RiskLevelID(IntEnum):
     - Critical (4): Critical risk level.
     """
 
-    Info: int = 0
-    Low: int = 1
-    Medium: int = 2
-    High: int = 3
-    Critical: int = 4
+    Info = 0
+    Low = 1
+    Medium = 2
+    High = 3
+    Critical = 4
 
 
 class Device(BaseModel):

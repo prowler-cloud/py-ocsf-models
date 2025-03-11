@@ -18,13 +18,13 @@ class DNSOpcodeID(IntEnum):
     - DSO Message (6): DNS Stateful Operations (DSO).
     """
 
-    Query: int = 0
-    Inverse_Query: int = 1
-    Status: int = 2
-    Reserved: int = 3
-    Notify: int = 4
-    Update: int = 5
-    DSO_Message: int = 6
+    Query = 0
+    Inverse_Query = 1
+    Status = 2
+    Reserved = 3
+    Notify = 4
+    Update = 5
+    DSO_Message = 6
 
 
 class DNSQuery(BaseModel):

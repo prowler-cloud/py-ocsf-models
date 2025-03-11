@@ -17,12 +17,12 @@ class NetworkType(IntEnum):
     - Other (99): The type is not mapped. See the type attribute, which contains a data source specific value.
     """
 
-    Unknown: int = 0
-    Wired: int = 1
-    Wireless: int = 2
-    Mobile: int = 3
-    Tunnel: int = 4
-    Other: int = 99
+    Unknown = 0
+    Wired = 1
+    Wireless = 2
+    Mobile = 3
+    Tunnel = 4
+    Other = 99
 
 
 class NetworkInterface(BaseModel):

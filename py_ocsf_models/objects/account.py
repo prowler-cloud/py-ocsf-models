@@ -5,18 +5,18 @@ from pydantic import BaseModel
 
 
 class TypeID(IntEnum):
-    Unknown: int = 0
-    LDAP_Account: int = 1
-    Windows_Account: int = 2
-    AWS_IAM_User: int = 3
-    AWS_IAM_Role: int = 4
-    GCP_Account: int = 5
-    Azure_AD_Account: int = 6
-    MacOS_Account: int = 7
-    Apple_Account: int = 8
-    Linux_Account: int = 9
-    AWS_Account: int = 10
-    Other: int = 99
+    Unknown = 0
+    LDAP_Account = 1
+    Windows_Account = 2
+    AWS_IAM_User = 3
+    AWS_IAM_Role = 4
+    GCP_Account = 5
+    Azure_AD_Account = 6
+    MacOS_Account = 7
+    Apple_Account = 8
+    Linux_Account = 9
+    AWS_Account = 10
+    Other = 99
 
 
 class Account(BaseModel):
