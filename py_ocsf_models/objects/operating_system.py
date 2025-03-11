@@ -5,18 +5,18 @@ from pydantic import BaseModel
 
 
 class TypeID(IntEnum):
-    Unknown: int = 0
-    Other: int = 99
-    Windows: int = 100
-    Windows_Mobile: int = 101
-    Linux: int = 200
-    Android: int = 201
-    MacOS: int = 300
-    IOS: int = 301
-    IPadOS: int = 302
-    Solaris: int = 400
-    AIX: int = 401
-    HP_UX: int = 402
+    Unknown = 0
+    Other = 99
+    Windows = 100
+    Windows_Mobile = 101
+    Linux = 200
+    Android = 201
+    MacOS = 300
+    IOS = 301
+    IPadOS = 302
+    Solaris = 400
+    AIX = 401
+    HP_UX = 402
 
 
 class OperatingSystem(BaseModel):

@@ -19,15 +19,15 @@ class PhaseID(IntEnum):
     - Other (99): The kill chain phase is not mapped. See the phase attribute, which contains a data source specific value.
     """
 
-    Unknown: int = 0
-    Reconnaissance: int = 1
-    Weaponization: int = 2
-    Delivery: int = 3
-    Exploitation: int = 4
-    Installation: int = 5
-    Command_Control: int = 6
-    Actions_on_Objectives: int = 7
-    Other: int = 99
+    Unknown = 0
+    Reconnaissance = 1
+    Weaponization = 2
+    Delivery = 3
+    Exploitation = 4
+    Installation = 5
+    Command_Control = 6
+    Actions_on_Objectives = 7
+    Other = 99
 
 
 class KillChainPhase(BaseModel):

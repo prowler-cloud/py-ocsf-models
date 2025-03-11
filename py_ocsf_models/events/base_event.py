@@ -24,14 +24,14 @@ class SeverityID(IntEnum):
     99 Other: The event/finding severity is not mapped. See the severity attribute, which contains a data source specific value.
     """
 
-    Unknown: int = 0
-    Informational: int = 1
-    Low: int = 2
-    Medium: int = 3
-    High: int = 4
-    Critical: int = 5
-    Fatal: int = 6
-    Other: int = 99
+    Unknown = 0
+    Informational = 1
+    Low = 2
+    Medium = 3
+    High = 4
+    Critical = 5
+    Fatal = 6
+    Other = 99
 
 
 class StatusID(IntEnum):
@@ -44,12 +44,12 @@ class StatusID(IntEnum):
     99 Other: The event status is not mapped. See the status attribute, which contains a data source specific value.
     """
 
-    Unknown: int = 0
-    New: int = 1
-    InProgress: int = 2
-    Suppressed: int = 3
-    Resolved: int = 4
-    Other: int = 99
+    Unknown = 0
+    New = 1
+    InProgress = 2
+    Suppressed = 3
+    Resolved = 4
+    Other = 99
 
 
 class BaseEvent(BaseModel):

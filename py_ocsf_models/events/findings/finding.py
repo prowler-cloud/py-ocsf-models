@@ -19,11 +19,11 @@ class ActivityID(IntEnum):
     99 Other: The event activity is not mapped. See the activity_name attribute, which contains a data source specific value.
     """
 
-    Unknown: int = 0
-    Create: int = 1
-    Update: int = 2
-    Close: int = 3
-    Other: int = 99
+    Unknown = 0
+    Create = 1
+    Update = 2
+    Close = 3
+    Other = 99
 
 
 class ConfidenceID(IntEnum):
@@ -38,11 +38,11 @@ class ConfidenceID(IntEnum):
 
     """
 
-    Unknown: int = 0
-    Low: int = 1
-    Medium: int = 2
-    High: int = 3
-    Other: int = 99
+    Unknown = 0
+    Low = 1
+    Medium = 2
+    High = 3
+    Other = 99
 
 
 class Finding(BaseEvent, BaseModel):

@@ -20,15 +20,15 @@ class AlgorithmID(IntEnum):
 
     """
 
-    Unknown: int = 0
-    MD5: int = 1
-    SHA_1: int = 2
-    SHA_256: int = 3
-    SHA_512: int = 4
-    CTPH: int = 5
-    TLSH: int = 6
-    QuickXorHash: int = 7
-    Other: int = 99
+    Unknown = 0
+    MD5 = 1
+    SHA_1 = 2
+    SHA_256 = 3
+    SHA_512 = 4
+    CTPH = 5
+    TLSH = 6
+    QuickXorHash = 7
+    Other = 99
 
 
 class FingerPrint(BaseModel):
