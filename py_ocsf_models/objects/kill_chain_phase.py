@@ -1,6 +1,6 @@
 from enum import IntEnum
 
-from pydantic import BaseModel
+from pydantic.v1 import BaseModel
 
 
 class PhaseID(IntEnum):
