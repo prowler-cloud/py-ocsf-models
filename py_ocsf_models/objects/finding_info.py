@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import List, Optional
 
-from pydantic import BaseModel
+from pydantic.v1 import BaseModel
 
 from py_ocsf_models.objects.analytic import Analytic
 from py_ocsf_models.objects.kill_chain_phase import KillChainPhase
