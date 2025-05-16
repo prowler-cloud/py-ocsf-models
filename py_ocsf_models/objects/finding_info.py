@@ -16,13 +16,17 @@ class FindingInformation(BaseModel):
     Attributes:
     - Analytic (analytic) [Recommended]: The analytic technique used to analyze and derive insights from the data or information that led to the finding or conclusion.
     - Created Time (created_time) [Optional]: The time when the finding was created in datetime format.
+    - Created Time DT (created_time_dt) [Optional]: The time when the finding was created in datetime format.
     - Data Sources (data_sources) [Optional]: A list of data sources utilized in generation of the finding.
     - Description (desc) [Optional]: The description of the reported finding.
     - First Seen (first_seen_time) [Optional]: The time when the finding was first observed.
+    - First Seen DT (first_seen_time_dt) [Optional]: The time when the finding was first observed in datetime format.
     - Kill Chain (kill_chain) [Optional]: The Cyber Kill Chain® provides a detailed description of each phase and its associated activities within the broader context of a cyber attack.
     - Last Seen (last_seen_time) [Optional]: The time when the finding was last observed.
+    - Last Seen DT (last_seen_time_dt) [Optional]: The time when the finding was last observed in datetime format.
     - MITRE ATT&CK® Details (attacks) [Optional]: The MITRE ATT&CK® technique and associated tactics related to the finding.
     - Modified Time (modified_time) [Optional]: The time when the finding was last modified.
+    - Modified Time DT (modified_time_dt) [Optional]: The time when the finding was last modified in datetime format.
     - Related Analytics (related_analytics) [Optional]: Other analytics related to this finding.
     - Related Events (related_events) [Optional]: Describes events and/or other findings related to the finding as identified by the security product.
     - Source URL (src_url) [Optional]: The URL pointing to the source of the finding.
