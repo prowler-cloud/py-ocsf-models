@@ -4,19 +4,16 @@ from datetime import datetime
 import requests
 
 from py_ocsf_models import OCSF_VERSION
-from py_ocsf_models.events.base_event import SeverityID, StatusID
-from py_ocsf_models.events.findings.detection_finding import (
-    CategoryUID,
-    DetectionFinding,
+from py_ocsf_models.events.findings.activity_id import ActivityID
+from py_ocsf_models.events.findings.category_uid import CategoryUID
+from py_ocsf_models.events.findings.confidence_id import ConfidenceID
+from py_ocsf_models.events.findings.detection_finding import DetectionFinding
+from py_ocsf_models.events.findings.detection_finding_type_id import (
+    DetectionFindingTypeID,
 )
-from py_ocsf_models.events.findings.detection_finding import (
-    TypeID as DetectionFindingTypeID,
-)
-from py_ocsf_models.events.findings.finding import (
-    ActivityID,
-    ConfidenceID,
-    FindingInformation,
-)
+from py_ocsf_models.events.findings.finding import FindingInformation
+from py_ocsf_models.events.findings.severity_id import SeverityID
+from py_ocsf_models.events.findings.status_id import StatusID
 from py_ocsf_models.objects.api import (
     API,
     Group,

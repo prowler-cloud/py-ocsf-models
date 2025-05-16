@@ -13,7 +13,8 @@ In [Prowler](https://github.com/prowler-cloud/prowler), we leverage the py-ocsf-
 
 ## OCSF Coverage
 
-Soon ...
+- Detection Finding
+- Compliance Finding
 
 ## Installation
 
