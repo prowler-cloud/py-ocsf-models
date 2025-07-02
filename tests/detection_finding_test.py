@@ -23,6 +23,7 @@ from py_ocsf_models.objects.api import (
 )
 from py_ocsf_models.objects.cloud import Account, Cloud, Organization
 from py_ocsf_models.objects.container import Container, FingerPrint, Image
+from py_ocsf_models.objects.cve import CVE
 from py_ocsf_models.objects.dns_query import DNSOpcodeID, DNSQuery
 from py_ocsf_models.objects.evidence_artifacts import EvidenceArtifacts
 from py_ocsf_models.objects.metadata import Metadata
@@ -347,7 +348,9 @@ class TestDetectionFinding:
             vulnerabilities=[
                 VulnerabilityDetails(
                     desc="Description",
-                    cve="CVE-2021-1234",
+                    cve=CVE(
+                        uid="CVE-2021-1234",
+                    ),
                     is_exploit_available=True,
                     first_seen_time=int(datetime.now().timestamp()),
                     first_seen_time_dt=datetime.now(),
