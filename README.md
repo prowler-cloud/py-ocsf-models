@@ -15,6 +15,7 @@ In [Prowler](https://github.com/prowler-cloud/prowler), we leverage the py-ocsf-
 
 - Detection Finding
 - Compliance Finding
+- Application Security Posture Finding
 
 ## Installation
 
