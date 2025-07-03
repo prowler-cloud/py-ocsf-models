@@ -43,6 +43,7 @@ class TestComplianceFinding:
                     vendor_name="Vendor Name",
                     version="Version",
                 ),
+                profiles=["datetime"],
             ),
             compliance=Compliance(
                 assessments=[
