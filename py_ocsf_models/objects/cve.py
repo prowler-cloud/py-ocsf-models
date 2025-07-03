@@ -15,7 +15,7 @@ class CVE(BaseModel):
     """
 
     created_time: Optional[datetime]
-    cvss: Optional[CVSSScore]
+    cvss: Optional[list[CVSSScore]]
     desc: Optional[str]
     epss: Optional[EPSS]
     modified_time: Optional[datetime]
