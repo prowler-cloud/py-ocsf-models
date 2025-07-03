@@ -127,7 +127,7 @@ class TestApplicationSecurityPostureFinding:
         assert vulnerability.cve.cvss.metrics[0].value == "NONE"
         assert (
             vulnerability.cve.references
-            == "https://nvd.nist.gov/vuln/detail/CVE-2021-44228"
+            == ["https://nvd.nist.gov/vuln/detail/CVE-2021-44228"]
         )
         assert vulnerability.cve.epss.score == "0.975620000"
         assert vulnerability.cve.epss.percentile == 0.99998
