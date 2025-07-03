@@ -159,4 +159,4 @@ class TestApplicationSecurityPostureFinding:
 
         response = requests.post(url, headers=headers, data=app_sec_finding_json)
         assert response.status_code == 200, f"Schema validation failed: {response.text}"
-        print("ApplicationSecurityPostureFinding schema validated successfully!")
+        assert response.json()["error_count"] == 0

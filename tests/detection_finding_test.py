@@ -518,12 +518,11 @@ class TestDetectionFinding:
         assert detection_finding.type_uid == DetectionFindingTypeID.Create
         assert detection_finding.type_name == "Detection Finding: Create"
 
-        detection_finding_json = detection_finding.json()
+        detection_finding_json = detection_finding.json(exclude_unset=True)
 
         url = "https://schema.ocsf.io/api/v2/validate"
         headers = {"content-type": "application/json"}
 
         response = requests.post(url, headers=headers, data=detection_finding_json)
-        assert (
-            response.json()["error_count"] == 1
-        )  # TODO: add cve or cwe attributes to VulnerabilityDetails to fix this error
+        assert response.status_code == 200, f"Schema validation failed: {response.text}"
+        assert response.json()["error_count"] == 0
