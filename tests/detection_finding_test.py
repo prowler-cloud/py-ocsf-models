@@ -23,6 +23,7 @@ from py_ocsf_models.objects.api import (
 )
 from py_ocsf_models.objects.cloud import Account, Cloud, Organization
 from py_ocsf_models.objects.container import Container, FingerPrint, Image
+from py_ocsf_models.objects.cve import CVE
 from py_ocsf_models.objects.dns_query import DNSOpcodeID, DNSQuery
 from py_ocsf_models.objects.evidence_artifacts import EvidenceArtifacts
 from py_ocsf_models.objects.metadata import Metadata
@@ -347,7 +348,9 @@ class TestDetectionFinding:
             vulnerabilities=[
                 VulnerabilityDetails(
                     desc="Description",
-                    cve="CVE-2021-1234",
+                    cve=CVE(
+                        uid="CVE-2021-1234",
+                    ),
                     is_exploit_available=True,
                     first_seen_time=int(datetime.now().timestamp()),
                     first_seen_time_dt=datetime.now(),
@@ -515,12 +518,11 @@ class TestDetectionFinding:
         assert detection_finding.type_uid == DetectionFindingTypeID.Create
         assert detection_finding.type_name == "Detection Finding: Create"
 
-        detection_finding_json = detection_finding.json()
+        detection_finding_json = detection_finding.json(exclude_unset=True)
 
         url = "https://schema.ocsf.io/api/v2/validate"
         headers = {"content-type": "application/json"}
 
         response = requests.post(url, headers=headers, data=detection_finding_json)
-        assert (
-            response.json()["error_count"] == 1
-        )  # TODO: add cve or cwe attributes to VulnerabilityDetails to fix this error
+        assert response.status_code == 200, f"Schema validation failed: {response.text}"
+        assert response.json()["error_count"] == 0

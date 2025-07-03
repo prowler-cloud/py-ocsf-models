@@ -43,6 +43,7 @@ class TestComplianceFinding:
                     vendor_name="Vendor Name",
                     version="Version",
                 ),
+                profiles=["datetime"],
             ),
             compliance=Compliance(
                 assessments=[
@@ -162,4 +163,5 @@ class TestComplianceFinding:
         headers = {"content-type": "application/json"}
 
         response = requests.post(url, headers=headers, data=compliance_finding_json)
-        assert response.status_code == 200
+        assert response.status_code == 200, f"Schema validation failed: {response.text}"
+        assert response.json()["error_count"] == 0
