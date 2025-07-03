@@ -3,11 +3,11 @@ from typing import Optional
 
 from pydantic.v1 import BaseModel
 
+from py_ocsf_models.events.findings.application_security_posture_finding_type_id import (
+    ApplicationSecurityPostureFindingTypeID,
+)
 from py_ocsf_models.events.findings.category_uid import CategoryUID
 from py_ocsf_models.events.findings.class_uid import ClassUID
-from py_ocsf_models.events.findings.application_security_posture_finding_type_id import (
-    ApplicationSecurityPostureFindingTypeID
-)
 from py_ocsf_models.events.findings.finding import Finding
 from py_ocsf_models.objects.device import Device
 from py_ocsf_models.objects.evidence_artifacts import EvidenceArtifacts

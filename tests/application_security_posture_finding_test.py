@@ -15,17 +15,14 @@ from py_ocsf_models.objects.cve import CVE
 from py_ocsf_models.objects.cvss import CVSSScore
 from py_ocsf_models.objects.cwe import CWE
 from py_ocsf_models.objects.epss import EPSS
-
 from py_ocsf_models.objects.finding_info import FindingInformation
 from py_ocsf_models.objects.metadata import Metadata
+from py_ocsf_models.objects.metric import Metric
 from py_ocsf_models.objects.product import Feature, Product
+from py_ocsf_models.objects.remediation import Remediation
 from py_ocsf_models.objects.resource_details import ResourceDetails
 from py_ocsf_models.objects.url import URL
 from py_ocsf_models.objects.vulnerability_details import VulnerabilityDetails
-from py_ocsf_models.objects.remediation import Remediation
-from py_ocsf_models.objects.metric import Metric
-
-
 
 
 class TestApplicationSecurityPostureFinding:
@@ -41,7 +38,9 @@ class TestApplicationSecurityPostureFinding:
             metadata=Metadata(
                 version=OCSF_VERSION,
                 product=Product(
-                    feature=Feature(name="AppScan", uid="appscan-feat-1", version="1.0"),
+                    feature=Feature(
+                        name="AppScan", uid="appscan-feat-1", version="1.0"
+                    ),
                     lang="en",
                     name="Application Security Scanner",
                     path="Path/to/scanner",
@@ -61,23 +60,17 @@ class TestApplicationSecurityPostureFinding:
                             base_score=10.0,
                             version="3.1",
                             vector_string="CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
-                            metrics=[Metric(
-                                name="privilegesRequired",
-                                value="NONE"
-                            )]
+                            metrics=[Metric(name="privilegesRequired", value="NONE")],
                         ),
-                        references=[
-                            "https://nvd.nist.gov/vuln/detail/CVE-2021-44228"
-                        ],
-                        epss=EPSS(
-                           score="0.975620000",
-                           percentile="0.999980000"
-                        )
+                        references=["https://nvd.nist.gov/vuln/detail/CVE-2021-44228"],
+                        epss=EPSS(score="0.975620000", percentile="0.999980000"),
                     ),
                     cwe=CWE(
                         uid="CWE-079",
                         caption="Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
-                        src_url=URL(url_string="https://cwe.mitre.org/data/definitions/79.html"),
+                        src_url=URL(
+                            url_string="https://cwe.mitre.org/data/definitions/79.html"
+                        ),
                     ),
                     desc="A critical vulnerability in Log4j2 allowing remote code execution.",
                     remediation=Remediation(
@@ -113,7 +106,10 @@ class TestApplicationSecurityPostureFinding:
 
         # Assertions to validate the populated object
         assert app_sec_finding.severity_id == SeverityID.Critical.value
-        assert app_sec_finding.class_uid == ClassUID.ApplicationSecurityPostureFinding.value
+        assert (
+            app_sec_finding.class_uid
+            == ClassUID.ApplicationSecurityPostureFinding.value
+        )
         assert app_sec_finding.category_name == CategoryUID.Findings.name
         assert app_sec_finding.category_uid == CategoryUID.Findings.value
         assert app_sec_finding.activity_id == ActivityID.Update.value
@@ -123,10 +119,16 @@ class TestApplicationSecurityPostureFinding:
         assert vulnerability.cve.uid == "CVE-2021-44228"
         assert vulnerability.cve.cvss.base_score == 10.0
         assert vulnerability.cve.cvss.version == "3.1"
-        assert vulnerability.cve.cvss.vector_string == "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H"
+        assert (
+            vulnerability.cve.cvss.vector_string
+            == "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H"
+        )
         assert vulnerability.cve.cvss.metrics[0].name == "privilegesRequired"
         assert vulnerability.cve.cvss.metrics[0].value == "NONE"
-        assert vulnerability.cve.references == ["https://nvd.nist.gov/vuln/detail/CVE-2021-44228"]
+        assert (
+            vulnerability.cve.references
+            == "https://nvd.nist.gov/vuln/detail/CVE-2021-44228"
+        )
         assert vulnerability.cve.epss.score == "0.975620000"
         assert vulnerability.cve.epss.percentile == 0.99998
         assert vulnerability.cwe.uid == "CWE-079"
@@ -135,7 +137,11 @@ class TestApplicationSecurityPostureFinding:
         assert vulnerability.remediation
 
         # Finding Info assertions
-        assert app_sec_finding.finding_info.title == "Critical Application Security Posture Findings Detected"
+        assert (
+            app_sec_finding.finding_info.title
+            == "Critical Application Security Posture Findings Detected"
+        )
+
         assert app_sec_finding.finding_info.uid == "app-sec-finding-001"
 
         # Resources details
@@ -154,5 +160,3 @@ class TestApplicationSecurityPostureFinding:
         response = requests.post(url, headers=headers, data=app_sec_finding_json)
         assert response.status_code == 200, f"Schema validation failed: {response.text}"
         print("ApplicationSecurityPostureFinding schema validated successfully!")
-
-

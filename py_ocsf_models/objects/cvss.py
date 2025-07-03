@@ -1,5 +1,6 @@
-from pydantic.v1 import BaseModel, Field
 from typing import Optional
+
+from pydantic.v1 import BaseModel
 
 from py_ocsf_models.objects.metric import Metric
 from py_ocsf_models.objects.url import URL
@@ -9,6 +10,7 @@ class CVSSScore(BaseModel):
     """
     Common Vulnerability Scoring System (CVSS) details.
     """
+
     base_score: float
     depth: Optional[str]
     metrics: Optional[list[Metric]]
