@@ -11,10 +11,15 @@ from py_ocsf_models.events.findings.application_security_posture_finding import 
 from py_ocsf_models.events.findings.category_uid import CategoryUID
 from py_ocsf_models.events.findings.class_uid import ClassUID
 from py_ocsf_models.events.findings.severity_id import SeverityID
+from py_ocsf_models.objects.affected_software_package import (
+    AffectedSoftwarePackage,
+    SoftwarePackageTypeID,
+)
 from py_ocsf_models.objects.cve import CVE
 from py_ocsf_models.objects.cvss import CVSSScore
 from py_ocsf_models.objects.epss import EPSS
 from py_ocsf_models.objects.finding_info import FindingInformation
+from py_ocsf_models.objects.fingerprint import AlgorithmID, FingerPrint
 from py_ocsf_models.objects.metadata import Metadata
 from py_ocsf_models.objects.metric import Metric
 from py_ocsf_models.objects.product import Feature, Product
@@ -83,6 +88,34 @@ class TestApplicationSecurityPostureFinding:
                     ),
                     severity=SeverityID.Critical.name,
                     title="vuln-log4shell-001",
+                    affected_packages=[
+                        AffectedSoftwarePackage(
+                            architecture="Architecture",
+                            cpe_name="CPE Name",
+                            epoch=1,
+                            fixed_in_version="1.2.3",
+                            hash=FingerPrint(
+                                algorithm_id=1,
+                                algorithm="MD5",
+                                value="d73b04b0e696b0945283defa3eee4538",
+                            ),
+                            license="GPL v3.0",
+                            license_url="https://www.gnu.org/licenses/gpl-3.0.en.html",
+                            name="Package Name",
+                            package_manager="npm",
+                            package_manager_url="https://something/npm/Package Name",
+                            path="/path/to/install/",
+                            purl="PURL",
+                            release="rc1",
+                            remediation=Remediation(desc="remediation"),
+                            src_url="https://example.com/sources",
+                            type="Application",
+                            type_id=1,
+                            uid="Package Name-1.2.2-rc1",
+                            vendor_name="Vendor Name",
+                            version="1.2.3",
+                        ),
+                    ],
                 )
             ],
             resources=[
@@ -139,6 +172,45 @@ class TestApplicationSecurityPostureFinding:
         assert vulnerability.severity == SeverityID.Critical.name
         assert vulnerability.title == "vuln-log4shell-001"
         assert vulnerability.remediation
+        assert vulnerability.affected_packages[0].architecture == "Architecture"
+        assert vulnerability.affected_packages[0].cpe_name == "CPE Name"
+        assert vulnerability.affected_packages[0].epoch == 1
+        assert vulnerability.affected_packages[0].fixed_in_version == "1.2.3"
+        assert vulnerability.affected_packages[0].hash.algorithm_id == AlgorithmID.MD5
+        assert vulnerability.affected_packages[0].hash.algorithm == AlgorithmID.MD5.name
+        assert (
+            vulnerability.affected_packages[0].hash.value
+            == "d73b04b0e696b0945283defa3eee4538"
+        )
+        assert vulnerability.affected_packages[0].license == "GPL v3.0"
+        assert (
+            vulnerability.affected_packages[0].license_url
+            == "https://www.gnu.org/licenses/gpl-3.0.en.html"
+        )
+        assert vulnerability.affected_packages[0].name == "Package Name"
+        assert vulnerability.affected_packages[0].package_manager == "npm"
+        assert (
+            vulnerability.affected_packages[0].package_manager_url
+            == "https://something/npm/Package Name"
+        )
+        assert vulnerability.affected_packages[0].path == "/path/to/install/"
+        assert vulnerability.affected_packages[0].purl == "PURL"
+        assert vulnerability.affected_packages[0].release == "rc1"
+        assert vulnerability.affected_packages[0].remediation.desc == "remediation"
+        assert (
+            vulnerability.affected_packages[0].src_url == "https://example.com/sources"
+        )
+        assert (
+            vulnerability.affected_packages[0].type
+            == SoftwarePackageTypeID.Application.name
+        )
+        assert (
+            vulnerability.affected_packages[0].type_id
+            == SoftwarePackageTypeID.Application
+        )
+        assert vulnerability.affected_packages[0].uid == "Package Name-1.2.2-rc1"
+        assert vulnerability.affected_packages[0].vendor_name == "Vendor Name"
+        assert vulnerability.affected_packages[0].version == "1.2.3"
 
         # Finding Info assertions
         assert (
