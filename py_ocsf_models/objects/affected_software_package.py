@@ -49,7 +49,7 @@ class AffectedSoftwarePackage(BaseModel):
     hash: Optional[FingerPrint]
     license: Optional[str]
     license_url: Optional[str]
-    name: Optional[str]
+    name: str
     package_manager: Optional[str]
     package_manager_url: Optional[str]
     path: Optional[str]

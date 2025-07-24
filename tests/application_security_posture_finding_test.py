@@ -17,6 +17,7 @@ from py_ocsf_models.objects.affected_software_package import (
 )
 from py_ocsf_models.objects.cve import CVE
 from py_ocsf_models.objects.cvss import CVSSScore
+from py_ocsf_models.objects.enrichment import Enrichment
 from py_ocsf_models.objects.epss import EPSS
 from py_ocsf_models.objects.finding_info import FindingInformation
 from py_ocsf_models.objects.fingerprint import AlgorithmID, FingerPrint
@@ -135,6 +136,13 @@ class TestApplicationSecurityPostureFinding:
                 ),
                 uid="app-sec-finding-001",
             ),
+            enrichments=[
+                Enrichment(
+                    name="answers.ip",
+                    value="92.24.47.250",
+                    data={"city": "Socotra", "continent": "Asia"},
+                )
+            ],
             severity_id=SeverityID.Critical.value,
             time=int(datetime.now().timestamp()),
             time_dt=datetime.now(),
@@ -219,6 +227,14 @@ class TestApplicationSecurityPostureFinding:
         )
 
         assert app_sec_finding.finding_info.uid == "app-sec-finding-001"
+
+        # Enrichments
+        assert app_sec_finding.enrichments[0].name == "answers.ip"
+        assert app_sec_finding.enrichments[0].value == "92.24.47.250"
+        assert app_sec_finding.enrichments[0].data == {
+            "city": "Socotra",
+            "continent": "Asia",
+        }
 
         # Resources details
         resource = app_sec_finding.resources[0]
