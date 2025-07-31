@@ -1,4 +1,6 @@
 name: PyPI release
+permissions:
+  contents: read
 
 on:
   release:
