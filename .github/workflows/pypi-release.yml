@@ -10,15 +10,11 @@ env:
   # CACHE: "poetry"
 
 jobs:
-  repository-check:
-    name: Repository check
+  release:
     runs-on: ubuntu-latest
-
-  release-prowler-job:
-    runs-on: ubuntu-latest
-    needs: repository-check
     env:
       POETRY_VIRTUALENVS_CREATE: "false"
+
     name: Release py-ocsf-models to PyPI
     steps:
 
@@ -34,11 +30,11 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
           # cache: ${{ env.CACHE }}
 
-      - name: Build py-ocsf-models package
+      - name: Build package
         run: |
           poetry build
 
-      - name: Publish py-ocsf-models package to PyPI
+      - name: Publish package to PyPI
         run: |
           poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
           poetry publish
