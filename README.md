@@ -35,6 +35,13 @@ import py_ocsf_models
 
 You can find ready-to-run examples demonstrating how to generate events using the OCSF schema in the [examples](./examples/) folder.
 
+## How to Release
+
+To release a new version of `py-ocsf-models`:
+
+1. **Create a PR with version update**: Update the version number in `pyproject.toml` and create a pull request with the changes.
+
+2. **Create a GitHub release**: Once the PR is merged into the master branch, create a new release in GitHub from the master branch. This will automatically trigger the `pypi-release.yml` workflow to publish the package to PyPI.
 
 ## Contributing
 Contributions are welcome! Whether you're fixing a bug, adding new features, or improving the documentation, please feel free to make a pull request or open an issue.
