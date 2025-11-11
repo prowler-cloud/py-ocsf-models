@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 
 class Policy(BaseModel):
@@ -17,10 +17,10 @@ class Policy(BaseModel):
     - Version (version) [Optional]: The policy version number.
     """
 
-    data: Optional[str]
-    desc: Optional[str]
-    group: Optional[str]
-    is_applied: Optional[bool]
-    name: Optional[str]
-    uid: Optional[str]
-    version: Optional[str]
+    data: Optional[str] = None
+    desc: Optional[str] = None
+    group: Optional[str] = None
+    is_applied: Optional[bool] = None
+    name: Optional[str] = None
+    uid: Optional[str] = None
+    version: Optional[str] = None

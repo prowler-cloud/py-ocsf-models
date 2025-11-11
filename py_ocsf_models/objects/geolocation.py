@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 
 class GeoLocation(BaseModel):
@@ -20,13 +20,13 @@ class GeoLocation(BaseModel):
     - Region (region) [Optional]: The principal subdivision of the country, such as a state or province.
     """
 
-    city: Optional[str]
-    continent: Optional[str]
-    coordinates: Optional[list[float]]
-    country: Optional[str]
-    desc: Optional[str]
-    isp: Optional[str]
-    is_on_premises: Optional[bool]
-    postal_code: Optional[str]
-    provider: Optional[str]
-    region: Optional[str]
+    city: Optional[str] = None
+    continent: Optional[str] = None
+    coordinates: Optional[list[float]] = None
+    country: Optional[str] = None
+    desc: Optional[str] = None
+    isp: Optional[str] = None
+    is_on_premises: Optional[bool] = None
+    postal_code: Optional[str] = None
+    provider: Optional[str] = None
+    region: Optional[str] = None

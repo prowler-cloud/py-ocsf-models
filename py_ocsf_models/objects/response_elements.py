@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 from py_ocsf_models.objects.container import Container
 
@@ -20,10 +20,10 @@ class ResponseElements(BaseModel):
 
     """
 
-    containers: Optional[list[Container]]
-    data: Optional[dict[str, object]]
-    error: Optional[str]
-    error_message: Optional[str]
-    flags: Optional[list[str]]
-    message: Optional[str]
-    code: Optional[int]
+    containers: Optional[list[Container]] = None
+    data: Optional[dict[str, object]] = None
+    error: Optional[str] = None
+    error_message: Optional[str] = None
+    flags: Optional[list[str]] = None
+    message: Optional[str] = None
+    code: Optional[int] = None

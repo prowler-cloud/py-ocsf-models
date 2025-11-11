@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 
 class Group(BaseModel):
@@ -16,9 +16,9 @@ class Group(BaseModel):
     - Unique ID	(uid) [Recommended]: TThe unique identifier of the group. For example, for Windows events this is the security identifier (SID) of the group.
     """
 
-    type: Optional[str]
-    desc: Optional[str]
-    domain: Optional[str]
-    name: Optional[str]
-    privileges: Optional[list[str]]
-    uid: Optional[str]
+    type: Optional[str] = None
+    desc: Optional[str] = None
+    domain: Optional[str] = None
+    name: Optional[str] = None
+    privileges: Optional[list[str]] = None
+    uid: Optional[str] = None

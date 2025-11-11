@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 
 class Service(BaseModel):
@@ -16,7 +16,7 @@ class Service(BaseModel):
     - Version (version) [Optional]: The version of the service, helping to track changes or updates over time.
     """
 
-    labels: Optional[list[str]]
+    labels: Optional[list[str]] = None
     name: str
     uid: str
     version: str

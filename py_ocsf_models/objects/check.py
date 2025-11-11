@@ -1,6 +1,6 @@
 from typing import List, Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 from py_ocsf_models.events.findings.severity_id import SeverityID
 from py_ocsf_models.objects.compliance_status import StatusID
@@ -23,12 +23,12 @@ class Check(BaseModel):
     - Version (version) [Optional]: The check version. For example, CIS Benchmark: 1.1.0 for Amazon Linux 2 or DISA STIG: V2R1 for Windows 10.
     """
 
-    desc: Optional[str]
-    name: Optional[str]
-    severity: Optional[str]
-    severity_id: Optional[SeverityID]
-    standards: Optional[List[str]]
-    status: Optional[str]
-    status_id: Optional[StatusID]
-    uid: Optional[str]
-    version: Optional[str]
+    desc: Optional[str] = None
+    name: Optional[str] = None
+    severity: Optional[str] = None
+    severity_id: Optional[SeverityID] = None
+    standards: Optional[List[str]] = None
+    status: Optional[str] = None
+    status_id: Optional[StatusID] = None
+    uid: Optional[str] = None
+    version: Optional[str] = None

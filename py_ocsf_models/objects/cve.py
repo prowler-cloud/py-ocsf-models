@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import List, Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 from py_ocsf_models.objects.cvss import CVSSScore
 from py_ocsf_models.objects.cwe import CWE
@@ -14,14 +14,14 @@ class CVE(BaseModel):
     Common Vulnerabilities and Exposures (CVE) details.
     """
 
-    created_time: Optional[datetime]
-    cvss: Optional[list[CVSSScore]]
-    desc: Optional[str]
-    epss: Optional[EPSS]
-    modified_time: Optional[datetime]
-    product: Optional[Product]
-    references: Optional[List[str]]
-    related_cwes: Optional[List[CWE]]
-    title: Optional[str]
-    type: Optional[str]
+    created_time: Optional[datetime] = None
+    cvss: Optional[list[CVSSScore]] = None
+    desc: Optional[str] = None
+    epss: Optional[EPSS] = None
+    modified_time: Optional[datetime] = None
+    product: Optional[Product] = None
+    references: Optional[List[str]] = None
+    related_cwes: Optional[List[CWE]] = None
+    title: Optional[str] = None
+    type: Optional[str] = None
     uid: str

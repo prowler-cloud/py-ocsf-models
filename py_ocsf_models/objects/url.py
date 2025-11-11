@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 
 class URL(BaseModel):
@@ -10,14 +10,14 @@ class URL(BaseModel):
     Attributes:
     """
 
-    categories: Optional[list[str]]
-    category_ids: Optional[list[int]]
-    domain: Optional[str]
-    hostname: Optional[str]
-    path: Optional[str]
-    port: Optional[int]
-    query_string: Optional[str]
-    resource_type: Optional[str]
-    scheme: Optional[str]
-    subdomain: Optional[str]
-    url_string: Optional[str]
+    categories: Optional[list[str]] = None
+    category_ids: Optional[list[int]] = None
+    domain: Optional[str] = None
+    hostname: Optional[str] = None
+    path: Optional[str] = None
+    port: Optional[int] = None
+    query_string: Optional[str] = None
+    resource_type: Optional[str] = None
+    scheme: Optional[str] = None
+    subdomain: Optional[str] = None
+    url_string: Optional[str] = None

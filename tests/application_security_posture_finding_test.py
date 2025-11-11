@@ -229,7 +229,7 @@ class TestApplicationSecurityPostureFinding:
         assert resource.uid == "app-12345"
 
         # Convert to JSON and validate against OCSF schema
-        app_sec_finding_json = app_sec_finding.json(exclude_unset=True)
+        app_sec_finding_json = app_sec_finding.model_dump_json(exclude_unset=True)
         url = "https://schema.ocsf.io/api/v2/validate"
         headers = {"content-type": "application/json"}
 

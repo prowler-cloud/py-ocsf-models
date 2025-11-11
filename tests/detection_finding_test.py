@@ -518,7 +518,7 @@ class TestDetectionFinding:
         assert detection_finding.type_uid == DetectionFindingTypeID.Create
         assert detection_finding.type_name == "Detection Finding: Create"
 
-        detection_finding_json = detection_finding.json(exclude_unset=True)
+        detection_finding_json = detection_finding.model_dump_json(exclude_unset=True)
 
         url = "https://schema.ocsf.io/api/v2/validate"
         headers = {"content-type": "application/json"}

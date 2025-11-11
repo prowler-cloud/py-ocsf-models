@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 
 class Technique(BaseModel):
@@ -15,7 +15,7 @@ class Technique(BaseModel):
     """
 
     name: str
-    src_url: Optional[str]
+    src_url: Optional[str] = None
     uid: str
 
 
@@ -30,9 +30,9 @@ class Tactic(BaseModel):
     - Unique ID (uid) [Recommended]: The tactic ID that is associated with the attack technique, as defined by ATT&CK MatrixTM. For example: TA0043.
     """
 
-    name: Optional[str]
-    src_url: Optional[str]
-    uid: Optional[str]
+    name: Optional[str] = None
+    src_url: Optional[str] = None
+    uid: Optional[str] = None
 
 
 class SubTechnique(BaseModel):
@@ -46,9 +46,9 @@ class SubTechnique(BaseModel):
     - Unique ID (uid) [Recommended]: The unique identifier of the attack sub technique, as defined by ATT&CK MatrixTM. For example: T1595.001.
     """
 
-    name: Optional[str]
-    src_url: Optional[str]
-    uid: Optional[str]
+    name: Optional[str] = None
+    src_url: Optional[str] = None
+    uid: Optional[str] = None
 
 
 class MITREAttack(BaseModel):
@@ -62,7 +62,7 @@ class MITREAttack(BaseModel):
     - Version (version) [Recommended]: The ATT&CK MatrixTM version.
     """
 
-    sub_technique: Optional[SubTechnique]
-    tactic: Optional[Tactic]
-    technique: Optional[Technique]
-    version: Optional[str]
+    sub_technique: Optional[SubTechnique] = None
+    tactic: Optional[Tactic] = None
+    technique: Optional[Technique] = None
+    version: Optional[str] = None

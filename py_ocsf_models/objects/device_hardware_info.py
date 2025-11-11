@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 
 class KeyboardInformation(BaseModel):
@@ -15,11 +15,11 @@ class KeyboardInformation(BaseModel):
     - Keyboard Type (keyboard_type) [Optional]: The keyboard type (e.g., xt, ico).
     """
 
-    function_keys: Optional[int]
-    ime: Optional[str]
-    keyboard_layout: Optional[str]
-    keyboard_subtype: Optional[int]
-    keyboard_type: Optional[str]
+    function_keys: Optional[int] = None
+    ime: Optional[str] = None
+    keyboard_layout: Optional[str] = None
+    keyboard_subtype: Optional[int] = None
+    keyboard_type: Optional[str] = None
 
 
 class Display(BaseModel):
@@ -34,11 +34,11 @@ class Display(BaseModel):
     - Scale Factor (scale_factor) [Optional]: The numeric scale factor of the display.
     """
 
-    color_depth: Optional[int]
-    physical_height: Optional[int]
-    physical_orientation: Optional[int]
-    physical_width: Optional[int]
-    scale_factor: Optional[int]
+    color_depth: Optional[int] = None
+    physical_height: Optional[int] = None
+    physical_orientation: Optional[int] = None
+    physical_width: Optional[int] = None
+    scale_factor: Optional[int] = None
 
 
 class DeviceHardwareInfo(BaseModel):
@@ -61,16 +61,16 @@ class DeviceHardwareInfo(BaseModel):
     - Serial Number (serial_number) [Optional]: The device manufacturer serial number.
     """
 
-    bios_date: Optional[str]
-    bios_manufacturer: Optional[str]
-    bios_ver: Optional[str]
-    cpu_bits: Optional[int]
-    cpu_cores: Optional[int]
-    cpu_count: Optional[int]
-    chassis: Optional[str]
-    desktop_display: Optional[str]
-    keyboard_info: Optional[str]
-    cpu_speed: Optional[int]
-    cpu_type: Optional[str]
-    ram_size: Optional[int]
-    serial_number: Optional[str]
+    bios_date: Optional[str] = None
+    bios_manufacturer: Optional[str] = None
+    bios_ver: Optional[str] = None
+    cpu_bits: Optional[int] = None
+    cpu_cores: Optional[int] = None
+    cpu_count: Optional[int] = None
+    chassis: Optional[str] = None
+    desktop_display: Optional[str] = None
+    keyboard_info: Optional[str] = None
+    cpu_speed: Optional[int] = None
+    cpu_type: Optional[str] = None
+    ram_size: Optional[int] = None
+    serial_number: Optional[str] = None

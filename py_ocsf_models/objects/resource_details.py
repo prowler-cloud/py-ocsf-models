@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 from py_ocsf_models.objects.group import Group
 from py_ocsf_models.objects.user import User
@@ -27,15 +27,15 @@ class ResourceDetails(BaseModel):
     - Region (region) [Optional]: The cloud region of the resource.
     """
 
-    cloud_partition: Optional[str]
-    region: Optional[str]
-    criticality: Optional[str]
-    data: Optional[dict[str, object]]
-    group: Optional[Group]
-    labels: Optional[list[str]]
-    name: Optional[str]
-    namespace: Optional[str]
-    owner: Optional[User]
-    type: Optional[str]
-    uid: Optional[str]
-    version: Optional[str]
+    cloud_partition: Optional[str] = None
+    region: Optional[str] = None
+    criticality: Optional[str] = None
+    data: Optional[dict[str, object]] = None
+    group: Optional[Group] = None
+    labels: Optional[list[str]] = None
+    name: Optional[str] = None
+    namespace: Optional[str] = None
+    owner: Optional[User] = None
+    type: Optional[str] = None
+    uid: Optional[str] = None
+    version: Optional[str] = None

@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 from py_ocsf_models.events.base_event import BaseEvent
 from py_ocsf_models.events.findings.activity_id import ActivityID
@@ -28,14 +28,14 @@ class Finding(BaseEvent, BaseModel):
 
     """
 
-    activity_name: Optional[str]
+    activity_name: Optional[str] = None
     activity_id: ActivityID
-    comment: Optional[str]
-    confidence: Optional[str]
-    confidence_id: Optional[ConfidenceID]
-    confidence_score: Optional[int]
-    end_time: Optional[int]
-    end_time_dt: Optional[datetime]
+    comment: Optional[str] = None
+    confidence: Optional[str] = None
+    confidence_id: Optional[ConfidenceID] = None
+    confidence_score: Optional[int] = None
+    end_time: Optional[int] = None
+    end_time_dt: Optional[datetime] = None
     finding_info: FindingInformation
-    start_time: Optional[int]
-    start_time_dt: Optional[datetime]
+    start_time: Optional[int] = None
+    start_time_dt: Optional[datetime] = None

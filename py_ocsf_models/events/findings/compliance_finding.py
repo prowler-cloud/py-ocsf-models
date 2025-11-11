@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 from py_ocsf_models.events.findings.category_uid import CategoryUID
 from py_ocsf_models.events.findings.class_uid import ClassUID
@@ -38,17 +38,17 @@ class ComplianceFinding(Finding, BaseModel):
     """
 
     category_name: str = CategoryUID.Findings.name
-    category_uid = CategoryUID.Findings.value
+    category_uid: int = CategoryUID.Findings.value
     class_name: Optional[str] = ClassUID.ComplianceFinding.name
-    class_uid = ClassUID.ComplianceFinding
+    class_uid: int = ClassUID.ComplianceFinding
     compliance: Compliance
-    device: Optional[Device]
-    evidences: Optional[list[EvidenceArtifacts]]
+    device: Optional[Device] = None
+    evidences: Optional[list[EvidenceArtifacts]] = None
     finding_info: FindingInformation
-    remediation: Optional[Remediation]
-    resources: Optional[list[ResourceDetails]]
+    remediation: Optional[Remediation] = None
+    resources: Optional[list[ResourceDetails]] = None
     time: int
-    time_dt: Optional[datetime]
-    timezone_offset: Optional[int]
+    time_dt: Optional[datetime] = None
+    timezone_offset: Optional[int] = None
     type_uid: ComplianceFindingTypeID
-    type_name: Optional[str]
+    type_name: Optional[str] = None

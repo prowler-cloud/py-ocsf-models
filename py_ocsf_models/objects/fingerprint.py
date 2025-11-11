@@ -1,7 +1,7 @@
 from enum import IntEnum
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 
 class AlgorithmID(IntEnum):
@@ -42,6 +42,6 @@ class FingerPrint(BaseModel):
     - Value (value): The digital fingerprint value.
     """
 
-    algorithm: Optional[str]
+    algorithm: Optional[str] = None
     algorithm_id: AlgorithmID
     value: str

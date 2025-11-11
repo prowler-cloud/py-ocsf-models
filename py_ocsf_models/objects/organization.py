@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 
 class Organization(BaseModel):
@@ -14,7 +14,7 @@ class Organization(BaseModel):
     - Unique ID	(uid): The unique identifier of the organization. For example, its Active Directory or AWS Org ID.
     """
 
-    name: Optional[str]
-    ou_uid: Optional[str]
-    ou_name: Optional[str]
-    uid: Optional[str]
+    name: Optional[str] = None
+    ou_uid: Optional[str] = None
+    ou_name: Optional[str] = None
+    uid: Optional[str] = None

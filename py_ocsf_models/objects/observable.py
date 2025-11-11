@@ -1,7 +1,7 @@
 from enum import IntEnum
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 
 class ReputationScoreID(IntEnum):
@@ -50,7 +50,7 @@ class Reputation(BaseModel):
 
     provider: str
     base_score: float
-    score: Optional[str]
+    score: Optional[str] = None
     score_id: ReputationScoreID
 
 
@@ -122,7 +122,7 @@ class Observable(BaseModel):
     """
 
     name: str
-    reputation: Optional[Reputation]
-    type: Optional[str]
+    reputation: Optional[Reputation] = None
+    type: Optional[str] = None
     type_id: TypeID
-    value: Optional[str]
+    value: Optional[str] = None

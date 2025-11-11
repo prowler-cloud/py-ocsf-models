@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 
 class Image(BaseModel):
@@ -16,8 +16,8 @@ class Image(BaseModel):
     - uid (str): A unique identifier for the image, e.g., '77af4d6b9913'.
     """
 
-    tag: Optional[str]
-    labels: Optional[list[str]]
+    tag: Optional[str] = None
+    labels: Optional[list[str]] = None
     name: str
-    path: Optional[str]
+    path: Optional[str] = None
     uid: str

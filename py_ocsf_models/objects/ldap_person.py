@@ -3,7 +3,7 @@ from typing import Optional
 
 # FIXME(circular-dependency)
 # from py_ocsf_models.objects.user import User
-from pydantic.v1 import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr
 
 from py_ocsf_models.objects.geolocation import GeoLocation
 
@@ -33,22 +33,22 @@ class LDAPPerson(BaseModel):
     - Surname (surname) [Optional]: Family or last name.
     """
 
-    cost_center: Optional[str]
-    created_time: Optional[datetime]
-    deleted_time: Optional[datetime]
-    email_addrs: Optional[list[EmailStr]]
-    employee_uid: Optional[str]
-    location: Optional[GeoLocation]
-    given_name: Optional[str]
-    hire_time: Optional[datetime]
-    job_title: Optional[str]
-    ldap_cn: Optional[str]
-    ldap_dn: Optional[str]
-    labels: Optional[list[str]]
-    last_login_time: Optional[datetime]
-    leave_time: Optional[datetime]
+    cost_center: Optional[str] = None
+    created_time: Optional[datetime] = None
+    deleted_time: Optional[datetime] = None
+    email_addrs: Optional[list[EmailStr]] = None
+    employee_uid: Optional[str] = None
+    location: Optional[GeoLocation] = None
+    given_name: Optional[str] = None
+    hire_time: Optional[datetime] = None
+    job_title: Optional[str] = None
+    ldap_cn: Optional[str] = None
+    ldap_dn: Optional[str] = None
+    labels: Optional[list[str]] = None
+    last_login_time: Optional[datetime] = None
+    leave_time: Optional[datetime] = None
     # FIXME(circular-dependency)
     # manager: Optional[User]
-    modified_time: Optional[datetime]
-    office_location: Optional[str]
-    surname: Optional[str]
+    modified_time: Optional[datetime] = None
+    office_location: Optional[str] = None
+    surname: Optional[str] = None

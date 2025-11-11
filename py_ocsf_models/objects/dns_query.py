@@ -1,7 +1,7 @@
 from enum import IntEnum
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 
 class DNSOpcodeID(IntEnum):
@@ -41,12 +41,12 @@ class DNSQuery(BaseModel):
     - Resource Record Type (type) [Recommended]: The type of resource records being queried. See RFC1035. For example: A, AAAA, CNAME, MX, and NS.
     """
 
-    opcode: Optional[str]
-    opcode_id: Optional[DNSOpcodeID]
+    opcode: Optional[str] = None
+    opcode_id: Optional[DNSOpcodeID] = None
     hostname: str
-    packet_uid: Optional[int]
+    packet_uid: Optional[int] = None
     # TODO: Update to Pydantic v2 to use Field
     # class_: Optional[str] = Field(
     #     alias="class"
     # )  # Renaming class to avoid conflict with Python keyword
-    type: Optional[str]
+    type: Optional[str] = None

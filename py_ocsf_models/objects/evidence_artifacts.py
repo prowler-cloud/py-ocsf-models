@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 from py_ocsf_models.objects.api import API
 from py_ocsf_models.objects.device import Device
@@ -26,19 +26,19 @@ class EvidenceArtifacts(BaseModel):
     - Verdict ID (verdict_id) [Optional]: The normalized verdict (or status) ID of the evidence associated with the security detection. For example, Microsoft Graph Security Alerts contain a verdict enumeration for each type of evidence associated with the Alert. This is typically set by an automated investigation process or an analyst/investigator assigned to the finding.
     """
 
-    api: Optional[API]
+    api: Optional[API] = None
     # TODO
     # actor: Optional[Actor]
     # connection_info: Optional[NetworkConnectionInformation]
-    data: Optional[dict[str, object]]
+    data: Optional[dict[str, object]] = None
     # TODO
     # dst_endpoint: Optional[NetworkEndpoint]
     # file: Optional[File]
     # process: Optional[Process]
     # src_endpoint: Optional[NetworkEndpoint]
-    device: Optional[Device]
-    name: Optional[str]
-    query: Optional[DNSQuery]
-    resources: Optional[list[ResourceDetails]]
-    url: Optional[URL]
+    device: Optional[Device] = None
+    name: Optional[str] = None
+    query: Optional[DNSQuery] = None
+    resources: Optional[list[ResourceDetails]] = None
+    url: Optional[URL] = None
     verdict_id: Optional[VerdictID] = VerdictID.Unknown

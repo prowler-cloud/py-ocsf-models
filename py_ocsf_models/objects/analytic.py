@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 
 class Analytic(BaseModel):
@@ -17,10 +17,10 @@ class Analytic(BaseModel):
     - Version (version) [Optional]: The analytic version. For example: 1.1.
     """
 
-    category: Optional[str]
-    desc: Optional[str]
+    category: Optional[str] = None
+    desc: Optional[str] = None
     name: str
-    type: Optional[str]
+    type: Optional[str] = None
     type_id: int
     uid: str
-    version: Optional[str]
+    version: Optional[str] = None
