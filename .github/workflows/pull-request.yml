@@ -65,9 +65,10 @@ jobs:
         run: |
           poetry run bandit -q -lll -x './tests' -r .
 
-      - name: Safety
-        run: |
-          poetry run safety check --ignore 70612
+      # TODO: uncomment when this is fixed https://github.com/pyupio/safety/issues/784
+      # - name: Safety
+      #   run: |
+      #     poetry run safety check --ignore 70612
 
       - name: Vulture
         run: |
