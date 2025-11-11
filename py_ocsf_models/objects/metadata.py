@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import List, Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 from py_ocsf_models import OCSF_VERSION
 from py_ocsf_models.objects.device import Device
@@ -41,17 +41,17 @@ class Logger(BaseModel):
     - Version (version) [Optional]: The version of the logging product.
     """
 
-    device: Optional[Device]
-    log_level: Optional[str]
+    device: Optional[Device] = None
+    log_level: Optional[str] = None
     log_name: str
     log_provider: str
-    log_version: Optional[str]
-    logged_time: Optional[datetime]
+    log_version: Optional[str] = None
+    logged_time: Optional[datetime] = None
     name: str
     product: Product
-    transmit_time: Optional[datetime]
+    transmit_time: Optional[datetime] = None
     uid: str
-    version: Optional[str]
+    version: Optional[str] = None
 
 
 class Metadata(BaseModel):
@@ -80,22 +80,22 @@ class Metadata(BaseModel):
     - Version (version) [Required]: Version of the OCSF schema in Semantic Versioning Specification (SemVer).
     """
 
-    correlation_uid: Optional[str]
-    event_code: Optional[str]
-    uid: Optional[str]
-    labels: Optional[List[str]]
-    log_level: Optional[str]
-    log_name: Optional[str]
-    log_provider: Optional[str]
-    log_version: Optional[str]
-    logged_time: Optional[datetime]
-    loggers: Optional[List[Logger]]
-    modified_time: Optional[datetime]
-    original_time: Optional[str]
-    processed_time: Optional[datetime]
+    correlation_uid: Optional[str] = None
+    event_code: Optional[str] = None
+    uid: Optional[str] = None
+    labels: Optional[List[str]] = None
+    log_level: Optional[str] = None
+    log_name: Optional[str] = None
+    log_provider: Optional[str] = None
+    log_version: Optional[str] = None
+    logged_time: Optional[datetime] = None
+    loggers: Optional[List[Logger]] = None
+    modified_time: Optional[datetime] = None
+    original_time: Optional[str] = None
+    processed_time: Optional[datetime] = None
     product: Product
-    profiles: Optional[List[str]]
-    extensions: Optional[List[SchemaExtension]]
-    sequence: Optional[int]
-    tenant_uid: Optional[str]
+    profiles: Optional[List[str]] = None
+    extensions: Optional[List[SchemaExtension]] = None
+    sequence: Optional[int] = None
+    tenant_uid: Optional[str] = None
     version: str = OCSF_VERSION

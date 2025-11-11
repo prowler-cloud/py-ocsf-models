@@ -158,7 +158,7 @@ class TestComplianceFinding:
         uid = compliance_finding.finding_info.uid
         assert uid == "123"
 
-        compliance_finding_json = compliance_finding.json(exclude_unset=True)
+        compliance_finding_json = compliance_finding.model_dump_json(exclude_unset=True)
         url = "https://schema.ocsf.io/api/v2/validate"
         headers = {"content-type": "application/json"}
 

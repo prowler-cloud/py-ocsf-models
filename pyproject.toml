@@ -12,7 +12,7 @@ classifiers = [
 dependencies = [
   "cryptography==44.0.1",
   "email-validator==2.2.0",
-  "pydantic (>=2.9.2,<3.0.0)"
+  "pydantic (>=2.12.0,<3.0.0)"
 ]
 description = "This is a Python implementation of the OCSF models. The models are used to represent the data of the OCSF Schema defined in https://schema.ocsf.io/."
 license = "Apache-2.0"
@@ -21,7 +21,7 @@ packages = [
   {include = "py_ocsf_models"}
 ]
 readme = "README.md"
-requires-python = ">3.9.1,<3.14"
+requires-python = ">3.9.1,<3.15"
 version = "0.7.1"
 
 [project.urls]
@@ -41,14 +41,14 @@ black = "25.1.0"
 flake8 = "7.3.0"
 mypy = "1.16.1"
 pylint = "3.3.7"
-pytest-cov = "7.0.0"
 pytest = "8.4.2"
+pytest-cov = "7.0.0"
 pytest-env = "1.1.5"
 pytest-randomly = "3.16.0"
 pytest-xdist = "3.8.0"
 requests = "^2.32.4"
 ruff = "0.13.2"
-safety = "3.2.14"
+safety = "3.7.0"
 vulture = "2.14"
 
 [tool.poetry-version-plugin]

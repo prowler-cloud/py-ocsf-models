@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 from py_ocsf_models.objects.account import Account
 from py_ocsf_models.objects.group import Group
@@ -29,14 +29,14 @@ class User(BaseModel):
     """
 
     account: Account
-    uid_alt: Optional[str]
-    domain: Optional[str]
-    email_addr: Optional[str]
-    groups: Optional[list[Group]]
-    ldap_person: Optional[LDAPPerson]
+    uid_alt: Optional[str] = None
+    domain: Optional[str] = None
+    email_addr: Optional[str] = None
+    groups: Optional[list[Group]] = None
+    ldap_person: Optional[LDAPPerson] = None
     name: str
-    org: Optional[Organization]
-    type: Optional[str]
+    org: Optional[Organization] = None
+    type: Optional[str] = None
     type_id: int
     uid: str
-    credential_uid: Optional[str]
+    credential_uid: Optional[str] = None

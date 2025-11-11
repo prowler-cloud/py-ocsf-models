@@ -1,7 +1,7 @@
 from typing import Optional
 from uuid import UUID
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 from py_ocsf_models.objects.fingerprint import FingerPrint
 from py_ocsf_models.objects.image import Image
@@ -25,12 +25,12 @@ class Container(BaseModel):
     - uid: The unique identifier for this container instance.
     """
 
-    hash: Optional[FingerPrint]
-    image: Optional[Image]
+    hash: Optional[FingerPrint] = None
+    image: Optional[Image] = None
     name: str
-    network_driver: Optional[str]
-    orchestrator: Optional[str]
-    pod_uuid: Optional[UUID]
-    runtime: Optional[str]
-    size: Optional[int]
+    network_driver: Optional[str] = None
+    orchestrator: Optional[str] = None
+    pod_uuid: Optional[UUID] = None
+    runtime: Optional[str] = None
+    size: Optional[int] = None
     uid: str

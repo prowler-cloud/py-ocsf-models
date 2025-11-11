@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 from py_ocsf_models.events.findings.severity_id import SeverityID
 from py_ocsf_models.events.findings.status_id import StatusID
@@ -28,15 +28,15 @@ class BaseEvent(BaseModel):
     - Unmapped Data (unmapped) [Optional]: The attributes that are not mapped to the event schema. The names and values of those attributes are specific to the event source.
     """
 
-    enrichments: Optional[list[Enrichment]]
-    message: Optional[str]
+    enrichments: Optional[list[Enrichment]] = None
+    message: Optional[str] = None
     metadata: Metadata
-    observables: Optional[list[Observable]]
-    raw_data: Optional[str]
+    observables: Optional[list[Observable]] = None
+    raw_data: Optional[str] = None
     severity_id: SeverityID
-    severity: Optional[str]
-    status: Optional[str]
-    status_code: Optional[str]
-    status_detail: Optional[str]
-    status_id: Optional[StatusID]
-    unmapped: Optional[object]
+    severity: Optional[str] = None
+    status: Optional[str] = None
+    status_code: Optional[str] = None
+    status_detail: Optional[str] = None
+    status_id: Optional[StatusID] = None
+    unmapped: Optional[object] = None

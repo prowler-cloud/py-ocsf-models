@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 from py_ocsf_models.objects.container import Container
 
@@ -18,7 +18,7 @@ class RequestElements(BaseModel):
     - uid: A unique identifier for the API request.
     """
 
-    containers: Optional[list[Container]]
-    data: Optional[dict[str, object]]
-    flags: Optional[list[str]]
+    containers: Optional[list[Container]] = None
+    data: Optional[dict[str, object]] = None
+    flags: Optional[list[str]] = None
     uid: str

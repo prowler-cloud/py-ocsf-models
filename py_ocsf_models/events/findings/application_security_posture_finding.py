@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 from py_ocsf_models.events.findings.application_security_posture_finding_type_id import (
     ApplicationSecurityPostureFindingTypeID,
@@ -37,17 +37,17 @@ class ApplicationSecurityPostureFinding(Finding, BaseModel):
     """
 
     category_name: str = CategoryUID.Findings.name
-    category_uid = CategoryUID.Findings.value
+    category_uid: int = CategoryUID.Findings.value
     class_name: Optional[str] = ClassUID.ApplicationSecurityPostureFinding.name
-    class_uid = ClassUID.ApplicationSecurityPostureFinding
-    device: Optional[Device]
-    evidences: Optional[list[EvidenceArtifacts]]
+    class_uid: int = ClassUID.ApplicationSecurityPostureFinding
+    device: Optional[Device] = None
+    evidences: Optional[list[EvidenceArtifacts]] = None
     finding_info: FindingInformation
-    remediation: Optional[Remediation]
-    resources: Optional[list[ResourceDetails]]
+    remediation: Optional[Remediation] = None
+    resources: Optional[list[ResourceDetails]] = None
     time: int
-    time_dt: Optional[datetime]
-    timezone_offset: Optional[int]
+    time_dt: Optional[datetime] = None
+    timezone_offset: Optional[int] = None
     type_uid: ApplicationSecurityPostureFindingTypeID
-    type_name: Optional[str]
-    vulnerabilities: Optional[list[VulnerabilityDetails]]
+    type_name: Optional[str] = None
+    vulnerabilities: Optional[list[VulnerabilityDetails]] = None

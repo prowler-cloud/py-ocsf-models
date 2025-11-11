@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 from py_ocsf_models.objects.group import Group
 from py_ocsf_models.objects.request_elements import RequestElements
@@ -22,9 +22,9 @@ class API(BaseModel):
     - version (Optional[str]): The version of the API, indicating the specific iteration of the API service being used.
     """
 
-    request: Optional[RequestElements]
-    response: Optional[ResponseElements]
-    group: Optional[Group]
+    request: Optional[RequestElements] = None
+    response: Optional[ResponseElements] = None
+    group: Optional[Group] = None
     operation: str
-    service: Optional[Service]
-    version: Optional[str]
+    service: Optional[Service] = None
+    version: Optional[str] = None

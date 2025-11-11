@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 from py_ocsf_models.events.findings.category_uid import CategoryUID
 from py_ocsf_models.events.findings.class_uid import ClassUID
@@ -54,28 +54,28 @@ class DetectionFinding(Finding, BaseModel):
         - Cloud (cloud): Describes details about the Cloud environment where the event was originally created or logged
     """
 
-    resources: Optional[list[ResourceDetails]]
+    resources: Optional[list[ResourceDetails]] = None
     category_name: str = CategoryUID.Findings.name
-    category_uid = CategoryUID.Findings.value
+    category_uid: int = CategoryUID.Findings.value
     class_name: Optional[str] = "Detection Finding"
-    class_uid = ClassUID.DetectionFinding
-    cloud: Optional[Cloud]
-    api: Optional[API]
-    count: Optional[int]
-    duration: Optional[int]
-    evidences: Optional[list[EvidenceArtifacts]]
-    impact: Optional[str]
-    impact_score: Optional[int]
-    impact_id: Optional[ImpactID]
-    remediation: Optional[Remediation]
-    risk_level: Optional[str]
-    risk_level_id: Optional[RiskLevelID]
-    risk_score: Optional[int]
-    risk_details: Optional[str]
-    status_id: Optional[StatusID]
+    class_uid: int = ClassUID.DetectionFinding
+    cloud: Optional[Cloud] = None
+    api: Optional[API] = None
+    count: Optional[int] = None
+    duration: Optional[int] = None
+    evidences: Optional[list[EvidenceArtifacts]] = None
+    impact: Optional[str] = None
+    impact_score: Optional[int] = None
+    impact_id: Optional[ImpactID] = None
+    remediation: Optional[Remediation] = None
+    risk_level: Optional[str] = None
+    risk_level_id: Optional[RiskLevelID] = None
+    risk_score: Optional[int] = None
+    risk_details: Optional[str] = None
+    status_id: Optional[StatusID] = None
     time: int
-    time_dt: Optional[datetime]
-    timezone_offset: Optional[int]
+    time_dt: Optional[datetime] = None
+    timezone_offset: Optional[int] = None
     type_uid: DetectionFindingTypeID
-    type_name: Optional[str]
-    vulnerabilities: Optional[list[VulnerabilityDetails]]
+    type_name: Optional[str] = None
+    vulnerabilities: Optional[list[VulnerabilityDetails]] = None

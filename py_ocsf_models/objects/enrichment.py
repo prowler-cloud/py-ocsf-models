@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 
 class Enrichment(BaseModel):
@@ -18,6 +18,6 @@ class Enrichment(BaseModel):
 
     data: dict[str, object]
     name: str
-    provider: Optional[str]
-    type: Optional[str]
+    provider: Optional[str] = None
+    type: Optional[str] = None
     value: str

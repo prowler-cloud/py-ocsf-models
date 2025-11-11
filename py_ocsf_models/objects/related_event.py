@@ -1,6 +1,6 @@
 from typing import List, Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 from py_ocsf_models.objects.mitre_attack import MITREAttack
 from py_ocsf_models.objects.observable import Observable
@@ -25,8 +25,8 @@ class RelatedEvent(BaseModel):
 
     # TODO
     # kill_chain: Optional[List[KillChainPhase]]
-    attacks: Optional[List[MITREAttack]]
-    observables: Optional[List[Observable]]
-    type: Optional[str]
-    type_uid: Optional[int]
+    attacks: Optional[List[MITREAttack]] = None
+    observables: Optional[List[Observable]] = None
+    type: Optional[str] = None
+    type_uid: Optional[int] = None
     uid: str

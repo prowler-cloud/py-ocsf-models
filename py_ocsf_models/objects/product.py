@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 
 class Feature(BaseModel):
@@ -13,9 +13,9 @@ class Feature(BaseModel):
     - Version (version) [Optional]: The version of the feature.
     """
 
-    name: Optional[str]
-    uid: Optional[str]
-    version: Optional[str]
+    name: Optional[str] = None
+    uid: Optional[str] = None
+    version: Optional[str] = None
 
 
 class Product(BaseModel):
@@ -34,12 +34,12 @@ class Product(BaseModel):
     - Version (version) [Optional]: The version of the product, as defined by the event source. For example: 2013.1.3-beta.
     """
 
-    feature: Optional[Feature]
-    lang: Optional[str]
-    name: Optional[str]
-    path: Optional[str]
-    cpe_name: Optional[str]
-    url_string: Optional[str]
-    uid: Optional[str]
+    feature: Optional[Feature] = None
+    lang: Optional[str] = None
+    name: Optional[str] = None
+    path: Optional[str] = None
+    cpe_name: Optional[str] = None
+    url_string: Optional[str] = None
+    uid: Optional[str] = None
     vendor_name: str
-    version: Optional[str]
+    version: Optional[str] = None

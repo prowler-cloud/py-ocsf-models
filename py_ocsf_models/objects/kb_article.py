@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 from py_ocsf_models.objects.operating_system import OperatingSystem
 from py_ocsf_models.objects.product import Product
@@ -28,15 +28,15 @@ class KBArticle(BaseModel):
     - uid: Unique identifier for the KB article.
     """
 
-    classification: Optional[str]
-    created_time: Optional[int]
-    created_time_dt: Optional[datetime]
+    classification: Optional[str] = None
+    created_time: Optional[int] = None
+    created_time_dt: Optional[datetime] = None
     os: OperatingSystem
-    bulletin: Optional[str]
-    product: Optional[Product]
+    bulletin: Optional[str] = None
+    product: Optional[Product] = None
     severity: str
-    size: Optional[int]
-    src_url: Optional[str]
-    is_superseded: Optional[bool]
+    size: Optional[int] = None
+    src_url: Optional[str] = None
+    is_superseded: Optional[bool] = None
     title: str
     uid: str

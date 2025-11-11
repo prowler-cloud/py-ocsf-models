@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 from py_ocsf_models.objects.metric import Metric
 from py_ocsf_models.objects.url import URL
@@ -12,11 +12,11 @@ class CVSSScore(BaseModel):
     """
 
     base_score: float
-    depth: Optional[str]
-    metrics: Optional[list[Metric]]
-    overall_score: Optional[float]
-    severity: Optional[str]
-    src_url: Optional[URL]
-    vector_string: Optional[str]
-    vendor_name: Optional[str]
-    version: Optional[str]
+    depth: Optional[str] = None
+    metrics: Optional[list[Metric]] = None
+    overall_score: Optional[float] = None
+    severity: Optional[str] = None
+    src_url: Optional[URL] = None
+    vector_string: Optional[str] = None
+    vendor_name: Optional[str] = None
+    version: Optional[str] = None

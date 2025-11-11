@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 from py_ocsf_models.objects.account import Account
 from py_ocsf_models.objects.organization import Organization
@@ -19,8 +19,8 @@ class Cloud(BaseModel):
     - Region (region) [Recommended]: The name of the cloud region, as defined by the cloud provider.
     """
 
-    account: Optional[Account]
-    zone: Optional[str]
-    org: Optional[Organization]
+    account: Optional[Account] = None
+    zone: Optional[str] = None
+    org: Optional[Organization] = None
     provider: str
-    region: Optional[str]
+    region: Optional[str] = None

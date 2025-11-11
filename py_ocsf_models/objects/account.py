@@ -1,7 +1,7 @@
 from enum import IntEnum
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 
 class TypeID(IntEnum):
@@ -33,7 +33,7 @@ class Account(BaseModel):
     """
 
     name: str
-    type: Optional[str]
+    type: Optional[str] = None
     type_id: TypeID
     uid: str
-    labels: Optional[list[str]]
+    labels: Optional[list[str]] = None

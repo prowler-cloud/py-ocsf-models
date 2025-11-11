@@ -2,7 +2,7 @@ from datetime import datetime
 from enum import IntEnum
 from typing import List, Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 from py_ocsf_models.objects.device_hardware_info import DeviceHardwareInfo
 from py_ocsf_models.objects.geolocation import GeoLocation
@@ -114,43 +114,43 @@ class Device(BaseModel):
     - VPC UID (vpc_uid) [Optional]: The unique identifier of the Virtual Private Cloud (VPC).
     """
 
-    uid_alt: Optional[str]
-    autoscale_uid: Optional[str]
-    is_compliant: Optional[bool]
-    created_time: Optional[datetime]
-    desc: Optional[str]
-    domain: Optional[str]
-    first_seen_time: Optional[datetime]
-    location: Optional[GeoLocation]
-    groups: Optional[List[Group]]
-    hw_info: Optional[DeviceHardwareInfo]
+    uid_alt: Optional[str] = None
+    autoscale_uid: Optional[str] = None
+    is_compliant: Optional[bool] = None
+    created_time: Optional[datetime] = None
+    desc: Optional[str] = None
+    domain: Optional[str] = None
+    first_seen_time: Optional[datetime] = None
+    location: Optional[GeoLocation] = None
+    groups: Optional[List[Group]] = None
+    hw_info: Optional[DeviceHardwareInfo] = None
     hostname: str
-    hypervisor: Optional[str]
-    imei: Optional[str]
+    hypervisor: Optional[str] = None
+    imei: Optional[str] = None
     ip: str
-    image: Optional[Image]
-    instance_uid: Optional[str]
-    last_seen_time: Optional[datetime]
-    mac: Optional[str]
-    is_managed: Optional[bool]
-    modified_time: Optional[datetime]
+    image: Optional[Image] = None
+    instance_uid: Optional[str] = None
+    last_seen_time: Optional[datetime] = None
+    mac: Optional[str] = None
+    is_managed: Optional[bool] = None
+    modified_time: Optional[datetime] = None
     name: str
-    interface_uid: Optional[str]
-    interface_name: Optional[str]
-    network_interfaces: Optional[List[NetworkInterface]]
-    zone: Optional[str]
-    os: Optional[OperatingSystem]
-    org: Optional[Organization]
-    is_personal: Optional[bool]
+    interface_uid: Optional[str] = None
+    interface_name: Optional[str] = None
+    network_interfaces: Optional[List[NetworkInterface]] = None
+    zone: Optional[str] = None
+    os: Optional[OperatingSystem] = None
+    org: Optional[Organization] = None
+    is_personal: Optional[bool] = None
     region: str
-    risk_level: Optional[str]
-    risk_level_id: Optional[RiskLevelID]
-    risk_score: Optional[int]
-    subnet: Optional[str]
-    subnet_uid: Optional[str]
-    is_trusted: Optional[bool]
-    type: Optional[str]
+    risk_level: Optional[str] = None
+    risk_level_id: Optional[RiskLevelID] = None
+    risk_score: Optional[int] = None
+    subnet: Optional[str] = None
+    subnet_uid: Optional[str] = None
+    is_trusted: Optional[bool] = None
+    type: Optional[str] = None
     type_id: DeviceType
     uid: str
-    vlan_uid: Optional[str]
-    vpc_uid: Optional[str]
+    vlan_uid: Optional[str] = None
+    vpc_uid: Optional[str] = None

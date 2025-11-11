@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import List, Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 from py_ocsf_models.objects.analytic import Analytic
 from py_ocsf_models.objects.kill_chain_phase import KillChainPhase
@@ -35,22 +35,22 @@ class FindingInformation(BaseModel):
     - Unique ID (uid) [Required]: The unique identifier of the reported finding.
     """
 
-    analytic: Optional[Analytic]
-    created_time: Optional[int]
-    created_time_dt: Optional[datetime]
-    data_sources: Optional[List[str]]
-    desc: Optional[str]
-    first_seen_time: Optional[int]
-    first_seen_time_dt: Optional[datetime]
-    kill_chain: Optional[List[KillChainPhase]]
-    last_seen_time: Optional[int]
-    last_seen_time_dt: Optional[datetime]
-    attacks: Optional[List[MITREAttack]]
-    modified_time: Optional[int]
-    modified_time_dt: Optional[datetime]
-    related_analytics: Optional[List[Analytic]]
-    related_events: Optional[List[RelatedEvent]]
-    src_url: Optional[str]
+    analytic: Optional[Analytic] = None
+    created_time: Optional[int] = None
+    created_time_dt: Optional[datetime] = None
+    data_sources: Optional[List[str]] = None
+    desc: Optional[str] = None
+    first_seen_time: Optional[int] = None
+    first_seen_time_dt: Optional[datetime] = None
+    kill_chain: Optional[List[KillChainPhase]] = None
+    last_seen_time: Optional[int] = None
+    last_seen_time_dt: Optional[datetime] = None
+    attacks: Optional[List[MITREAttack]] = None
+    modified_time: Optional[int] = None
+    modified_time_dt: Optional[datetime] = None
+    related_analytics: Optional[List[Analytic]] = None
+    related_events: Optional[List[RelatedEvent]] = None
+    src_url: Optional[str] = None
     title: str
-    types: Optional[List[str]]
+    types: Optional[List[str]] = None
     uid: str

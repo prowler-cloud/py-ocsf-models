@@ -1,6 +1,6 @@
 from typing import List, Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 from py_ocsf_models.objects.assessment import Assessment
 from py_ocsf_models.objects.check import Check
@@ -21,11 +21,11 @@ class Compliance(BaseModel):
     - Standards (standards) [Optional]: The regulatory or industry standards being evaluated for compliance.
     """
 
-    assessments: Optional[List[Assessment]]
-    category: Optional[str]
-    checks: Optional[List[Check]]
-    control: Optional[str]
-    desc: Optional[str]
-    requirements: Optional[List[str]]
-    standards: Optional[List[str]]
-    status_id: Optional[StatusID]
+    assessments: Optional[List[Assessment]] = None
+    category: Optional[str] = None
+    checks: Optional[List[Check]] = None
+    control: Optional[str] = None
+    desc: Optional[str] = None
+    requirements: Optional[List[str]] = None
+    standards: Optional[List[str]] = None
+    status_id: Optional[StatusID] = None

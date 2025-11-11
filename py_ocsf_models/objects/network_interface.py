@@ -1,7 +1,7 @@
 from enum import IntEnum
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 
 class NetworkType(IntEnum):
@@ -45,8 +45,8 @@ class NetworkInterface(BaseModel):
     ip: str
     mac: str
     name: str
-    namespace: Optional[str]
-    subnet_prefix: Optional[int]
-    type: Optional[str]
+    namespace: Optional[str] = None
+    subnet_prefix: Optional[int] = None
+    type: Optional[str] = None
     type_id: NetworkType
-    uid: Optional[str]
+    uid: Optional[str] = None

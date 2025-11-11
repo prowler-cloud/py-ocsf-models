@@ -1,7 +1,7 @@
 from enum import IntEnum
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 
 class TypeID(IntEnum):
@@ -39,15 +39,15 @@ class OperatingSystem(BaseModel):
     - Version (version) [Optional]: The version of the OS running on the device that originated the event. For example: "Windows 10", "OS X 10.7", or "iOS 9".
     """
 
-    cpu_bits: Optional[int]
-    country: Optional[str]
-    lang: Optional[str]
+    cpu_bits: Optional[int] = None
+    country: Optional[str] = None
+    lang: Optional[str] = None
     name: str
-    build: Optional[str]
-    edition: Optional[str]
-    sp_name: Optional[str]
-    sp_ver: Optional[int]
-    cpe_name: Optional[str]
-    type: Optional[str]
+    build: Optional[str] = None
+    edition: Optional[str] = None
+    sp_name: Optional[str] = None
+    sp_ver: Optional[int] = None
+    cpe_name: Optional[str] = None
+    type: Optional[str] = None
     type_id: TypeID
-    version: Optional[str]
+    version: Optional[str] = None

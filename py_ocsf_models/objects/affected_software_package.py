@@ -1,7 +1,7 @@
 from enum import IntEnum
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 from py_ocsf_models.objects.fingerprint import FingerPrint
 from py_ocsf_models.objects.remediation import Remediation
@@ -42,23 +42,23 @@ class AffectedSoftwarePackage(BaseModel):
 
     """
 
-    architecture: Optional[str]
-    cpe_name: Optional[str]
-    epoch: Optional[int]
-    fixed_in_version: Optional[str]
-    hash: Optional[FingerPrint]
-    license: Optional[str]
-    license_url: Optional[str]
+    architecture: Optional[str] = None
+    cpe_name: Optional[str] = None
+    epoch: Optional[int] = None
+    fixed_in_version: Optional[str] = None
+    hash: Optional[FingerPrint] = None
+    license: Optional[str] = None
+    license_url: Optional[str] = None
     name: str
-    package_manager: Optional[str]
-    package_manager_url: Optional[str]
-    path: Optional[str]
-    purl: Optional[str]
-    release: Optional[str]
-    remediation: Optional[Remediation]
-    src_url: Optional[str]
-    type: Optional[str]
-    type_id: Optional[SoftwarePackageTypeID]
-    uid: Optional[str]
-    vendor_name: Optional[str]
+    package_manager: Optional[str] = None
+    package_manager_url: Optional[str] = None
+    path: Optional[str] = None
+    purl: Optional[str] = None
+    release: Optional[str] = None
+    remediation: Optional[Remediation] = None
+    src_url: Optional[str] = None
+    type: Optional[str] = None
+    type_id: Optional[SoftwarePackageTypeID] = None
+    uid: Optional[str] = None
+    vendor_name: Optional[str] = None
     version: str

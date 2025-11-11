@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 from py_ocsf_models.objects.kb_article import KBArticle
 
@@ -17,5 +17,5 @@ class Remediation(BaseModel):
     """
 
     desc: str
-    kb_article_list: Optional[list[KBArticle]]
-    references: Optional[list[str]]
+    kb_article_list: Optional[list[KBArticle]] = None
+    references: Optional[list[str]] = None

@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 from py_ocsf_models.objects.policy import Policy
 
@@ -18,9 +18,9 @@ class Assessment(BaseModel):
     - UID (uid) [Optional]: The unique identifier of the configuration or signal being assessed. For example: the signal_id.
     """
 
-    category: Optional[str]
-    desc: Optional[str]
-    meets_criteria: Optional[bool]
-    name: Optional[str]
-    policy: Optional[Policy]
-    uid: Optional[str]
+    category: Optional[str] = None
+    desc: Optional[str] = None
+    meets_criteria: Optional[bool] = None
+    name: Optional[str] = None
+    policy: Optional[Policy] = None
+    uid: Optional[str] = None
