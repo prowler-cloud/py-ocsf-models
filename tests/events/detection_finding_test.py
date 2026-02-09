@@ -1,6 +1,7 @@
 import uuid
 from datetime import datetime
 
+import pytest
 import requests
 
 from py_ocsf_models import OCSF_VERSION
@@ -38,6 +39,7 @@ PROWLER_PRODUCT = "Prowler"
 
 
 class TestDetectionFinding:
+    @pytest.mark.external_api
     def test_detection_finding(self):
         pod_uuid = str(uuid.uuid4())
         detection_finding = DetectionFinding(
@@ -294,7 +296,7 @@ class TestDetectionFinding:
                 )
             ],
             impact="Low",
-            impact_score=123,
+            impact_score=75,
             impact_id=1,
             remediation=Remediation(
                 desc="Description",
@@ -340,7 +342,7 @@ class TestDetectionFinding:
             ),
             risk_level="Low",
             risk_level_id=1,
-            risk_score=123,
+            risk_score=75,
             risk_details="Risk Details",
             timezone_offset=123,
             type_uid=DetectionFindingTypeID.Create,
@@ -520,9 +522,261 @@ class TestDetectionFinding:
 
         detection_finding_json = detection_finding.model_dump_json(exclude_unset=True)
 
+        self._validate_against_ocsf_schema(detection_finding_json)
+
+    @staticmethod
+    def _validate_against_ocsf_schema(json_data: str) -> None:
+        """Validate JSON against OCSF schema API."""
         url = "https://schema.ocsf.io/api/v2/validate"
         headers = {"content-type": "application/json"}
 
-        response = requests.post(url, headers=headers, data=detection_finding_json)
+        response = requests.post(url, headers=headers, data=json_data)
         assert response.status_code == 200, f"Schema validation failed: {response.text}"
         assert response.json()["error_count"] == 0
+
+
+class TestDetectionFindingMinimal:
+    """Tests for minimal DetectionFinding with only required fields."""
+
+    def test_detection_finding_minimal(self) -> None:
+        """Test with only required fields - validates schema requirements."""
+        from py_ocsf_models.events.findings.finding import FindingInformation
+
+        finding = DetectionFinding(
+            activity_id=ActivityID.Create,
+            metadata=Metadata(
+                version=OCSF_VERSION,
+                product=Product(
+                    name="Test Product",
+                    vendor_name="Test Vendor",
+                    version="1.0",
+                ),
+            ),
+            finding_info=FindingInformation(title="Test Finding", uid="test-123"),
+            severity_id=SeverityID.Informational,
+            time=int(datetime.now().timestamp()),
+            type_uid=DetectionFindingTypeID.Create,
+        )
+
+        # Verify optional fields are None
+        assert finding.cloud is None
+        assert finding.action_id is None
+        assert finding.disposition_id is None
+        assert finding.actor is None
+        assert finding.malware is None
+
+        # Verify required fields are set
+        assert finding.activity_id == ActivityID.Create
+        assert finding.severity_id == SeverityID.Informational
+        assert finding.metadata is not None
+        assert finding.finding_info is not None
+
+
+class TestDetectionFindingValidation:
+    """Tests for field validation constraints."""
+
+    def _create_base_finding(self, **kwargs) -> DetectionFinding:
+        """Create a base finding for testing."""
+        from py_ocsf_models.events.findings.finding import FindingInformation
+
+        defaults = {
+            "activity_id": ActivityID.Create,
+            "metadata": Metadata(
+                version=OCSF_VERSION,
+                product=Product(name="Test", vendor_name="Test", version="1.0"),
+            ),
+            "finding_info": FindingInformation(title="Test", uid="test-123"),
+            "severity_id": SeverityID.Informational,
+            "time": int(datetime.now().timestamp()),
+            "type_uid": DetectionFindingTypeID.Create,
+        }
+        defaults.update(kwargs)
+        return DetectionFinding(**defaults)
+
+    def test_impact_score_rejects_over_100(self) -> None:
+        """impact_score must be <= 100."""
+        from pydantic import ValidationError
+
+        with pytest.raises(ValidationError):
+            self._create_base_finding(impact_score=150)
+
+    def test_impact_score_rejects_negative(self) -> None:
+        """impact_score must be >= 0."""
+        from pydantic import ValidationError
+
+        with pytest.raises(ValidationError):
+            self._create_base_finding(impact_score=-1)
+
+    def test_impact_score_accepts_boundary(self) -> None:
+        """impact_score accepts 0 and 100."""
+        finding_zero = self._create_base_finding(impact_score=0)
+        assert finding_zero.impact_score == 0
+
+        finding_hundred = self._create_base_finding(impact_score=100)
+        assert finding_hundred.impact_score == 100
+
+    def test_risk_score_rejects_invalid(self) -> None:
+        """risk_score must be 0-100."""
+        from pydantic import ValidationError
+
+        with pytest.raises(ValidationError):
+            self._create_base_finding(risk_score=101)
+
+    def test_timezone_offset_rejects_out_of_range(self) -> None:
+        """timezone_offset must be -1080 to 1080."""
+        from pydantic import ValidationError
+
+        with pytest.raises(ValidationError):
+            self._create_base_finding(timezone_offset=1081)
+
+        with pytest.raises(ValidationError):
+            self._create_base_finding(timezone_offset=-1081)
+
+    def test_timezone_offset_accepts_boundary(self) -> None:
+        """timezone_offset accepts -1080 and 1080."""
+        finding_min = self._create_base_finding(timezone_offset=-1080)
+        assert finding_min.timezone_offset == -1080
+
+        finding_max = self._create_base_finding(timezone_offset=1080)
+        assert finding_max.timezone_offset == 1080
+
+    def test_raw_data_size_rejects_negative(self) -> None:
+        """raw_data_size must be >= 0."""
+        from pydantic import ValidationError
+
+        with pytest.raises(ValidationError):
+            self._create_base_finding(raw_data_size=-1)
+
+    def test_raw_data_size_accepts_zero(self) -> None:
+        """raw_data_size accepts 0."""
+        finding = self._create_base_finding(raw_data_size=0)
+        assert finding.raw_data_size == 0
+
+
+class TestDetectionFindingNewFields:
+    """Tests for new OCSF 1.7.0 fields."""
+
+    def _create_base_finding(self, **kwargs) -> DetectionFinding:
+        """Create a base finding for testing."""
+        from py_ocsf_models.events.findings.finding import FindingInformation
+
+        defaults = {
+            "activity_id": ActivityID.Create,
+            "metadata": Metadata(
+                version=OCSF_VERSION,
+                product=Product(name="Test", vendor_name="Test", version="1.0"),
+            ),
+            "finding_info": FindingInformation(title="Test", uid="test-123"),
+            "severity_id": SeverityID.Informational,
+            "time": int(datetime.now().timestamp()),
+            "type_uid": DetectionFindingTypeID.Create,
+        }
+        defaults.update(kwargs)
+        return DetectionFinding(**defaults)
+
+    def test_detection_finding_with_action_fields(self) -> None:
+        """Test action_id and action fields."""
+        from py_ocsf_models.events.findings.action_id import ActionID
+
+        finding = self._create_base_finding(
+            action_id=ActionID.Denied,
+            action="Denied",
+        )
+        assert finding.action_id == ActionID.Denied
+        assert finding.action == "Denied"
+
+    def test_detection_finding_with_disposition_fields(self) -> None:
+        """Test disposition_id and disposition fields."""
+        from py_ocsf_models.events.findings.disposition_id import DispositionID
+
+        finding = self._create_base_finding(
+            disposition_id=DispositionID.Blocked,
+            disposition="Blocked",
+        )
+        assert finding.disposition_id == DispositionID.Blocked
+        assert finding.disposition == "Blocked"
+
+    def test_detection_finding_with_verdict_fields(self) -> None:
+        """Test verdict_id and verdict fields."""
+        from py_ocsf_models.objects.verdict import VerdictID
+
+        finding = self._create_base_finding(
+            verdict_id=VerdictID.TruePositive,
+            verdict="True Positive",
+        )
+        assert finding.verdict_id == VerdictID.TruePositive
+        assert finding.verdict == "True Positive"
+
+    def test_detection_finding_with_priority_fields(self) -> None:
+        """Test priority_id and priority fields."""
+        from py_ocsf_models.events.findings.priority_id import PriorityID
+
+        finding = self._create_base_finding(
+            priority_id=PriorityID.Critical,
+            priority="Critical",
+        )
+        assert finding.priority_id == PriorityID.Critical
+        assert finding.priority == "Critical"
+
+    def test_detection_finding_with_is_alert(self) -> None:
+        """Test is_alert boolean field."""
+        finding = self._create_base_finding(is_alert=True)
+        assert finding.is_alert is True
+
+    def test_detection_finding_with_is_suspected_breach(self) -> None:
+        """Test is_suspected_breach boolean field."""
+        finding = self._create_base_finding(is_suspected_breach=True)
+        assert finding.is_suspected_breach is True
+
+    def test_detection_finding_with_src_url(self) -> None:
+        """Test src_url field."""
+        finding = self._create_base_finding(src_url="https://example.com/finding/123")
+        assert finding.src_url == "https://example.com/finding/123"
+
+    def test_detection_finding_with_actor(self) -> None:
+        """Test actor field."""
+        from py_ocsf_models.objects.actor import Actor
+
+        actor = Actor(app_name="SecurityScanner", app_uid="scanner-001")
+        finding = self._create_base_finding(actor=actor)
+        assert finding.actor is not None
+        assert finding.actor.app_name == "SecurityScanner"
+
+    def test_detection_finding_with_malware(self) -> None:
+        """Test malware field."""
+        from py_ocsf_models.objects.malware import Malware, MalwareClassificationID
+
+        malware = Malware(
+            classification_ids=[MalwareClassificationID.Ransomware],
+            name="TestMalware",
+        )
+        finding = self._create_base_finding(malware=[malware])
+        assert len(finding.malware) == 1
+        assert finding.malware[0].name == "TestMalware"
+
+    def test_detection_finding_with_tickets(self) -> None:
+        """Test tickets field."""
+        from py_ocsf_models.objects.ticket import Ticket
+
+        ticket = Ticket(uid="JIRA-123", title="Security Alert")
+        finding = self._create_base_finding(tickets=[ticket])
+        assert len(finding.tickets) == 1
+        assert finding.tickets[0].uid == "JIRA-123"
+
+    def test_detection_finding_with_firewall_rule(self) -> None:
+        """Test firewall_rule field."""
+        from py_ocsf_models.objects.firewall_rule import FirewallRule
+
+        rule = FirewallRule(name="Block SSH", uid="rule-001")
+        finding = self._create_base_finding(firewall_rule=rule)
+        assert finding.firewall_rule is not None
+        assert finding.firewall_rule.name == "Block SSH"
+
+    def test_detection_finding_with_authorizations(self) -> None:
+        """Test authorizations field."""
+        from py_ocsf_models.objects.authorization import AuthorizationResult
+
+        auth = AuthorizationResult(decision="denied")
+        finding = self._create_base_finding(authorizations=[auth])
+        assert len(finding.authorizations) == 1
+        assert finding.authorizations[0].decision == "denied"

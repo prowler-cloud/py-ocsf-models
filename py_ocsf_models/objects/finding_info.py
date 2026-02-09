@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import List, Optional
+from typing import Optional
 
 from pydantic import BaseModel
 
@@ -38,19 +38,19 @@ class FindingInformation(BaseModel):
     analytic: Optional[Analytic] = None
     created_time: Optional[int] = None
     created_time_dt: Optional[datetime] = None
-    data_sources: Optional[List[str]] = None
+    data_sources: Optional[list[str]] = None
     desc: Optional[str] = None
     first_seen_time: Optional[int] = None
     first_seen_time_dt: Optional[datetime] = None
-    kill_chain: Optional[List[KillChainPhase]] = None
+    kill_chain: Optional[list[KillChainPhase]] = None
     last_seen_time: Optional[int] = None
     last_seen_time_dt: Optional[datetime] = None
-    attacks: Optional[List[MITREAttack]] = None
+    attacks: Optional[list[MITREAttack]] = None
     modified_time: Optional[int] = None
     modified_time_dt: Optional[datetime] = None
-    related_analytics: Optional[List[Analytic]] = None
-    related_events: Optional[List[RelatedEvent]] = None
+    related_analytics: Optional[list[Analytic]] = None
+    related_events: Optional[list[RelatedEvent]] = None
     src_url: Optional[str] = None
     title: str
-    types: Optional[List[str]] = None
+    types: Optional[list[str]] = None
     uid: str

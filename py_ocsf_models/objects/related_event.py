@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Optional
 
 from pydantic import BaseModel
 
@@ -25,8 +25,8 @@ class RelatedEvent(BaseModel):
 
     # TODO
     # kill_chain: Optional[List[KillChainPhase]]
-    attacks: Optional[List[MITREAttack]] = None
-    observables: Optional[List[Observable]] = None
+    attacks: Optional[list[MITREAttack]] = None
+    observables: Optional[list[Observable]] = None
     type: Optional[str] = None
     type_uid: Optional[int] = None
     uid: str

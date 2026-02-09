@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Optional
 
 from pydantic import BaseModel
 
@@ -21,11 +21,11 @@ class Compliance(BaseModel):
     - Standards (standards) [Optional]: The regulatory or industry standards being evaluated for compliance.
     """
 
-    assessments: Optional[List[Assessment]] = None
+    assessments: Optional[list[Assessment]] = None
     category: Optional[str] = None
-    checks: Optional[List[Check]] = None
+    checks: Optional[list[Check]] = None
     control: Optional[str] = None
     desc: Optional[str] = None
-    requirements: Optional[List[str]] = None
-    standards: Optional[List[str]] = None
+    requirements: Optional[list[str]] = None
+    standards: Optional[list[str]] = None
     status_id: Optional[StatusID] = None

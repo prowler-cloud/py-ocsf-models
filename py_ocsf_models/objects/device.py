@@ -1,6 +1,6 @@
 from datetime import datetime
 from enum import IntEnum
-from typing import List, Optional
+from typing import Optional
 
 from pydantic import BaseModel
 
@@ -122,7 +122,7 @@ class Device(BaseModel):
     domain: Optional[str] = None
     first_seen_time: Optional[datetime] = None
     location: Optional[GeoLocation] = None
-    groups: Optional[List[Group]] = None
+    groups: Optional[list[Group]] = None
     hw_info: Optional[DeviceHardwareInfo] = None
     hostname: str
     hypervisor: Optional[str] = None
@@ -137,7 +137,7 @@ class Device(BaseModel):
     name: str
     interface_uid: Optional[str] = None
     interface_name: Optional[str] = None
-    network_interfaces: Optional[List[NetworkInterface]] = None
+    network_interfaces: Optional[list[NetworkInterface]] = None
     zone: Optional[str] = None
     os: Optional[OperatingSystem] = None
     org: Optional[Organization] = None

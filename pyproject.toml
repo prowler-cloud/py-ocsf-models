@@ -36,11 +36,11 @@ files = ["./py_ocsf_models"]
 strict = true
 
 [tool.poetry.group.dev.dependencies]
+# Security
 bandit = "1.8.6"
-black = "25.11.0"
-flake8 = "7.3.0"
+# Linting & Formatting
 mypy = "1.19.0"
-pylint = "3.3.9"
+# Testing
 pytest = "8.4.2"
 pytest-cov = "7.0.0"
 pytest-env = "1.1.5"
@@ -49,7 +49,33 @@ pytest-xdist = "3.8.0"
 requests = "^2.32.4"
 ruff = "0.14.7"
 safety = "3.7.0"
+# Code quality
 vulture = "2.14"
 
 [tool.poetry-version-plugin]
 source = "init"
+
+[tool.pytest.ini_options]
+markers = [
+  "external_api: marks tests that require external OCSF API (deselect with '-m \"not external_api\"')"
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py39"
+
+[tool.ruff.lint]
+ignore = [
+  "E501"  # line too long (handled by formatter)
+]
+select = [
+  "E",  # pycodestyle errors
+  "W",  # pycodestyle warnings
+  "F",  # pyflakes
+  "I",  # isort
+  "UP"  # pyupgrade
+]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+split-on-trailing-comma = true

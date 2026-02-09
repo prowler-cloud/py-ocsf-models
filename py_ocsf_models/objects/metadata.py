@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import List, Optional
+from typing import Optional
 
 from pydantic import BaseModel
 
@@ -83,19 +83,19 @@ class Metadata(BaseModel):
     correlation_uid: Optional[str] = None
     event_code: Optional[str] = None
     uid: Optional[str] = None
-    labels: Optional[List[str]] = None
+    labels: Optional[list[str]] = None
     log_level: Optional[str] = None
     log_name: Optional[str] = None
     log_provider: Optional[str] = None
     log_version: Optional[str] = None
     logged_time: Optional[datetime] = None
-    loggers: Optional[List[Logger]] = None
+    loggers: Optional[list[Logger]] = None
     modified_time: Optional[datetime] = None
     original_time: Optional[str] = None
     processed_time: Optional[datetime] = None
     product: Product
-    profiles: Optional[List[str]] = None
-    extensions: Optional[List[SchemaExtension]] = None
+    profiles: Optional[list[str]] = None
+    extensions: Optional[list[SchemaExtension]] = None
     sequence: Optional[int] = None
     tenant_uid: Optional[str] = None
     version: str = OCSF_VERSION

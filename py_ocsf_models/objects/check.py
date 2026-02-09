@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Optional
 
 from pydantic import BaseModel
 
@@ -27,7 +27,7 @@ class Check(BaseModel):
     name: Optional[str] = None
     severity: Optional[str] = None
     severity_id: Optional[SeverityID] = None
-    standards: Optional[List[str]] = None
+    standards: Optional[list[str]] = None
     status: Optional[str] = None
     status_id: Optional[StatusID] = None
     uid: Optional[str] = None

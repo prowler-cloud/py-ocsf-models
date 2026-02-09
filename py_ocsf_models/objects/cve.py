@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import List, Optional
+from typing import Optional
 
 from pydantic import BaseModel
 
@@ -20,8 +20,8 @@ class CVE(BaseModel):
     epss: Optional[EPSS] = None
     modified_time: Optional[datetime] = None
     product: Optional[Product] = None
-    references: Optional[List[str]] = None
-    related_cwes: Optional[List[CWE]] = None
+    references: Optional[list[str]] = None
+    related_cwes: Optional[list[CWE]] = None
     title: Optional[str] = None
     type: Optional[str] = None
     uid: str
