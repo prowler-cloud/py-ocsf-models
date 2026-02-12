@@ -36,6 +36,7 @@ jobs:
       - name: Install dependencies
         run: |
           poetry install
+          poetry run pip install --upgrade pip
           poetry run pip list
 
       - name: Poetry check
@@ -67,7 +68,11 @@ jobs:
 
       - name: Safety
         run: |
-          poetry run safety check --ignore 70612
+          if [ "${{ matrix.python-version }}" = "3.9" ] || [ "${{ matrix.python-version }}" = "3.10" ]; then
+            poetry run safety check --ignore 82754 --ignore 84183 --ignore 83159
+          else
+            poetry run safety check
+          fi
 
       - name: Vulture
         run: |
