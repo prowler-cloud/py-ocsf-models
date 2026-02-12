@@ -68,7 +68,7 @@ jobs:
 
       - name: Safety
         run: |
-          if [ "${{ matrix.python-version }}" = "3.9" ]; then
+          if [ "${{ matrix.python-version }}" = "3.9" ] || [ "${{ matrix.python-version }}" = "3.10" ]; then
             poetry run safety check --ignore 82754 --ignore 84183 --ignore 83159
           else
             poetry run safety check
