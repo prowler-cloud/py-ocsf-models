@@ -47,7 +47,7 @@ pytest-env = "1.1.5"
 pytest-randomly = "4.0.1"
 pytest-xdist = "3.8.0"
 requests = "^2.32.4"
-ruff = "0.14.7"
+ruff = "0.15.0"
 safety = "3.7.0"
 vulture = "2.14"
 
