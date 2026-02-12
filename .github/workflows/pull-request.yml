@@ -36,6 +36,7 @@ jobs:
       - name: Install dependencies
         run: |
           poetry install
+          poetry run pip install --upgrade pip
           poetry run pip list
 
       - name: Poetry check
@@ -67,7 +68,7 @@ jobs:
 
       - name: Safety
         run: |
-          poetry run safety check --ignore 70612
+          poetry run safety check
 
       - name: Vulture
         run: |
