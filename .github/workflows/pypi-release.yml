@@ -9,11 +9,14 @@ on:
 env:
   RELEASE_TAG: ${{ github.event.release.tag_name }}
   PYTHON_VERSION: 3.11
-  # CACHE: "poetry"
 
 jobs:
   release:
     runs-on: ubuntu-latest
+    environment: release
+    permissions:
+      contents: read
+      id-token: write
     env:
       POETRY_VIRTUALENVS_CREATE: "false"
 
@@ -21,6 +24,8 @@ jobs:
     steps:
 
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
 
       - name: Install dependencies
         run: |
@@ -30,13 +35,10 @@ jobs:
         uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-          # cache: ${{ env.CACHE }}
 
       - name: Build package
         run: |
           poetry build
 
       - name: Publish package to PyPI
-        run: |
-          poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
-          poetry publish
+        uses: pypa/gh-action-pypi-publish@76f52bc884231f62b54f72e44af3571922400088 # v1.12.4
