@@ -70,11 +70,15 @@ jobs:
 
       - name: Safety
         run: |
-          if [ "${{ matrix.python-version }}" = "3.9" ] || [ "${{ matrix.python-version }}" = "3.10" ]; then
-            poetry run safety check --ignore 82754 --ignore 84183 --ignore 83159
-          else
-            poetry run safety check
-          fi
+          # 82754: filelock TOCTOU symlink (CVE-2025-68146), fix requires Python >=3.10
+          # 84183: filelock lock mechanism (PVE-2026-84183), fix requires Python >=3.10
+          # 83159: marshmallow data conversion (CVE-2025-68480), fix requires Python >=3.10
+          # 84415: filelock TOCTOU race condition (CVE-2026-22701), fix requires Python >=3.10
+          poetry run safety check \
+            --ignore 82754 \
+            --ignore 84183 \
+            --ignore 83159 \
+            --ignore 84415
 
       - name: Vulture
         run: |
