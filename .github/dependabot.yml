@@ -13,8 +13,12 @@ updates:
     labels:
       - "dependencies"
       - "pip"
+    cooldown:
+      default-days: 7
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "monthly"
     target-branch: main
+    cooldown:
+      default-days: 7

@@ -106,3 +106,9 @@ repos:
         entry: bash -c 'vulture --exclude "contrib" --min-confidence 100 .'
         language: system
         files: '.*\.py'
+
+  ## GITHUB ACTIONS
+  - repo: https://github.com/zizmorcore/zizmor-pre-commit
+    rev: v1.23.1
+    hooks:
+      - id: zizmor
