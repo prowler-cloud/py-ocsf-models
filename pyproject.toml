@@ -49,7 +49,7 @@ pytest-xdist = "3.8.0"
 requests = "^2.32.4"
 ruff = "0.15.8"
 safety = "3.7.0"
-vulture = "2.14"
+vulture = "2.16"
 
 [tool.poetry-version-plugin]
 source = "init"
