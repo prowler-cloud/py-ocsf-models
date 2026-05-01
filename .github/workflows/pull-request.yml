@@ -70,7 +70,7 @@ jobs:
           poetry run flake8 . --ignore=E501,W503
 
       - name: Lint with ruff
-        uses: astral-sh/ruff-action@4919ec5cf1f49eff0871dbcea0da843445b837e6 # v3.6.1
+        uses: astral-sh/ruff-action@0ce1b0bf8b818ef400413f810f8a11cdbda0034b # v4.0.0
 
       - name: Checking format with black
         run: |
