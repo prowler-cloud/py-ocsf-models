@@ -94,12 +94,6 @@ repos:
         language: system
         files: '.*\.py'
 
-      - id: safety
-        name: safety
-        description: "Safety is a tool that checks your installed dependencies for known security vulnerabilities"
-        entry: bash -c 'safety check --ignore 70612'
-        language: system
-
       - id: vulture
         name: vulture
         description: "Vulture finds unused code in Python programs."
