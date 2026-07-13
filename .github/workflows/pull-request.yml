@@ -1,8 +1,6 @@
 name: PR - Lint and Test
 
-permissions:
-  contents: read
-  pull-requests: write
+permissions: {}
 
 on:
   push:
@@ -15,6 +13,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     strategy:
       matrix:
         python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
@@ -26,16 +26,13 @@ jobs:
           egress-policy: block
           allowed-endpoints: >
             api.github.com:443
-            auth.safetycli.com:443
             cli.codecov.io:443
-            data.safetycli.com:443
             files.pythonhosted.org:443
             github.com:443
             ingest.codecov.io:443
             keybase.io:443
             o26192.ingest.us.sentry.io:443
             pypi.org:443
-            pyup.io:443
             release-assets.githubusercontent.com:443
             schema.ocsf.io:443
             storage.googleapis.com:443
@@ -88,10 +85,6 @@ jobs:
         run: |
           poetry run bandit -q -lll -x './tests' -r .
 
-      - name: Safety
-        run: |
-          poetry run safety check
-
       - name: Vulture
         run: |
           poetry run vulture --min-confidence 100 .
@@ -105,3 +98,32 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }} # zizmor: ignore[secrets-outside-env]
           slug: prowler-cloud/py-ocsf-models
+
+  osv-scanner:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write # osv-scanner action posts/updates a PR comment with findings
+
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@fa2e9d605c4eeb9fcad4c99c224cee0c6c7f3594 # v2.16.0
+        with:
+          egress-policy: block
+          allowed-endpoints: >
+            api.deps.dev:443
+            api.github.com:443
+            api.osv.dev:443
+            github.com:443
+            objects.githubusercontent.com:443
+            osv-vulnerabilities.storage.googleapis.com:443
+            release-assets.githubusercontent.com:443
+
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Dependency vulnerability scan with osv-scanner
+        uses: ./.github/actions/osv-scanner
+        with:
+          lockfile: poetry.lock
