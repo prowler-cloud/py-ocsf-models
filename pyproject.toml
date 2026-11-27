@@ -20,7 +20,7 @@ packages = [
   {include = "py_ocsf_models"}
 ]
 readme = "README.md"
-requires-python = ">=3.10,<3.15"
+requires-python = ">=3.10,<3.16"
 version = "0.10.0"
 
 [project.urls]
